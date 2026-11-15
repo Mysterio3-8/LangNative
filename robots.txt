@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin.js
+Disallow: /admin.css
+Disallow: /api/
+
+Sitemap: http://localhost:8080/sitemap.xml

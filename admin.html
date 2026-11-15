@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NATIVE Edu — Панель управления (Admin Dashboard)</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="assets/branding/logo_master.jpg" alt="Logo" class="brand-img">
+        <div>
+          <div class="brand-name">NATIVE Edu</div>
+          <div class="brand-tag">Admin Console</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active" data-tab="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Дашборд & Заказы</span>
+        </a>
+        <a href="#prices" class="nav-item" data-tab="prices">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Тарифы & Цены</span>
+        </a>
+        <a href="#integrations" class="nav-item" data-tab="integrations">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <span>ЮKassa & Платежи</span>
+        </a>
+        <a href="#analytics" class="nav-item" data-tab="analytics">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          <span>Воронка лидов & Юнит-экономика</span>
+        </a>
+        <a href="#reviews" class="nav-item" data-tab="reviews">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>Модерация отзывов</span>
+        </a>
+        <a href="index.html" class="nav-item" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span>Открыть сайт</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="integration-pill">
+          <span class="status-dot"></span>
+          <span>ЮKassa: #1314296</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div>
+          <h1 class="page-title">Управление продажами курсов</h1>
+          <p class="page-desc">Статистика заказов, статус платежей через ЮKassa и модерация</p>
+        </div>
+        <div class="topbar-actions">
+          <button id="btn-export-csv" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Экспорт в CSV</span>
+          </button>
+          <button id="btn-new-order" class="btn btn-primary">
+            <span>+ Добавить заказ вручную</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Tab: Dashboard & Orders -->
+      <section id="tab-dashboard" class="tab-pane active">
+        <!-- KPI Metrics Grid -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Выручка за сегодня</div>
+            <div class="kpi-val" id="metric-today-rev">1 494 ₽</div>
+            <div class="kpi-badge badge-up">+498 ₽ к вчера</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">Выручка за месяц (Ноябрь)</div>
+            <div class="kpi-val" id="metric-month-rev">8 217 ₽</div>
+            <div class="kpi-sub">Цель: 3 000 ₽ / мес (Выполнена на 273%)</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">Всего оформлений</div>
+            <div class="kpi-val" id="metric-orders-count">28 заказов</div>
+            <div class="kpi-sub">Средний чек: 293 ₽</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-label">Шлюз ЮKassa</div>
+            <div class="kpi-val status-green">Активен (Live)</div>
+            <div class="kpi-sub">СБП, МИР, SberPay, T-Pay</div>
+          </div>
+        </div>
+
+        <!-- Orders Table Card -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Журнал заказов</h3>
+              <p class="panel-subtitle">Все оформленные подписки и транзакции с сайта и каналов</p>
+            </div>
+            <div class="filter-group">
+              <select id="filter-course" class="select-input">
+                <option value="all">Все курсы</option>
+                <option value="english">NATIVE English (249 ₽)</option>
+                <option value="chinese">NATIVE Chinese (249 ₽)</option>
+                <option value="spanish">NATIVE Spanish (249 ₽)</option>
+                <option value="combo">Комбо 3-в-1 (499 ₽)</option>
+              </select>
+              <select id="filter-status" class="select-input">
+                <option value="all">Все статусы</option>
+                <option value="paid">Оплачен</option>
+                <option value="pending">Ожидает оплаты</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID Заказа</th>
+                  <th>Дата & Время</th>
+                  <th>Курс</th>
+                  <th>Сумма</th>
+                  <th>Метод</th>
+                  <th>Контакты / Клиент</th>
+                  <th>Статус</th>
+                  <th>Действие</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body">
+                <!-- Dynamically Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab: Prices & Products -->
+      <section id="tab-prices" class="tab-pane">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Управление ценами курсов</h3>
+              <p class="panel-subtitle">Изменения синхронизируются с сервером платежей ЮKassa</p>
+            </div>
+          </div>
+
+          <div class="prices-editor-grid">
+            <div class="price-edit-box">
+              <div class="price-edit-header">
+                <span class="flag-icon">🇬🇧</span>
+                <h4>NATIVE English</h4>
+              </div>
+              <div class="input-group">
+                <label>Текущая цена (₽)</label>
+                <input type="number" id="price-en" value="249" class="text-input">
+              </div>
+              <div class="input-group">
+                <label>Старая цена (перечёркнутая)</label>
+                <input type="number" value="990" class="text-input">
+              </div>
+            </div>
+
+            <div class="price-edit-box">
+              <div class="price-edit-header">
+                <span class="flag-icon">🇨🇳</span>
+                <h4>NATIVE Chinese</h4>
+              </div>
+              <div class="input-group">
+                <label>Текущая цена (₽)</label>
+                <input type="number" id="price-cn" value="249" class="text-input">
+              </div>
+              <div class="input-group">
+                <label>Старая цена (перечёркнутая)</label>
+                <input type="number" value="990" class="text-input">
+              </div>
+            </div>
+
+            <div class="price-edit-box">
+              <div class="price-edit-header">
+                <span class="flag-icon">🇪🇸</span>
+                <h4>NATIVE Spanish</h4>
+              </div>
+              <div class="input-group">
+                <label>Текущая цена (₽)</label>
+                <input type="number" id="price-es" value="249" class="text-input">
+              </div>
+              <div class="input-group">
+                <label>Старая цена (перечёркнутая)</label>
+                <input type="number" value="990" class="text-input">
+              </div>
+            </div>
+
+            <div class="price-edit-box combo-highlight">
+              <div class="price-edit-header">
+                <span class="flag-icon">📦</span>
+                <h4>Комбо «Все 3 языка навсегда»</h4>
+              </div>
+              <div class="input-group">
+                <label>Текущая цена (₽)</label>
+                <input type="number" id="price-combo" value="499" class="text-input">
+              </div>
+              <div class="input-group">
+                <label>Старая цена (перечёркнутая)</label>
+                <input type="number" value="2970" class="text-input">
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; text-align: right;">
+            <button id="btn-save-prices" class="btn btn-primary">Сохранить изменения цен</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab: Integrations -->
+      <section id="tab-integrations" class="tab-pane">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Статус шлюза ЮKassa</h3>
+              <p class="panel-subtitle">Интеграция сбоевого профиля кассы Infinity Music</p>
+            </div>
+            <div class="badge-status-live">● Подключено к проду</div>
+          </div>
+
+          <div class="integrations-list">
+            <div class="integration-row">
+              <div class="int-label">
+                <strong>Идентификатор магазина (Shop ID)</strong>
+                <p>Номер вашего магазина в кабинете ЮKassa</p>
+              </div>
+              <div class="int-val">
+                <input type="text" value="1314296" readonly class="text-input text-mono">
+              </div>
+            </div>
+
+            <div class="integration-row">
+              <div class="int-label">
+                <strong>Секретный ключ (Secret Key)</strong>
+                <p>Боевой API-ключ для генерации платежей</p>
+              </div>
+              <div class="int-val">
+                <input type="password" value="live_BEsu2ZiV2OJkAXE_2VodwLt8Ox6o22WBuTJhy6583i4" readonly class="text-input text-mono">
+              </div>
+            </div>
+
+            <div class="integration-row">
+              <div class="int-label">
+                <strong>Способы приёма оплаты</strong>
+                <p>Автоматически включены на стороне ЮKassa</p>
+              </div>
+              <div class="int-val">
+                <span class="pill-chip">СБП 0%</span>
+                <span class="pill-chip">МИР</span>
+                <span class="pill-chip">Visa / Mastercard</span>
+                <span class="pill-chip">SberPay</span>
+                <span class="pill-chip">T-Pay</span>
+              </div>
+            </div>
+
+            <div class="integration-row">
+              <div class="int-label">
+                <strong>Telegram менеджер заказов</strong>
+                <p>Куда приходят заявки при оплате через мессенджер</p>
+              </div>
+              <div class="int-val">
+                <input type="text" value="@mollydamnbro" readonly class="text-input text-mono">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab: Unit Economics & Lead Funnel -->
+      <section id="tab-analytics" class="tab-pane">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Юнит-экономика: цель 3 000+ ₽/мес до 1 января 2027</h3>
+              <p class="panel-subtitle">Расчёт декомпозиции продаж курсов и рекламных постов</p>
+            </div>
+            <div class="badge-status-live">🎯 Финансовый трекер</div>
+          </div>
+
+          <div class="kpi-grid" style="margin-bottom: 24px;">
+            <div class="kpi-card">
+              <div class="kpi-label">Модель 1: Только курсы (249 ₽)</div>
+              <div class="kpi-val">12 продаж</div>
+              <div class="kpi-sub">2 988 ₽ / мес (3 продажи в неделю)</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-label">Модель 2: Только реклама (250 ₽)</div>
+              <div class="kpi-val">12 постов</div>
+              <div class="kpi-sub">3 000 ₽ / мес (по 2-3 поста в паблик)</div>
+            </div>
+
+            <div class="kpi-card" style="border-color: var(--brand-blue);">
+              <div class="kpi-label">Модель 3: Оптимальный гибрид ⭐</div>
+              <div class="kpi-val" style="color: var(--brand-blue);">2 994 ₽</div>
+              <div class="kpi-sub">6 курсов (1 494 ₽) + 6 реклам (1 500 ₽)</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-label">Срок достижения цели</div>
+              <div class="kpi-val status-green">45 дней</div>
+              <div class="kpi-sub">До 1 января 2027 года</div>
+            </div>
+          </div>
+
+          <div style="background: var(--bg-input); border: 1px solid var(--border-app); border-radius: var(--radius-md); padding: 24px; margin-top: 20px;">
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px;">🤖 Ассистент авто-квалификации входящих лидов (Lead Triage)</h4>
+            <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 16px;">Вставьте входящее сообщение из Telegram или ВК — модуль автоматически определит готовность к покупке и выдаст готовый конверсионный ответ.</p>
+            
+            <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+              <input type="text" id="triage-input" placeholder="Например: «Привет, как оплатить курс?» или «Подойдет ли для начинающего?»" class="text-input" style="flex-grow: 1;">
+              <button id="btn-run-triage" class="btn btn-primary">Квалифицировать лид</button>
+            </div>
+
+            <div id="triage-result" style="display: none; background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.3); border-radius: var(--radius-sm); padding: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span id="triage-badge" style="font-size: 0.8rem; font-weight: 700; color: #60a5fa; text-transform: uppercase;"></span>
+                <span id="triage-priority" style="font-size: 0.8rem; font-weight: 600; color: #34d399;"></span>
+              </div>
+              <p id="triage-action" style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;"></p>
+              <div style="background: var(--bg-panel); border-radius: 6px; padding: 12px; font-size: 0.88rem; color: #fff; line-height: 1.4;" id="triage-template"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab: Review Moderation -->
+      <section id="tab-reviews" class="tab-pane">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h3 class="panel-title">Модерация отзывов покупателей</h3>
+              <p class="panel-subtitle">Интеллектуальная фильтрация: автоблокировка заказного спама, мата и накрутки хейта</p>
+            </div>
+            <div class="filter-group">
+              <select id="filter-review-status" class="select-input">
+                <option value="all">Все статусы</option>
+                <option value="approved">Опубликованные (Approved)</option>
+                <option value="pending">На проверке (Pending)</option>
+                <option value="rejected">Заблокированные (Rejected)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Moderation Stats Bar -->
+          <div class="kpi-grid" style="margin-bottom: 24px;">
+            <div class="kpi-card">
+              <div class="kpi-label">Опубликовано на сайте</div>
+              <div class="kpi-val status-green" id="metric-reviews-approved">3</div>
+              <div class="kpi-sub">Доступны всем посетителям</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">На ручной проверке</div>
+              <div class="kpi-val" style="color: #fbbf24;" id="metric-reviews-pending">0</div>
+              <div class="kpi-sub">Требуют решения владельца</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Заблокировано автомодерацией</div>
+              <div class="kpi-val" style="color: #f87171;" id="metric-reviews-rejected">0</div>
+              <div class="kpi-sub">Спам, ненормативная лексика, хейт</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Фильтр троллинга & спама</div>
+              <div class="kpi-val status-green">Активен (100%)</div>
+              <div class="kpi-sub">20+ стоп-слов, URL-детектор</div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Дата</th>
+                  <th>Автор / Контакт</th>
+                  <th>Курс</th>
+                  <th>Оценка</th>
+                  <th style="min-width: 240px;">Текст отзыва</th>
+                  <th>Статус</th>
+                  <th>Причина автомодерации</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody id="reviews-table-body">
+                <!-- Dynamically Rendered -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

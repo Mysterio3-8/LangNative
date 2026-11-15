@@ -1,0 +1,112 @@
+{
+  "en": [
+    {
+      "id": "en_r_quiz_001",
+      "tag": "Английский • Грамматика носителей",
+      "question": "Что пропущено в предложении?\n«I'm really looking forward ____ you.»",
+      "translation": "«Я очень жду встречи с тобой.»",
+      "options": [
+        { "text": "A) to seeing", "correct": true },
+        { "text": "B) to see", "correct": false },
+        { "text": "C) for seeing", "correct": false },
+        { "text": "D) seeing", "correct": false }
+      ],
+      "explanation": "to seeing — после фразового оборота «look forward to» глагол всегда идёт с окончанием -ing (герундий)."
+    },
+    {
+      "id": "en_r_quiz_002",
+      "tag": "Английский • Времена & Предлоги",
+      "question": "Какое слово пропущено в предложении?\n«She has been working here ____ 2019.»",
+      "translation": "«Она работает здесь с 2019 года.»",
+      "options": [
+        { "text": "A) for", "correct": false },
+        { "text": "B) since", "correct": true },
+        { "text": "C) from", "correct": false },
+        { "text": "D) during", "correct": false }
+      ],
+      "explanation": "since — используется для указания конкретной точки отсчёта в прошлом (since 2019). Предлог «for» указывает на длительность (for 5 years)."
+    },
+    {
+      "id": "en_r_quiz_003",
+      "tag": "Английский • Устойчивые коллокации",
+      "question": "Какое слово пропущено в предложении?\n«Can you ____ me a favour?»",
+      "translation": "«Можешь оказать мне услугу?»",
+      "options": [
+        { "text": "A) make", "correct": false },
+        { "text": "B) give", "correct": false },
+        { "text": "C) do", "correct": true },
+        { "text": "D) take", "correct": false }
+      ],
+      "explanation": "do — устойчивое словосочетание носителей «do someone a favour» (оказать услугу). Ошибка со словом «make» — одна из самых частых!"
+    }
+  ],
+  "cn": [
+    {
+      "id": "cn_r_quiz_001",
+      "tag": "Китайский • HSK 1-2 Различия",
+      "question": "Какой иероглиф пропущен?\n我们明天____见。\n[Wǒmen míngtiān ____ jiàn.]",
+      "translation": "«Увидимся завтра.»",
+      "options": [
+        { "text": "A) 在 [zài]", "correct": false },
+        { "text": "B) 再 [zài]", "correct": true },
+        { "text": "C) 还 [hái]", "correct": false },
+        { "text": "D) 也 [yě]", "correct": false }
+      ],
+      "explanation": "再 (zài) — «снова, ещё раз»: 明天再见 (до завтра). Иероглиф 在 звучит точно так же, но означает «находиться где-то»."
+    },
+    {
+      "id": "cn_r_quiz_002",
+      "tag": "Китайский • Вопросительные слова",
+      "question": "Какое вопросительное слово пропущено?\n这本书____钱？\n[Zhè běn shū ____ qián?]",
+      "translation": "«Сколько стоит эта книга?»",
+      "options": [
+        { "text": "A) 什么 [shénme]", "correct": false },
+        { "text": "B) 哪里 [nǎli]", "correct": false },
+        { "text": "C) 多少 [duōshao]", "correct": true },
+        { "text": "D) 怎么 [zěnme]", "correct": false }
+      ],
+      "explanation": "多少 (duōshao) — «сколько» (для количества больше 10): 多少钱？ — универсальный вопрос о цене в Китае."
+    },
+    {
+      "id": "cn_r_quiz_003",
+      "tag": "Китайский • Сравнительные конструкции",
+      "question": "Какое слово пропущено в конструкции с 比?\n他比我____。\n[Tā bǐ wǒ ____.]",
+      "translation": "«Он выше меня.»",
+      "options": [
+        { "text": "A) 很高 [hěn gāo]", "correct": false },
+        { "text": "B) 高 [gāo]", "correct": true },
+        { "text": "C) 非常高 [fēicháng gāo]", "correct": false },
+        { "text": "D) 最高 [zuì gāo]", "correct": false }
+      ],
+      "explanation": "高 (gāo) — в китайском языке в сравнительных предложениях с предлогом 比 категорически нельзя ставить усилительные наречия 很, 非常 или 最."
+    }
+  ],
+  "es": [
+    {
+      "id": "es_r_quiz_001",
+      "tag": "Испанский • Разница Ser и Estar",
+      "question": "¿Cuál es la palabra correcta?\n«Yo ____ estudiante de español en la universidad.»",
+      "translation": "«Я студент, изучающий испанский в университете.»",
+      "options": [
+        { "text": "A) soy", "correct": true },
+        { "text": "B) estoy", "correct": false },
+        { "text": "C) tengo", "correct": false },
+        { "text": "D) hago", "correct": false }
+      ],
+      "explanation": "soy — глагол ser (yo soy) используется для профессии, статуса и постоянных характеристик. Estar используется для временных состояний и местоположения."
+    },
+    {
+      "id": "es_r_quiz_002",
+      "tag": "Испанский • Местоположение в моменте",
+      "question": "¿Cuál es la palabra correcta?\n«Ahora mismo nosotros ____ en la biblioteca central.»",
+      "translation": "«Прямо сейчас мы находимся в центральной библиотеке.»",
+      "options": [
+        { "text": "A) estamos", "correct": true },
+        { "text": "B) somos", "correct": false },
+        { "text": "C) tenemos", "correct": false },
+        { "text": "D) vamos", "correct": false }
+      ],
+      "explanation": "estamos — глагол estar выражает фактическое нахождение субъекта в пространстве в конкретный момент времени."
+    }
+  ]
+}

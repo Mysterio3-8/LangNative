@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>NATIVE Edu — База разговорных курсов и карточек</title>
+  <meta name="description" content="Разговорный английский, китайский HSK 1-3 и испанский с нуля за 15 минут в день. База из 2 190+ проверенных карточек, тесты на слух и аудио от носителей языка.">
+  <meta name="keywords" content="английский язык, китайский язык HSK, испанский для начинающих, карточки слов, аудио тесты, сленг носителей">
+  
+  <!-- Open Graph & Social Meta (SEO Pro Max) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NATIVE Edu — Языковые курсы и база карточек от носителей">
+  <meta property="og:description" content="Разговорный английский, китайский HSK 1-3 и испанский за 15 минут в день. 2 190+ карточек, аудио от носителей. Бессрочный доступ от 249 ₽.">
+  <meta property="og:image" content="assets/branding/logo_master.jpg">
+  <meta property="og:locale" content="ru_RU">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NATIVE Edu — Языковые базы и аудио-тренажер">
+  <meta name="twitter:description" content="Изучение английского, китайского и испанского без зубрежки за 15 минут в день. От 249 ₽ навсегда.">
+  <meta name="twitter:image" content="assets/branding/logo_master.jpg">
+  
+  <link rel="canonical" href="http://localhost:8080/">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
+
+  <!-- Schema.org Educational JSON-LD (Search Engine Rich Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "NATIVE Edu",
+        "url": "http://localhost:8080/",
+        "logo": "assets/branding/logo_master.jpg",
+        "sameAs": [
+          "https://vk.com/club239331012",
+          "https://vk.com/club242408187",
+          "https://vk.com/club243301314",
+          "https://t.me/mollydamnbro"
+        ]
+      },
+      {
+        "@type": "Course",
+        "name": "NATIVE English — Разговорный английский",
+        "description": "500+ выражений Oxford 3000, 365 тестов на слух и сленг носителей.",
+        "provider": { "@type": "Organization", "name": "NATIVE Edu" },
+        "offers": {
+          "@type": "Offer",
+          "price": "249",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2026-11-15"
+        }
+      },
+      {
+        "@type": "Course",
+        "name": "NATIVE Chinese — HSK Turbo",
+        "description": "600 слов HSK 1-3, разбор ключей и озвучка тонов носителями.",
+        "provider": { "@type": "Organization", "name": "NATIVE Edu" },
+        "offers": {
+          "@type": "Offer",
+          "price": "249",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2026-11-15"
+        }
+      },
+      {
+        "@type": "Course",
+        "name": "NATIVE Spanish — Практический испанский для жизни",
+        "description": "Топ-100 глаголов, диалоги для путешествий и отелей без зубрежки.",
+        "provider": { "@type": "Organization", "name": "NATIVE Edu" },
+        "offers": {
+          "@type": "Offer",
+          "price": "249",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2026-11-15"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Floating Header -->
+  <div class="header-wrapper">
+    <header class="header">
+      <div class="header-inner">
+        <a href="#" class="logo">
+          <img src="assets/branding/logo_master.jpg" alt="NATIVE Logo" class="logo-symbol">
+          <div class="logo-text-group">
+            <span class="logo-title">NATIVE</span>
+            <span class="logo-subtitle">Edu • Language Lab</span>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="#courses" class="nav-link">Курсы</a>
+          <a href="#demo" class="nav-link">Тест онлайн</a>
+          <a href="#reviews" class="nav-link">Отзывы</a>
+          <a href="#combo" class="nav-link">Комбо 3-в-1</a>
+          <a href="#community" class="nav-link">Сообщество</a>
+          <a href="#faq" class="nav-link">Частые вопросы</a>
+          <a href="admin.html" class="nav-link" target="_blank" style="color: var(--brand-primary); font-weight: 600;">Админка</a>
+        </nav>
+
+        <div class="header-cta">
+          <a href="#courses" class="btn btn-primary">Выбрать курс за 249 ₽</a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-pill">
+        <span class="hero-pill-badge">Спецпредложение</span>
+        <span class="hero-pill-text">Фиксированная цена 249 ₽ на все языковые базы</span>
+      </div>
+
+      <h1 class="hero-title">
+        Язык, на котором говорят носители. <br>
+        <span class="hero-title-gradient">15 минут в день</span> без зубрежки.
+      </h1>
+
+      <p class="hero-subtitle">
+        Готовая база разговорных выражений, сленг из сериалов, аудио от носителей языка и тесты на понимание речи на слух за 5 секунд.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#courses" class="btn btn-primary btn-lg">
+          <span>Начать обучение за 249 ₽</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#demo" class="btn btn-secondary btn-lg">
+          <span>Пройти интерактивный тест</span>
+        </a>
+      </div>
+
+      <!-- Real Verified Metrics & Facts (Zero Fake Data) -->
+      <div class="verified-metrics">
+        <div class="metric-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>2 190+ карточек в базе</span>
+        </div>
+        <span class="metric-sep">•</span>
+        <div class="metric-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>365 уроков в каждом курсе</span>
+        </div>
+        <span class="metric-sep">•</span>
+        <div class="metric-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>3 сообщества ВКонтакте</span>
+        </div>
+      </div>
+
+      <!-- Interactive Hero Visual Showcase (Real Lesson Card Previews) -->
+      <div class="hero-showcase">
+        <div class="showcase-glow"></div>
+        
+        <!-- English Card Preview -->
+        <div class="showcase-card card-en">
+          <div class="showcase-card-header">
+            <span class="showcase-flag">🇬🇧</span>
+            <span class="showcase-pill">Oxford 3000 • Slang</span>
+          </div>
+          <div class="showcase-word">hit the sack</div>
+          <div class="showcase-transcription">/hɪt ðə sæk/</div>
+          <div class="showcase-meaning">завалиться спать / на боковую</div>
+          <div class="showcase-audio-bar">
+            <div class="audio-play-btn">▶</div>
+            <div class="audio-wave">
+              <span style="height: 12px;"></span>
+              <span style="height: 20px;"></span>
+              <span style="height: 16px;"></span>
+              <span style="height: 24px;"></span>
+              <span style="height: 14px;"></span>
+              <span style="height: 18px;"></span>
+            </div>
+            <span class="audio-time">0:05</span>
+          </div>
+        </div>
+
+        <!-- Chinese Card Preview (Featured Center) -->
+        <div class="showcase-card card-cn active-card">
+          <div class="showcase-card-header">
+            <span class="showcase-flag">🇨🇳</span>
+            <span class="showcase-pill">HSK 1-3 • Иероглифика</span>
+          </div>
+          <div class="showcase-hanzi">好</div>
+          <div class="showcase-pinyin">[hǎo] • 3-й тон</div>
+          <div class="showcase-meaning">хорошо / отличный / добрый</div>
+          <div class="showcase-meta-row">
+            <span>6 черт</span>
+            <span>•</span>
+            <span>Ключ: 女 (женщина)</span>
+          </div>
+        </div>
+
+        <!-- Spanish Card Preview -->
+        <div class="showcase-card card-es">
+          <div class="showcase-card-header">
+            <span class="showcase-flag">🇪🇸</span>
+            <span class="showcase-pill">Разговорный A1-A2</span>
+          </div>
+          <div class="showcase-word">¿Qué tal?</div>
+          <div class="showcase-transcription">/ke tal/</div>
+          <div class="showcase-meaning">Как дела? / Как поживаешь?</div>
+          <div class="showcase-example">«¡Hola! ¿Qué tal todo?»</div>
+        </div>
+      </div>
+
+      <!-- Highlights Strip -->
+      <div class="hero-highlights">
+        <div class="highlight-item">
+          <div class="highlight-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <div class="highlight-title">Микрообучение</div>
+            <div class="highlight-desc">10–15 минут в день в метро, такси или перед сном</div>
+          </div>
+        </div>
+
+        <div class="highlight-item">
+          <div class="highlight-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <div>
+            <div class="highlight-title">Живая озвучка</div>
+            <div class="highlight-desc">Чистое произношение носителей без акцента</div>
+          </div>
+        </div>
+
+        <div class="highlight-item">
+          <div class="highlight-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <div>
+            <div class="highlight-title">Доступ навсегда</div>
+            <div class="highlight-desc">База карточек, аудио и шпаргалок сохраняется у вас</div>
+          </div>
+        </div>
+
+        <div class="highlight-item">
+          <div class="highlight-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="highlight-title">Быстрая оплата</div>
+            <div class="highlight-desc">СБП, карты любых банков РФ, SberPay, T-Pay</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo Console -->
+  <section id="demo" class="demo-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Интерактивный тренажер</span>
+        <h2 class="section-title">Оцените методику прямо сейчас</h2>
+        <p class="section-desc">Реальные задания из нашей базы. Проверьте понимание живой разговорной речи и нюансов грамматики.</p>
+      </div>
+
+      <div class="demo-console">
+        <div class="demo-tabs-bar">
+          <button class="demo-tab active" data-lang="en">
+            <span>🇬🇧</span> NATIVE English
+          </button>
+          <button class="demo-tab" data-lang="cn">
+            <span>🇨🇳</span> NATIVE Chinese
+          </button>
+          <button class="demo-tab" data-lang="es">
+            <span>🇪🇸</span> NATIVE Spanish
+          </button>
+        </div>
+
+        <div class="demo-body">
+          <div class="demo-meta">
+            <span id="demo-tag" class="demo-pill">Разговорная грамматика</span>
+            <div class="demo-timer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Тест за 5 секунд</span>
+            </div>
+          </div>
+
+          <div class="demo-question-card">
+            <div id="demo-question" class="demo-question-text">Загрузка вопроса...</div>
+            <div id="demo-subtext" class="demo-question-sub">Выберите правильный вариант:</div>
+          </div>
+
+          <div id="demo-options" class="demo-options"></div>
+          <div id="demo-feedback" class="demo-explanation"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Grid -->
+  <section id="courses" class="courses-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Каталог курсов</span>
+        <h2 class="section-title">Выберите ваш язык обучения</h2>
+        <p class="section-desc">Каждый тариф включает полный доступ к материалам навсегда, аудиобазе и закрытому Telegram-каналу.</p>
+      </div>
+
+      <div class="courses-grid">
+        <!-- English Card -->
+        <div class="course-card">
+          <div class="course-top">
+            <img src="assets/branding/avatar_english.jpg" alt="NATIVE English" class="course-avatar">
+            <span class="course-badge badge-en">A1 → B2</span>
+          </div>
+          
+          <h3 class="course-title">NATIVE English</h3>
+          <div class="course-level">Разговорный английский & Живой сленг</div>
+          <p class="course-desc">Английский из сериалов, YouTube-подкастов и реального общения без школьной занудной грамматики.</p>
+
+          <div class="price-tag-wrapper">
+            <div class="price-main">
+              <span class="price-current">249 ₽</span>
+              <span class="price-old">990 ₽</span>
+            </div>
+            <span class="price-pill-discount">-75%</span>
+          </div>
+
+          <ul class="course-checklist">
+            <li class="check-item"><span class="check-icon">✓</span> 500+ выражений Oxford 3000 и актуального сленга</li>
+            <li class="check-item"><span class="check-icon">✓</span> 365 аудиотестов на понимание беглой речи на слух</li>
+            <li class="check-item"><span class="check-icon">✓</span> Разбор ошибок: Учебник vs Как говорят носители</li>
+            <li class="check-item"><span class="check-icon">✓</span> PDF-шпаргалки для смартфона и печати</li>
+            <li class="check-item"><span class="check-icon">✓</span> Доступ навсегда в закрытом Telegram-канале</li>
+          </ul>
+
+          <button class="btn btn-primary btn-block" data-buy="english" data-title="NATIVE English" data-price="249 ₽">
+            <span>Получить курс за 249 ₽</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Chinese Card -->
+        <div class="course-card">
+          <div class="course-top">
+            <img src="assets/branding/avatar_chinese.jpg" alt="NATIVE Chinese" class="course-avatar">
+            <span class="course-badge badge-cn">HSK 1–3</span>
+          </div>
+          
+          <h3 class="course-title">NATIVE Chinese</h3>
+          <div class="course-level">Китайский с нуля & HSK Turbo</div>
+          <p class="course-desc">Логика ключей, понятные ассоциации для иероглифов, пиньинь с точными тонами и аудио-тренажер.</p>
+
+          <div class="price-tag-wrapper">
+            <div class="price-main">
+              <span class="price-current">249 ₽</span>
+              <span class="price-old">990 ₽</span>
+            </div>
+            <span class="price-pill-discount">-75%</span>
+          </div>
+
+          <ul class="course-checklist">
+            <li class="check-item"><span class="check-icon">✓</span> 600 базовых слов HSK 1, 2 и 3 с примерами контекста</li>
+            <li class="check-item"><span class="check-icon">✓</span> Порядок черт и мнемоника быстрого запоминания</li>
+            <li class="check-item"><span class="check-icon">✓</span> Чистая озвучка тонов носителями языка (Edge-TTS Yunxi)</li>
+            <li class="check-item"><span class="check-icon">✓</span> 365 тестов на слух: отличи тон за 5 секунд</li>
+            <li class="check-item"><span class="check-icon">✓</span> Доступ навсегда без регулярных платежей</li>
+          </ul>
+
+          <button class="btn btn-primary btn-block" data-buy="chinese" data-title="NATIVE Chinese" data-price="249 ₽">
+            <span>Получить курс за 249 ₽</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Spanish Card -->
+        <div class="course-card">
+          <div class="course-top">
+            <img src="assets/branding/avatar_spanish.jpg" alt="NATIVE Spanish" class="course-avatar">
+            <span class="course-badge badge-es">A1 → A2</span>
+          </div>
+          
+          <h3 class="course-title">NATIVE Spanish</h3>
+          <div class="course-level">Практический испанский для жизни</div>
+          <p class="course-desc">Испанский для путешествий, отелей, ресторанов и уверенного повседневного общения в поездках.</p>
+
+          <div class="price-tag-wrapper">
+            <div class="price-main">
+              <span class="price-current">249 ₽</span>
+              <span class="price-old">990 ₽</span>
+            </div>
+            <span class="price-pill-discount">-75%</span>
+          </div>
+
+          <ul class="course-checklist">
+            <li class="check-item"><span class="check-icon">✓</span> Топ-100 глаголов и готовые разговорные конструкции</li>
+            <li class="check-item"><span class="check-icon">✓</span> Ситуации в аэропорту, отеле, такси и ресторане</li>
+            <li class="check-item"><span class="check-icon">✓</span> Аудио-произношение от носителей языка</li>
+            <li class="check-item"><span class="check-icon">✓</span> Шпаргалка по временам и спряжениям без зубрежки</li>
+            <li class="check-item"><span class="check-icon">✓</span> Пожизненный доступ к обновлениям</li>
+          </ul>
+
+          <button class="btn btn-primary btn-block" data-buy="spanish" data-title="NATIVE Spanish" data-price="249 ₽">
+            <span>Получить курс за 249 ₽</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Combo Card -->
+      <div id="combo" class="combo-card">
+        <div class="combo-info">
+          <div class="combo-ribbon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Максимальная выгода</span>
+          </div>
+          <h3 class="combo-heading">Комбо-пакет «Все 3 языка навсегда»</h3>
+          <p class="combo-desc">
+            Полный неограниченный доступ сразу к трём курсам: английский, китайский и испанский. Все аудиофайлы, карточки HSK, сленг, шпаргалки и закрытый клуб выпускников.
+          </p>
+        </div>
+
+        <div class="combo-checkout">
+          <div class="combo-price-group">
+            <span class="combo-price-val">499 ₽</span>
+            <span class="combo-price-old">2 970 ₽</span>
+          </div>
+          <button class="btn btn-primary btn-lg" data-buy="combo" data-title="Пакет «Все 3 языка навсегда»" data-price="499 ₽">
+            <span>Забрать комбо за 499 ₽</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews with Intelligent Auto-Moderation -->
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <div class="reviews-head-action">
+        <div class="section-head" style="margin: 0; text-align: left;">
+          <span class="section-tag">Мнения учеников</span>
+          <h2 class="section-title">Отзывы о наших курсах</h2>
+          <p class="section-desc">Только подтверждённые отзывы студентов. Все публикации проходят автоматическую модерацию.</p>
+        </div>
+        <button id="btn-toggle-review-form" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <span>Написать отзыв</span>
+        </button>
+      </div>
+
+      <!-- Live Reviews Grid -->
+      <div id="reviews-container" class="reviews-grid">
+        <!-- Rendered Dynamically from data/reviews.json -->
+      </div>
+
+      <!-- Review Form Box -->
+      <div id="review-form-wrapper" class="review-form-box" style="display: none;">
+        <h3 class="review-form-title">Оставить отзыв о курсе</h3>
+        <p class="review-form-subtitle">Поделитесь вашим честным опытом обучения. Отзыв появится на сайте после автомодерации.</p>
+
+        <!-- Star Rating Picker -->
+        <div class="review-stars-select" id="star-picker">
+          <button type="button" class="star-btn active" data-val="1">★</button>
+          <button type="button" class="star-btn active" data-val="2">★</button>
+          <button type="button" class="star-btn active" data-val="3">★</button>
+          <button type="button" class="star-btn active" data-val="4">★</button>
+          <button type="button" class="star-btn active" data-val="5">★</button>
+        </div>
+
+        <form id="review-submit-form">
+          <input type="hidden" id="review-rating-val" value="5">
+          <div class="form-row-2">
+            <input type="text" id="review-name" placeholder="Ваше имя" required class="review-input">
+            <input type="text" id="review-contact" placeholder="Telegram ник или ссылка ВК (необязательно)" class="review-input">
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <select id="review-course" class="review-input" required>
+              <option value="english">NATIVE English (Разговорный английский)</option>
+              <option value="chinese">NATIVE Chinese (Китайский HSK Turbo)</option>
+              <option value="spanish">NATIVE Spanish (Практический испанский)</option>
+              <option value="combo">Комбо «Все 3 языка навсегда»</option>
+            </select>
+          </div>
+
+          <textarea id="review-text" placeholder="Напишите ваш подробный отзыв: что понравилось, как помогли аудио и карточки..." required minlength="15" class="review-textarea"></textarea>
+
+          <div id="review-moderation-msg" class="moderation-status-box"></div>
+
+          <button type="submit" id="btn-submit-review" class="btn btn-primary btn-block">
+            <span>Отправить отзыв на проверку</span>
+          </button>
+        </form>
+
+        <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-top: 14px;">
+          🛡️ На сайте включена интеллектуальная автомодерация: спам, нецензурная лексика и заказной хейт конкурентов блокируются автоматически.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Community & Open Feedback Section -->
+  <section id="community" class="community-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Открытое сообщество</span>
+        <h2 class="section-title">Живые каналы и честные отзывы</h2>
+        <p class="section-desc">Мы не публикуем фальшивые отзывы. Все наши материалы, ежедневные карточки и обсуждения открыты в сообществах ВКонтакте.</p>
+      </div>
+
+      <div class="community-grid">
+        <a href="https://vk.com/club239331012" target="_blank" class="community-card">
+          <div>
+            <div class="community-card-top">
+              <img src="assets/branding/avatar_english.jpg" alt="English VK" class="community-card-avatar">
+              <div>
+                <div class="community-card-name">NATIVE | English</div>
+                <div class="community-card-meta">vk.com/club239331012</div>
+              </div>
+            </div>
+            <p class="community-card-desc">Ежедневные карточки сленга, разборы песен и сериалов, опросы и открытые ветки обсуждений с подписчиками.</p>
+          </div>
+          <div class="community-card-link">
+            <span>Перейти в сообщество</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <a href="https://vk.com/club242408187" target="_blank" class="community-card">
+          <div>
+            <div class="community-card-top">
+              <img src="assets/branding/avatar_chinese.jpg" alt="Chinese VK" class="community-card-avatar">
+              <div>
+                <div class="community-card-name">NATIVE | Chinese</div>
+                <div class="community-card-meta">vk.com/club242408187</div>
+              </div>
+            </div>
+            <p class="community-card-desc">Обучающие клипы по 5 секунд, разборы иероглифов HSK 1-3, пиньинь с тонами и тренировка слуха.</p>
+          </div>
+          <div class="community-card-link">
+            <span>Перейти в сообщество</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <a href="https://vk.com/club243301314" target="_blank" class="community-card">
+          <div>
+            <div class="community-card-top">
+              <img src="assets/branding/avatar_spanish.jpg" alt="Spanish VK" class="community-card-avatar">
+              <div>
+                <div class="community-card-name">NATIVE | Spanish</div>
+                <div class="community-card-meta">vk.com/club243301314</div>
+              </div>
+            </div>
+            <p class="community-card-desc">Практический испанский для путешествий: готовые диалоги, фразы носителей и разборы для начинающих.</p>
+          </div>
+          <div class="community-card-link">
+            <span>Перейти в сообщество</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Вопросы и ответы</span>
+        <h2 class="section-title">Все детали перед покупкой</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-card active">
+          <div class="faq-q">
+            <span>В каком формате проходят уроки?</span>
+            <span class="faq-q-icon">+</span>
+          </div>
+          <div class="faq-a">
+            Вы получаете доступ к закрытому Telegram-каналу с готовыми интерактивными карточками, аудио-треками от носителей языка и PDF-файлами для печати и смартфона. Заниматься можно в любое время со смартфона, планшета или компьютера.
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <div class="faq-q">
+            <span>На какой срок выдается доступ?</span>
+            <span class="faq-q-icon">+</span>
+          </div>
+          <div class="faq-a">
+            Доступ бессрочный (навсегда). Никаких скрытых ежемесячных подписок и списаний. Вы платите один раз 249 ₽ (или 499 ₽ за комбо) и материалы остаются у вас.
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <div class="faq-q">
+            <span>Как происходит оплата?</span>
+            <span class="faq-q-icon">+</span>
+          </div>
+          <div class="faq-a">
+            Оплата производится мгновенно и безопасно через СБП (Система быстрых платежей), любые карты банков РФ (МИР, Visa, Mastercard), SberPay, T-Pay или напрямую через администратора в Telegram / ВКонтакте. Ссылка на курс открывается сразу после оплаты.
+          </div>
+        </div>
+
+        <div class="faq-card">
+          <div class="faq-q">
+            <span>Подойдет ли для начинающих с полного нуля?</span>
+            <span class="faq-q-icon">+</span>
+          </div>
+          <div class="faq-a">
+            Да! Все курсы построены по принципу микрообучения от базовых кирпичиков (алфавит, пиньинь, ключевые слова) к сложным разговорным фразам с понятными ассоциациями и аудио-подсказками.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-nav">
+        <a href="#courses">Курсы</a>
+        <a href="#demo">Тест онлайн</a>
+        <a href="#combo">Комбо 3-в-1</a>
+        <a href="#community">Сообщества</a>
+        <a href="https://t.me/mollydamnbro" target="_blank">Поддержка (Telegram @mollydamnbro)</a>
+        <a href="https://vk.com/im?sel=-239331012" target="_blank">ВКонтакте</a>
+      </div>
+      <p class="footer-legal">© 2026 NATIVE Edu. Образовательные материалы для самостоятельного изучения языков.</p>
+    </div>
+  </footer>
+
+  <!-- Checkout Sheet Modal (Apple / Stripe Design) -->
+  <div id="checkout-modal" class="modal-overlay">
+    <div class="modal-window">
+      <button id="modal-close" class="modal-close">&times;</button>
+      
+      <div class="modal-head">
+        <h3 id="modal-course-title" class="modal-title">Оформление заказа</h3>
+        <p class="modal-sub">Моментальный доступ к материалам после оплаты</p>
+      </div>
+
+      <div class="modal-order-summary">
+        <span class="summary-label">Стоимость (навсегда):</span>
+        <span id="modal-course-price" class="summary-price">249 ₽</span>
+      </div>
+
+      <div class="pay-stack">
+        <!-- 1-Click SBP / YooKassa -->
+        <a id="yookassa-pay-btn" href="#" class="pay-btn pay-btn-primary-sbp">
+          <div class="pay-btn-left">
+            <div class="pay-btn-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="pay-btn-text-group">
+              <span class="pay-btn-title">СБП / Карта РФ (ЮKassa)</span>
+              <span class="pay-btn-sub">0% комиссии • Моментальное зачисление</span>
+            </div>
+          </div>
+          <span>→</span>
+        </a>
+
+        <!-- Telegram Pay / Manager -->
+        <a id="tg-pay-btn" href="https://t.me/mollydamnbro" target="_blank" class="pay-btn">
+          <div class="pay-btn-left">
+            <div class="pay-btn-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+            </div>
+            <div class="pay-btn-text-group">
+              <span class="pay-btn-title">Оплатить через Telegram</span>
+              <span class="pay-btn-sub">Менеджер @mollydamnbro</span>
+            </div>
+          </div>
+          <span>→</span>
+        </a>
+
+        <!-- VK Pay / Message -->
+        <a id="vk-pay-btn" href="https://vk.com/im?sel=-239331012" target="_blank" class="pay-btn">
+          <div class="pay-btn-left">
+            <div class="pay-btn-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="pay-btn-text-group">
+              <span class="pay-btn-title">Оплатить через ВКонтакте</span>
+              <span class="pay-btn-sub">Сообщения сообщества</span>
+            </div>
+          </div>
+          <span>→</span>
+        </a>
+      </div>
+
+      <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; line-height: 1.4;">
+        🔒 Безопасное соединение. Чек и закрытая ссылка выдаются моментально после оплаты.
+      </p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
