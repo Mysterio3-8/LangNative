@@ -48,7 +48,7 @@ def register_successful_payment(payment_data: Dict[str, Any]) -> Dict[str, Any]:
     """
     metadata = payment_data.get("metadata", {})
     course_id = metadata.get("course_id", "english")
-    amount = float(payment_data.get("amount", {}).get("value", 199))
+    amount = float(payment_data.get("amount", {}).get("value", 290))
     order_id = f"ORD-{payment_data.get('id', '')[-6:].upper()}"
 
     invite_link = COURSE_INVITES.get(course_id, COURSE_INVITES["english"])
@@ -92,7 +92,7 @@ def triage_incoming_lead(message_text: str) -> Dict[str, Any]:
             "suggested_action": "Отправить ссылку на СБП ЮKassa",
             "reply_template": (
                 "Привет! Оплатить можно моментально и без комиссии через СБП или картой:\n"
-                "👉 Ссылка на оплату: https://mysterio3-8.github.io/LangNative/#courses (199 ₽ навсегда)\n"
+                "👉 Ссылка на оплату: https://mysterio3-8.github.io/LangNative/#courses (от 290 ₽ навсегда)\n"
                 "После оплаты доступ к материалам и закрытому каналу открывается сразу."
             )
         }
@@ -114,9 +114,9 @@ def triage_incoming_lead(message_text: str) -> Dict[str, Any]:
         return {
             "intent": "PRICE_INQUIRY",
             "priority": "MEDIUM",
-            "suggested_action": "Озвучить цену 199 ₽",
+            "suggested_action": "Озвучить цену от 290 ₽",
             "reply_template": (
-                "Сейчас действует специальная цена: любой курс всего 199 ₽ навсегда (вместо 990 ₽). "
+                "Сейчас действует специальная цена: английский и испанский всего по 290 ₽ навсегда, китайский — 390 ₽. "
                 "Никаких подписок, доступ бессрочный со всеми материалами и аудио!"
             )
         }
@@ -134,7 +134,7 @@ def calculate_unit_economics(target_monthly_revenue: int = 3000) -> Dict[str, An
     """
     Расчёт юнит-экономики для достижения финансовой цели владельца (≥ 3000 ₽ / месяц к концу декабря 2026).
     """
-    course_price = 199
+    course_price = 290
     ad_post_price = 250  # Заявленная минимальная цена рекламы в пабликах
 
     needed_course_sales = int(target_monthly_revenue / course_price) + 1  # 16 продаж

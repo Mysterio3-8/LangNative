@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const course = prompt("Выберите курс (english / chinese / spanish):", "english");
       if (!course) return;
       const customer = prompt("Контакт покупателя (Telegram или Email):", "@new_student") || "@unknown";
-      const price = 199;
+      const price = course === "chinese" ? 390 : 290;
       const titles = {
         english: "NATIVE English (Словарный буст)",
         chinese: "NATIVE Chinese (Иероглифы & Тоны HSK 1)",
@@ -234,8 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (text.includes("оплат") || text.includes("купить") || text.includes("сбп") || text.includes("хочу")) {
         intent = "🔥 ГОРЯЧИЙ ЛИД (ГОТОВ К ОПЛАТЕ)";
         priority = "Высокий приоритет (Конвертировать сейчас)";
-        action = "Отправить прямую ссылку на оплату через СБП ЮKassa";
-        reply = "Привет! Оплатить можно в 1 клик через СБП или картой (без комиссии):\n👉 Ссылка: https://mysterio3-8.github.io/LangNative/#courses (всего 199 ₽ навсегда).\nПосле оплаты доступ к материалам и закрытому каналу открывается моментально!";
+        action = "Отправить прямую ссылку на оплату через СБП / Карту ЮKassa";
+        reply = "Привет! Оплатить можно официально картой РФ или СБП через платёжный шлюз ЮKassa (0% комиссии):\n👉 Ссылка: https://mysterio3-8.github.io/LangNative/#courses (от 290 ₽ навсегда).\nПосле оплаты доступ к материалам и закрытому каналу открывается моментально, а чек по 54-ФЗ приходит на почту!";
       } else if (text.includes("нуля") || text.includes("начинающ") || text.includes("сложн") || text.includes("уровен")) {
         intent = "💡 КВАЛИФИКАЦИЯ НОВИЧКА";
         priority = "Средний приоритет";
@@ -244,8 +244,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (text.includes("цен") || text.includes("скольк") || text.includes("скидк") || text.includes("руб")) {
         intent = "💰 ЗАПРОС СТОИМОСТИ";
         priority = "Средний приоритет";
-        action = "Озвучить ограниченный оффер со скидкой 80%";
-        reply = "Сейчас действует специальная цена: любой курс всего 199 ₽ навсегда (вместо 990 ₽). А если хотите сразу английский, китайский и испанский — комбо-пакет 3-в-1 всего за 399 ₽!";
+        action = "Озвучить честную стоимость по акции";
+        reply = "Сейчас действует специальная цена: английский и испанский — по 290 ₽ навсегда, китайский с базой иероглифов и аудио-тренажером тонов — 390 ₽ навсегда. Доступ бессрочный без подписок!";
       }
 
       triageBadge.textContent = intent;

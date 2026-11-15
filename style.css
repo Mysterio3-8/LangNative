@@ -1443,6 +1443,28 @@ body {
   opacity: 0.85;
 }
 
+.checkout-methods-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.pay-method-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #475569;
+}
+
 /* FAQ Accordion */
 .faq-section {
   padding: 80px 0;

@@ -34,17 +34,17 @@ app = FastAPI(title="NATIVE Edu Secure Payment Gateway", docs_url=None, redoc_ur
 COURSE_CATALOG = {
     "english": {
         "title": "NATIVE English",
-        "price_rub": 199,
+        "price_rub": 290,
         "description": "Курс «NATIVE English» — Словарный буст & Живой сленг навсегда",
     },
     "chinese": {
         "title": "NATIVE Chinese",
-        "price_rub": 199,
+        "price_rub": 390,
         "description": "Курс «NATIVE Chinese» — Иероглифы & Тоны HSK 1 навсегда",
     },
     "spanish": {
         "title": "NATIVE Spanish",
-        "price_rub": 199,
+        "price_rub": 290,
         "description": "Курс «NATIVE Spanish» — Разговорные фразы & Топ-100 глаголов навсегда",
     },
 }

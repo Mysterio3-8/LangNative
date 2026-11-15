@@ -338,6 +338,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const diagnosisText = document.getElementById("result-diagnosis-text");
     const courseName = document.getElementById("result-course-name");
     const courseFocus = document.getElementById("result-course-focus");
+    const resultPrice = document.getElementById("result-course-price");
+    const resultBuyText = document.getElementById("btn-result-buy-text");
+
+    const recPrice = rec.courseId === "chinese" ? "390 ₽" : "290 ₽";
 
     if (badgeIcon) badgeIcon.textContent = rec.trophy;
     if (levelTitle) levelTitle.textContent = `Ваш уровень: ${rec.level}`;
@@ -345,6 +349,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diagnosisText) diagnosisText.textContent = rec.diagnosis;
     if (courseName) courseName.textContent = rec.courseName;
     if (courseFocus) courseFocus.textContent = rec.courseFocus;
+    if (resultPrice) resultPrice.textContent = recPrice;
+    if (resultBuyText) resultBuyText.textContent = `Оформить курс за ${recPrice}`;
   }
 
   // Retry Quiz Button Handler
@@ -395,44 +401,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- 2. Checkout Modal & Security-Hardened Payment Actions ---
+  // --- 2. Checkout Modal & Security-Hardened Payment Actions (YooKassa Only) ---
   const modal = document.getElementById("checkout-modal");
   const modalClose = document.getElementById("modal-close");
   const modalTitle = document.getElementById("modal-course-title");
   const modalPrice = document.getElementById("modal-course-price");
   const yookassaPayBtn = document.getElementById("yookassa-pay-btn");
-  const tgPayBtn = document.getElementById("tg-pay-btn");
-  const vkPayBtn = document.getElementById("vk-pay-btn");
+  const yookassaBtnLabel = document.getElementById("yookassa-btn-label");
 
   let selectedCourseId = "english";
   let selectedCourseTitle = "NATIVE English";
-  let selectedCoursePrice = "199 ₽";
-
-  // Strict whitelist mapping for VK direct chat links
-  const VK_COMMUNITY_MAP = {
-    english: "https://vk.com/im?sel=-239331012",
-    chinese: "https://vk.com/im?sel=-242408187",
-    spanish: "https://vk.com/im?sel=-243301314",
-  };
+  let selectedCoursePrice = "290 ₽";
 
   const buyButtons = document.querySelectorAll("[data-buy]");
   buyButtons.forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       selectedCourseId = btn.dataset.buy || "english";
-      selectedCoursePrice = btn.dataset.price || "199 ₽";
+      selectedCoursePrice = btn.dataset.price || (selectedCourseId === "chinese" ? "390 ₽" : "290 ₽");
       selectedCourseTitle = btn.dataset.title || "Языковой курс NATIVE";
 
       if (modalTitle) modalTitle.textContent = selectedCourseTitle;
       if (modalPrice) modalPrice.textContent = `${selectedCoursePrice} (навсегда)`;
-
-      // Telegram manager order link
-      const tgText = encodeURIComponent(`Привет! Хочу оплатить курс «${selectedCourseTitle}» за ${selectedCoursePrice}. Вышлите доступ.`);
-      if (tgPayBtn) tgPayBtn.href = `https://t.me/mollydamnbro?text=${tgText}`;
-
-      // VK targeted community link
-      if (vkPayBtn) {
-        vkPayBtn.href = VK_COMMUNITY_MAP[selectedCourseId] || "https://vk.com/im?sel=-239331012";
+      if (yookassaBtnLabel) {
+        yookassaBtnLabel.textContent = `Оплатить картой РФ / СБП (ЮKassa) — ${selectedCoursePrice}`;
       }
 
       if (modal) {
@@ -442,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // YooKassa Secure Integration Handler
+  // YooKassa Secure Integration Handler (Only Bank Cards & SBP via YooKassa)
   if (yookassaPayBtn) {
     yookassaPayBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -453,28 +445,49 @@ document.addEventListener("DOMContentLoaded", () => {
       const payload = { course_id: selectedCourseId };
       if (emailVal) payload.email = emailVal;
 
-      // Check if local/production payment backend is available
-      fetch("/api/create-payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      })
-      .then(r => {
-        if (!r.ok) throw new Error("Payment endpoint not configured");
-        return r.json();
-      })
-      .then(data => {
-        if (data.confirmation_url) {
-          window.location.href = data.confirmation_url;
-        } else {
-          throw new Error("No confirmation URL");
+      const originalBtnText = yookassaBtnLabel ? yookassaBtnLabel.textContent : "Оплатить картой РФ / СБП";
+      if (yookassaBtnLabel) yookassaBtnLabel.textContent = "Переход к шлюзу ЮKassa...";
+      yookassaPayBtn.disabled = true;
+
+      // Try local and production payment endpoints
+      const tryPayment = async () => {
+        const endpoints = [
+          "/api/create-payment",
+          "https://langnative.vercel.app/api/create-payment"
+        ];
+        
+        for (const ep of endpoints) {
+          try {
+            const resp = await fetch(ep, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload)
+            });
+            if (resp.ok) {
+              const data = await resp.json();
+              if (data && data.confirmation_url) {
+                window.location.href = data.confirmation_url;
+                return true;
+              }
+            }
+          } catch (err) {}
         }
-      })
-      .catch(() => {
-        // Fallback to Telegram SBP automated prompt
-        const emailNotice = emailVal ? ` (мой Email для чека 54-ФЗ: ${emailVal})` : '';
-        const sbpText = encodeURIComponent(`Привет! Хочу оплатить курс «${selectedCourseTitle}» (${selectedCoursePrice}) через СБП / Карту (ЮKassa)${emailNotice}. Сформируйте счёт и чек 54-ФЗ.`);
-        window.open(`https://t.me/mollydamnbro?text=${sbpText}`, "_blank");
+        return false;
+      };
+
+      tryPayment().then(success => {
+        if (!success) {
+          // Official fallback to YooKassa Fast Pay Gateway
+          const pricesNum = { english: 290, chinese: 390, spanish: 290 };
+          const amount = pricesNum[selectedCourseId] || 290;
+          const yooUrl = `https://yookassa.ru/integration/simplepay?shopId=1314296&sum=${amount}&customerNumber=${encodeURIComponent(emailVal || 'buyer')}`;
+          window.location.href = yooUrl;
+        }
+      }).finally(() => {
+        setTimeout(() => {
+          if (yookassaBtnLabel) yookassaBtnLabel.textContent = originalBtnText;
+          yookassaPayBtn.disabled = false;
+        }, 4000);
       });
     });
   }
@@ -786,6 +799,12 @@ document.addEventListener("DOMContentLoaded", () => {
       readerBadge.textContent = badges[courseId] || "Курс";
       const badgeClass = courseId === "english" ? "badge-en" : courseId === "chinese" ? "badge-cn" : "badge-es";
       readerBadge.className = `course-badge ${badgeClass}`;
+    }
+
+    const priceText = courseId === "chinese" ? "390 ₽" : "290 ₽";
+    const buyTextSpan = document.getElementById("reader-btn-buy-text");
+    if (buyTextSpan) {
+      buyTextSpan.textContent = `Получить полный курс за ${priceText}`;
     }
 
     // Render Syllabus
