@@ -35,17 +35,17 @@ COURSE_CATALOG = {
     "english": {
         "title": "NATIVE English",
         "price_rub": 290,
-        "description": "Курс «NATIVE English» — Словарный буст & Живой сленг навсегда",
+        "description": "Курс «NATIVE English» (A0 → C1) — 5 навыков под ключ навсегда",
     },
     "chinese": {
         "title": "NATIVE Chinese",
         "price_rub": 390,
-        "description": "Курс «NATIVE Chinese» — Иероглифы & Тоны HSK 1 навсегда",
+        "description": "Курс «NATIVE Chinese» (HSK 1 → 5) — 5 навыков под ключ навсегда",
     },
     "spanish": {
         "title": "NATIVE Spanish",
         "price_rub": 290,
-        "description": "Курс «NATIVE Spanish» — Разговорные фразы & Топ-100 глаголов навсегда",
+        "description": "Курс «NATIVE Spanish» (A1 → B2) — 5 навыков под ключ навсегда",
     },
 }
 
