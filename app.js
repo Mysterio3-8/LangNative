@@ -187,6 +187,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const items = demoData[lang] || [];
     if (!items.length) return;
 
+    // Apply language-specific theme palette to demo console
+    const demoConsole = document.querySelector(".demo-console");
+    if (demoConsole) {
+      demoConsole.classList.remove("theme-en", "theme-cn", "theme-es");
+      demoConsole.classList.add(`theme-${lang}`);
+    }
+
     // Show quiz view, hide result card
     if (demoQuizView) demoQuizView.style.display = "block";
     if (demoResultCard) demoResultCard.style.display = "none";
@@ -777,6 +784,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (readerBadge) {
       const badges = { english: "A1 → B2", chinese: "HSK 1–3", spanish: "A1 → A2" };
       readerBadge.textContent = badges[courseId] || "Курс";
+      const badgeClass = courseId === "english" ? "badge-en" : courseId === "chinese" ? "badge-cn" : "badge-es";
+      readerBadge.className = `course-badge ${badgeClass}`;
     }
 
     // Render Syllabus

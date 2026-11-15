@@ -887,9 +887,288 @@ body {
   text-transform: uppercase;
 }
 
-.badge-en { background: #eff6ff; color: #1d4ed8; }
-.badge-cn { background: #fef2f2; color: #dc2626; }
-.badge-es { background: #fffbeb; color: #b45309; }
+.badge-en { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.badge-cn { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.badge-es { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+
+/* ==========================================================================
+   Multi-Language Color Palettes (EN / CN / ES Dedicated Identity)
+   ========================================================================== */
+
+/* --- 1. ENGLISH PALETTE (Royal Navy & Oxford Sapphire) --- */
+:root {
+  --en-primary: #2563eb;
+  --en-dark: #1d4ed8;
+  --en-light: #eff6ff;
+  --en-border: #bfdbfe;
+  --en-glow: rgba(37, 99, 235, 0.16);
+  --en-gradient: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+}
+
+.course-card.theme-en {
+  border-top: 4px solid var(--en-primary);
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 160px);
+}
+.course-card.theme-en:hover {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 16px 36px -6px var(--en-glow);
+}
+.theme-en .course-level {
+  color: var(--en-primary);
+}
+.theme-en .check-icon {
+  background: var(--en-light);
+  color: var(--en-primary);
+}
+.theme-en [data-buy="english"] {
+  background: var(--en-gradient) !important;
+  border-color: var(--en-primary) !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
+}
+.theme-en [data-buy="english"]:hover {
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.45) !important;
+}
+.theme-en .btn-syllabus:hover {
+  border-color: var(--en-primary);
+  color: var(--en-primary);
+}
+
+/* Community EN */
+.community-card.comm-en:hover {
+  border-color: rgba(37, 99, 235, 0.45);
+  background: #f8faff;
+}
+.comm-en .community-card-link {
+  color: var(--en-primary);
+}
+
+
+/* --- 2. CHINESE PALETTE (Imperial Crimson & Jade Gold) --- */
+:root {
+  --cn-primary: #dc2626;
+  --cn-dark: #b91c1c;
+  --cn-light: #fef2f2;
+  --cn-border: #fecaca;
+  --cn-glow: rgba(220, 38, 38, 0.16);
+  --cn-gradient: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+}
+
+.course-card.theme-cn {
+  border-top: 4px solid var(--cn-primary);
+  background: linear-gradient(180deg, #fffafa 0%, #ffffff 160px);
+}
+.course-card.theme-cn:hover {
+  border-color: rgba(220, 38, 38, 0.45);
+  box-shadow: 0 16px 36px -6px var(--cn-glow);
+}
+.theme-cn .course-level {
+  color: var(--cn-primary);
+}
+.theme-cn .check-icon {
+  background: var(--cn-light);
+  color: var(--cn-primary);
+}
+.theme-cn [data-buy="chinese"] {
+  background: var(--cn-gradient) !important;
+  border-color: var(--cn-primary) !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3) !important;
+}
+.theme-cn [data-buy="chinese"]:hover {
+  box-shadow: 0 8px 22px rgba(220, 38, 38, 0.45) !important;
+}
+.theme-cn .btn-syllabus:hover {
+  border-color: var(--cn-primary);
+  color: var(--cn-primary);
+}
+
+/* Community CN */
+.community-card.comm-cn:hover {
+  border-color: rgba(220, 38, 38, 0.45);
+  background: #fffafa;
+}
+.comm-cn .community-card-link {
+  color: var(--cn-primary);
+}
+
+
+/* --- 3. SPANISH PALETTE (Saffron Terracotta & Amber) --- */
+:root {
+  --es-primary: #ea580c;
+  --es-dark: #c2410c;
+  --es-light: #fff7ed;
+  --es-border: #fed7aa;
+  --es-glow: rgba(234, 88, 12, 0.16);
+  --es-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
+}
+
+.course-card.theme-es {
+  border-top: 4px solid var(--es-primary);
+  background: linear-gradient(180deg, #fffaf5 0%, #ffffff 160px);
+}
+.course-card.theme-es:hover {
+  border-color: rgba(234, 88, 12, 0.45);
+  box-shadow: 0 16px 36px -6px var(--es-glow);
+}
+.theme-es .course-level {
+  color: var(--es-primary);
+}
+.theme-es .check-icon {
+  background: var(--es-light);
+  color: var(--es-primary);
+}
+.theme-es [data-buy="spanish"] {
+  background: var(--es-gradient) !important;
+  border-color: var(--es-primary) !important;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3) !important;
+}
+.theme-es [data-buy="spanish"]:hover {
+  box-shadow: 0 8px 22px rgba(234, 88, 12, 0.45) !important;
+}
+.theme-es .btn-syllabus:hover {
+  border-color: var(--es-primary);
+  color: var(--es-primary);
+}
+
+/* Community ES */
+.community-card.comm-es:hover {
+  border-color: rgba(234, 88, 12, 0.45);
+  background: #fffaf5;
+}
+.comm-es .community-card-link {
+  color: var(--es-primary);
+}
+
+
+/* --- DYNAMIC INTERACTIVE TRAINER THEMES (#demo) --- */
+
+/* Theme EN in Demo */
+.demo-console.theme-en .demo-tab[data-lang="en"].active {
+  background: #eff6ff;
+  color: var(--en-primary);
+  border-bottom: 2px solid var(--en-primary);
+}
+.demo-console.theme-en #demo-tag {
+  background: #eff6ff;
+  color: var(--en-primary);
+  border: 1px solid var(--en-border);
+}
+.demo-console.theme-en #demo-progress-fill {
+  background: linear-gradient(90deg, #1d4ed8 0%, #38bdf8 100%);
+}
+.demo-console.theme-en .demo-difficulty-badge {
+  background: #eff6ff;
+  color: var(--en-primary);
+}
+.demo-console.theme-en .result-header {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-color: #bfdbfe;
+}
+.demo-console.theme-en .result-supertitle {
+  color: var(--en-primary);
+}
+.demo-console.theme-en .result-diagnosis-box {
+  border-left-color: var(--en-primary);
+}
+.demo-console.theme-en .result-course-offer {
+  border-color: var(--en-primary);
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+}
+.demo-console.theme-en .offer-tag {
+  background: #eff6ff;
+  color: var(--en-primary);
+}
+.demo-console.theme-en #btn-result-buy {
+  background: var(--en-gradient);
+}
+.demo-console.theme-en #btn-next-demo-quiz {
+  background: var(--en-gradient);
+}
+
+/* Theme CN in Demo */
+.demo-console.theme-cn .demo-tab[data-lang="cn"].active {
+  background: #fef2f2;
+  color: var(--cn-primary);
+  border-bottom: 2px solid var(--cn-primary);
+}
+.demo-console.theme-cn #demo-tag {
+  background: #fef2f2;
+  color: var(--cn-primary);
+  border: 1px solid var(--cn-border);
+}
+.demo-console.theme-cn #demo-progress-fill {
+  background: linear-gradient(90deg, #991b1b 0%, #dc2626 50%, #f59e0b 100%);
+}
+.demo-console.theme-cn .demo-difficulty-badge {
+  background: #fef2f2;
+  color: var(--cn-primary);
+}
+.demo-console.theme-cn .result-header {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border-color: #fecaca;
+}
+.demo-console.theme-cn .result-supertitle {
+  color: var(--cn-primary);
+}
+.demo-console.theme-cn .result-diagnosis-box {
+  border-left-color: var(--cn-primary);
+}
+.demo-console.theme-cn .result-course-offer {
+  border-color: var(--cn-primary);
+  box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.15);
+}
+.demo-console.theme-cn .offer-tag {
+  background: #fef2f2;
+  color: var(--cn-primary);
+}
+.demo-console.theme-cn #btn-result-buy {
+  background: var(--cn-gradient);
+}
+.demo-console.theme-cn #btn-next-demo-quiz {
+  background: var(--cn-gradient);
+}
+
+/* Theme ES in Demo */
+.demo-console.theme-es .demo-tab[data-lang="es"].active {
+  background: #fff7ed;
+  color: var(--es-primary);
+  border-bottom: 2px solid var(--es-primary);
+}
+.demo-console.theme-es #demo-tag {
+  background: #fff7ed;
+  color: var(--es-primary);
+  border: 1px solid var(--es-border);
+}
+.demo-console.theme-es #demo-progress-fill {
+  background: linear-gradient(90deg, #9a3412 0%, #ea580c 60%, #eab308 100%);
+}
+.demo-console.theme-es .demo-difficulty-badge {
+  background: #fff7ed;
+  color: var(--es-primary);
+}
+.demo-console.theme-es .result-header {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border-color: #fed7aa;
+}
+.demo-console.theme-es .result-supertitle {
+  color: var(--es-primary);
+}
+.demo-console.theme-es .result-diagnosis-box {
+  border-left-color: var(--es-primary);
+}
+.demo-console.theme-es .result-course-offer {
+  border-color: var(--es-primary);
+  box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.15);
+}
+.demo-console.theme-es .offer-tag {
+  background: #fff7ed;
+  color: var(--es-primary);
+}
+.demo-console.theme-es #btn-result-buy {
+  background: var(--es-gradient);
+}
+.demo-console.theme-es #btn-next-demo-quiz {
+  background: var(--es-gradient);
+}
 
 .course-title {
   font-family: var(--font-display);
