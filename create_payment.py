@@ -32,20 +32,25 @@ app = FastAPI(title="NATIVE Edu Secure Payment Gateway", docs_url=None, redoc_ur
 
 # 1. Server-Side Immutable Price Authority (Клиент НЕ может диктовать цену!)
 COURSE_CATALOG = {
-    "english": {
-        "title": "NATIVE English",
-        "price_rub": 290,
-        "description": "Курс «NATIVE English» (A0 → C1) — 5 навыков под ключ навсегда",
-    },
-    "chinese": {
-        "title": "NATIVE Chinese",
-        "price_rub": 390,
-        "description": "Курс «NATIVE Chinese» (HSK 1 → 5) — 5 навыков под ключ навсегда",
-    },
     "spanish": {
         "title": "NATIVE Spanish",
         "price_rub": 290,
         "description": "Курс «NATIVE Spanish» (A1 → B2) — 5 навыков под ключ навсегда",
+    },
+    "english": {
+        "title": "NATIVE English",
+        "price_rub": 390,
+        "description": "Курс «NATIVE English» (A0 → C1) — 5 навыков под ключ навсегда",
+    },
+    "chinese": {
+        "title": "NATIVE Chinese",
+        "price_rub": 490,
+        "description": "Курс «NATIVE Chinese» (HSK 1 → 5) — 5 навыков под ключ навсегда",
+    },
+    "bundle": {
+        "title": "NATIVE Polyglot (Комплект 3 в 1)",
+        "price_rub": 790,
+        "description": "Комплект 3 в 1: Английский + Китайский + Испанский навсегда",
     },
 }
 

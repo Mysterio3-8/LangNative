@@ -142,21 +142,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // New Order Modal / Prompt
   if (btnNewOrder) {
     btnNewOrder.addEventListener("click", () => {
-      const course = prompt("Выберите курс (english / chinese / spanish):", "english");
+      const course = prompt("Выберите курс (spanish / english / chinese / bundle):", "english");
       if (!course) return;
+      const cleanCourse = course.toLowerCase().trim();
       const customer = prompt("Контакт покупателя (Telegram или Email):", "@new_student") || "@unknown";
-      const price = course === "chinese" ? 390 : 290;
-      const titles = {
-        english: "NATIVE English (Словарный буст)",
-        chinese: "NATIVE Chinese (Иероглифы & Тоны HSK 1)",
-        spanish: "NATIVE Spanish (Разговорные фразы)"
+      
+      const prices = {
+        spanish: 290,
+        english: 390,
+        chinese: 490,
+        bundle: 790
       };
+
+      const titles = {
+        spanish: "NATIVE Spanish (Разговорные фразы)",
+        english: "NATIVE English (Словарный буст Oxford 3000)",
+        chinese: "NATIVE Chinese (Иероглифы & Тоны HSK 1-5)",
+        bundle: "NATIVE Polyglot Pack (3-в-1 Все языки)"
+      };
+
+      const price = prices[cleanCourse] || 390;
 
       const newOrder = {
         id: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
         date: new Date().toLocaleDateString("ru-RU") + ", " + new Date().toLocaleTimeString("ru-RU", {hour: '2-digit', minute:'2-digit'}),
-        course: course,
-        courseName: titles[course] || "Языковой курс NATIVE",
+        course: cleanCourse,
+        courseName: titles[cleanCourse] || "Языковой курс NATIVE",
         price: price,
         method: "ЮKassa (СБП)",
         customer: customer,
@@ -245,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
         intent = "💰 ЗАПРОС СТОИМОСТИ";
         priority = "Средний приоритет";
         action = "Озвучить честную стоимость по акции";
-        reply = "Сейчас действует специальная цена: английский и испанский — по 290 ₽ навсегда, китайский с базой иероглифов и аудио-тренажером тонов — 390 ₽ навсегда. Доступ бессрочный без подписок!";
+        reply = "Сейчас действует специальная цена со скидкой до 78%: Испанский — 290 ₽, Английский (Oxford 3000) — 390 ₽, Китайский (HSK 1-5 с тренажёром тонов) — 490 ₽, а комплект «Все языки (3-в-1)» — всего 790 ₽ навсегда! Доступ бессрочный без подписок и скрытых платежей.";
       }
 
       triageBadge.textContent = intent;

@@ -544,5 +544,64 @@
   line-height: 1.45;
 }
 
+/* ==========================================================================
+   Responsive Adaptations for Courses & Skills Matrix
+   ========================================================================== */
+@media (max-width: 960px) {
+  .courses-grid {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+    margin: 0 auto 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .courses-section {
+    padding: 44px 0;
+  }
+  .courses-grid {
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  .course-card {
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
+  }
+  .course-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+  }
+  .course-title {
+    font-size: 1.25rem;
+  }
+  .course-desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .price-main .price-current {
+    font-size: 1.6rem;
+  }
+  .course-checklist {
+    margin: 16px 0;
+    gap: 8px;
+  }
+  .check-item {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+  .skills-matrix-section {
+    padding: 44px 0;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .skill-card {
+    padding: 20px 16px;
+  }
+}
+
 
 

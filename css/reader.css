@@ -248,3 +248,26 @@
   line-height: 1.5;
 }
 
+@media (max-width: 640px) {
+  .reader-modal-window {
+    padding: 20px 16px !important;
+    max-height: 92vh;
+  }
+  .reader-tabs-nav {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .reader-tab-btn {
+    padding: 8px 12px;
+    font-size: 0.84rem;
+  }
+  .lesson-chunks-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .syllabus-item-card {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+}
+

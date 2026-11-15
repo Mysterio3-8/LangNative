@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Политика конфиденциальности (152-ФЗ) — NATIVE Edu</title>
-  <meta name="description" content="Официальная политика обработки персональных данных образовательного проекта NATIVE Edu в строгом соответствии с Федеральным законом РФ № 152-ФЗ.">
+  <title>Политика конфиденциальности и защиты информации — NATIVE Edu</title>
+  <meta name="description" content="Политика обработки и защиты информации пользователей образовательного проекта NATIVE Edu. Принципы приватности, безопасности платежей и сохранности данных.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
   <style>
     .brand-avatar-img {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       object-fit: cover;
       flex-shrink: 0;
@@ -20,28 +20,28 @@
     .logo-group {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
     }
     .legal-page {
       max-width: 860px;
-      margin: 40px auto 80px;
-      padding: 0 24px;
+      margin: 32px auto 72px;
+      padding: 0 20px;
     }
     .legal-header {
-      margin-bottom: 36px;
-      padding-bottom: 24px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
       border-bottom: 1px solid var(--border-card);
     }
     .legal-back-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--brand-blue);
       text-decoration: none;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       padding: 6px 14px;
       background: #eff6ff;
       border-radius: var(--radius-full);
@@ -52,46 +52,16 @@
     }
     .legal-title {
       font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       color: var(--text-primary);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       line-height: 1.25;
     }
     .legal-meta {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
-    }
-    .legal-content h2 {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin: 32px 0 14px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-hairline);
-    }
-    .legal-content h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin: 20px 0 10px;
-    }
-    .legal-content p {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 14px;
-    }
-    .legal-content ul, .legal-content ol {
-      margin: 12px 0 18px 24px;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-    .legal-content li {
-      margin-bottom: 8px;
     }
     .legal-box {
       background: #f8fafc;
@@ -99,18 +69,85 @@
       border-left: 4px solid var(--brand-blue);
       border-radius: var(--radius-md);
       padding: 16px 20px;
-      margin: 20px 0;
+      margin: 20px 0 28px;
       font-size: 0.9rem;
       line-height: 1.6;
       color: var(--text-primary);
     }
-    .legal-contacts-card {
+    .legal-content h2 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 28px 0 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .legal-content p {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .legal-content ul, .legal-content ol {
+      margin: 10px 0 16px 22px;
+      color: var(--text-secondary);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+    .legal-content li {
+      margin-bottom: 6px;
+    }
+    .legal-disclosure {
       background: #ffffff;
       border: 1px solid var(--border-card);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      margin-top: 36px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-top: 32px;
+      transition: all 0.2s ease;
+    }
+    .legal-disclosure summary {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .legal-disclosure summary::after {
+      content: "▾";
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+    .legal-disclosure[open] summary::after {
+      transform: rotate(180deg);
+    }
+    .legal-disclosure-body {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .legal-disclosure-body ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+    .legal-disclosure-body li {
+      margin-bottom: 6px;
+    }
+    @media (max-width: 640px) {
+      .legal-page {
+        margin: 20px auto 48px;
+        padding: 0 16px;
+      }
+      .legal-content p, .legal-content ul, .legal-content ol {
+        font-size: 0.88rem;
+      }
     }
   </style>
 </head>
@@ -118,119 +155,94 @@
 
   <!-- Top Simple Nav -->
   <header class="header">
-    <div class="container header-container">
+    <div class="container header-container" style="display:flex; align-items:center; justify-content:space-between; padding: 10px 16px;">
       <a href="index.html" class="logo-group">
         <img src="assets/branding/logo_master.jpg" alt="NATIVE Edu Logo" class="brand-avatar-img">
         <div class="logo-text">
-          <span class="logo-title">NATIVE Edu</span>
-          <span class="logo-subtitle">Правовые документы</span>
+          <span class="logo-title" style="font-weight:800; font-size:1.05rem; color:var(--text-primary);">NATIVE Edu</span>
         </div>
       </a>
-      <a href="index.html" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;">← Вернуться на главную</a>
+      <a href="index.html" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.82rem;">← На главную</a>
     </div>
   </header>
 
   <main class="legal-page">
     <div class="legal-header">
-      <a href="index.html" class="legal-back-btn">← Назад к витрине курсов</a>
-      <h1 class="legal-title">Политика в отношении обработки персональных данных</h1>
-      <p class="legal-meta">В соответствии с требованиями Федерального закона РФ № 152-ФЗ «О персональных данных» • Редакция от 15 ноября 2026 г.</p>
+      <a href="index.html" class="legal-back-btn">← Вернуться к витрине курсов</a>
+      <h1 class="legal-title">Политика конфиденциальности и защиты информации</h1>
+      <p class="legal-meta">Принципы обработки данных, безопасность платежей и защита прав пользователей • Действующая редакция от 15 ноября 2026 г.</p>
     </div>
 
     <div class="legal-box">
-      🛡️ <strong>Ваша безопасность и приватность:</strong> Проект NATIVE Edu собирает минимально необходимый объем данных исключительно для передачи оплаченных учебных материалов, выдачи электронного чека в соответствии с 54-ФЗ и связи службы поддержки. Мы никогда не продаем и не передаем ваши данные третьим лицам для спама или рекламы.
+      🛡️ <strong>Принципы приватности NATIVE Edu:</strong> Мы придерживаемся принципа минимальной достаточности данных: мы запрашиваем только то, что необходимо для отправки оплаченных учебных файлов, формирования электронного кассового чека и работы службы поддержки. Мы гарантируем сохранность информации и никогда не продаём и не передаём контакты третьим лицам.
     </div>
 
     <div class="legal-content">
       <h2>1. Общие положения</h2>
-      <p>1.1. Настоящая Политика обработки персональных данных (далее — «Политика») определяет порядок обработки и защиты персональных данных пользователей веб-сайта <strong>NATIVE Edu</strong> (далее — «Сайт»), доступного по адресам: <code>https://mysterio3-8.github.io/LangNative/</code> и <code>https://langnative.vercel.app</code>.</p>
-      <p>1.2. Оператором персональных данных является администрация проекта NATIVE Edu (далее — «Оператор»). Связь с Оператором по вопросам обработки персональных данных осуществляется через официальный контакт в Telegram: <a href="https://t.me/mollydamnbro" target="_blank"><strong>@mollydamnbro</strong></a> и сообщения официальных сообществ проекта ВКонтакте.</p>
-      <p>1.3. Настоящая Политика составлена в строгом соответствии с положениями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных», а также иными нормативно-правовыми актами Российской Федерации в области защиты информации.</p>
-      <p>1.4. Использование Пользователем Сайта, заказ обучающих материалов, направление запроса в службу поддержки или отправка отзыва означает безоговорочное согласие Пользователя с настоящей Политикой и указанными в ней условиями обработки его персональных данных.</p>
+      <p>1.1. Настоящая Политика определяет порядок сбора, хранения, обработки и защиты информации, получаемой от пользователей сайта <strong>NATIVE Edu</strong> (далее — «Сайт»), расположенного по адресам: <code>https://mysterio3-8.github.io/LangNative/</code> и <code>https://langnative.vercel.app</code>.</p>
+      <p>1.2. Использование сервисов Сайта, прохождение интерактивного тестирования, оформление заказа или обращение в службу поддержки означает согласие Пользователя с условиями настоящей Политики.</p>
+      <p>1.3. Политика разработана на основе действующего законодательства Российской Федерации в области защиты информации, конституционных гарантий неприкосновенности частной жизни и стандартов безопасной электронной коммерции.</p>
 
-      <h2>2. Категории обрабатываемых персональных данных</h2>
-      <p>2.1. В рамках функционирования Сайта Оператор может обрабатывать следующие персональные данные Пользователей:</p>
+      <h2>2. Состав обрабатываемой информации</h2>
+      <p>2.1. В рамках оказания услуг могут обрабатываться следующие категории данных:</p>
       <ul>
-        <li><strong>Имя (или псевдоним):</strong> для персонализации обращения при взаимодействии со службой поддержки и модерации авторских отзывов;</li>
-        <li><strong>Адрес электронной почты (E-mail):</strong> для автоматической отправки электронного кассового чека (согласно 54-ФЗ), ссылок на скачивание учебных материалов и дублирования доступа;</li>
-        <li><strong>Идентификатор (никнейм) в мессенджере Telegram или ссылка на профиль ВКонтакте:</strong> для оперативного подключения к закрытому Telegram-каналу курса и консультаций методистов;</li>
-        <li><strong>Обезличенные технические данные:</strong> файлы cookie (куки), IP-адрес, тип браузера, операционная система, дата и время визита, необходимые исключительно для корректной работы интерактивного тренажера и адаптивного интерфейса.</li>
+        <li><strong>Контактный адрес электронной почты (E-mail):</strong> используется для передачи ссылок на скачивание учебных материалов, дублирования доступа и отправки фискального кассового чека;</li>
+        <li><strong>Имя (или псевдоним):</strong> для корректного обращения службы заботы и идентификации автора при публикации отзыва;</li>
+        <li><strong>Контактный никнейм в мессенджере Telegram или профиль ВКонтакте:</strong> для подключения к закрытому облачному каналу материалов и оперативной консультации;</li>
+        <li><strong>Технические обезличенные сведения:</strong> файлы cookie, данные о типе браузера и разрешении экрана, необходимые исключительно для корректного отображения адаптивного интерфейса и сохранения прогресса в тренажере.</li>
       </ul>
-      <p>2.2. Оператор <strong>не собирает и не обрабатывает</strong> биометрические персональные данные, а также специальные категории персональных данных (сведения о расовой, национальной принадлежности, политических взглядах, религиозных убеждениях, состоянии здоровья и частной жизни).</p>
+      <p>2.2. Сайт категорически <strong>не запрашивает и не обрабатывает</strong> специальные категории персональных данных (сведения о здоровье, взглядах, частной жизни) и биометрические данные.</p>
 
-      <h2>3. Цели сбора и обработки персональных данных</h2>
-      <p>3.1. Персональные данные обрабатываются Оператором исключительно в следующих законных целях:</p>
-      <ol>
-        <li><strong>Предоставление доступа к цифровым образовательным продуктам:</strong> передача ссылок на скачивание PDF-учебников, аудиофайлов MP3 и подключение к закрытым каналам;</li>
-        <li><strong>Исполнение законодательства РФ о применении ККТ (54-ФЗ):</strong> передача электронных кассовых чеков через аккредитованного оператора фискальных данных (ОФД) платежной системы ЮKassa;</li>
-        <li><strong>Клиентская поддержка и обратная связь:</strong> ответы на вопросы пользователей, восстановление утерянных ссылок на скачивание, решение технических сложностей;</li>
-        <li><strong>Публикация пользовательских отзывов:</strong> отображение подтвержденных мнений реальных покупателей на Сайте с соблюдением требований о недопустимости распространения персональных данных без согласия автора;</li>
-        <li><strong>Обеспечение безопасности и стабильности Сайта:</strong> защита от спама, автоматических DDOS-атак и вредоносных действий.</li>
-      </ol>
+      <h2>3. Безопасность безналичных платежей</h2>
+      <p>3.1. Все онлайн-расчёты (карты МИР, Visa, Mastercard, СБП, SberPay, T-Pay) проводятся напрямую через сертифицированный платёжный шлюз <strong>ЮKassa (ООО НКО «ЮМани», лицензия Банка России № 3510-К)</strong>.</p>
+      <p>3.2. Оператор и Сайт <strong>не имеют доступа, не получают и не сохраняют</strong> полные реквизиты банковских карт Пользователей (номер, срок действия, CVV/CVC-код). Ввод конфиденциальных платёжных данных осуществляется на защищённой странице банка-эквайера, сертифицированной по высшему международному стандарту <strong>PCI DSS Level 1</strong>.</p>
 
-      <h2>4. Правовые основания обработки (ст. 6 152-ФЗ)</h2>
-      <p>4.1. Правовыми основаниями обработки персональных данных являются:</p>
+      <h2>4. Цели обработки информации</h2>
+      <p>4.1. Сбор и обработка информации осуществляются исключительно для:</p>
       <ul>
-        <li>Конституция Российской Федерации;</li>
-        <li>Гражданский кодекс Российской Федерации (статьи 435, 437, 438 об акцепте публичной оферты);</li>
-        <li>Федеральный закон от 27.07.2006 № 152-ФЗ «О персональных данных»;</li>
-        <li>Федеральный закон от 22.05.2003 № 54-ФЗ «О применении контрольно-кассовой техники при осуществлении расчетов в Российской Федерации»;</li>
-        <li>Согласие Пользователя на обработку его персональных данных, предоставляемое путём продолжения использования Сайта, оформления заказа или отправки форм.</li>
+        <li>Мгновенного предоставления доступа к оплаченным материалам (PDF, аудио, карточки);</li>
+        <li>Автоматического формирования и передачи электронных кассовых чеков с фискальным признаком;</li>
+        <li>Клиентской поддержки: восстановления утерянных ссылок, консультаций по форматам файлов;</li>
+        <li>Обеспечения стабильной работы и защиты Сайта от технических сбоев и вредоносных действий.</li>
       </ul>
 
-      <h2>5. Локализация данных в РФ и безопасность хранения</h2>
-      <p>5.1. Во исполнение требований части 5 статьи 18 Федерального закона № 152-ФЗ, сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение) и извлечение персональных данных граждан Российской Федерации осуществляются с использованием баз данных, находящихся на территории Российской Федерации.</p>
-      <p>5.2. Оператор принимает необходимые правовые, организационные и технические меры для защиты персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения, а также от иных неправомерных действий третьих лиц.</p>
-      <p>5.3. Все соединения с Сайтом защищены современным протоколом шифрования SSL/TLS (HTTPS), исключающим перехват передаваемой информации.</p>
+      <h2>5. Защита и хранение данных</h2>
+      <p>5.1. Хранение технической информации осуществляется с использованием защищённых информационных систем, расположенных на территории Российской Федерации.</p>
+      <p>5.2. Все информационные потоки между браузером Пользователя и Сайтом защищены протоколами шифрования SSL/TLS (HTTPS), исключающими перехват или подмену данных.</p>
+      <p>5.3. Информация хранится не дольше, чем этого требуют заявленные цели обработки, либо до момента получения от Пользователя запроса на её удаление.</p>
 
-      <h2>6. Безопасность платежей и отсутствие доступа к реквизитам карт</h2>
-      <p>6.1. Все безналичные платежи на Сайте (через СБП, банковские карты МИР, Visa, Mastercard, SberPay, T-Pay) обрабатываются напрямую сертифицированным платёжным шлюзом <strong>ЮKassa (ООО НКО «ЮМани», лицензия Банка России № 3510-К)</strong>, действующим по международному стандарту безопасности данных индустрии платёжных карт PCI DSS Level 1.</p>
-      <p>6.2. <strong>Оператор не получает, не обрабатывает и не сохраняет</strong> реквизиты банковских карт Пользователей (полный номер карты, срок действия, код CVC/CVV). Все платежные данные вводятся Пользователем исключительно на защищенной платежной странице шлюза ЮKassa.</p>
+      <h2>6. Использование файлов Cookie</h2>
+      <p>6.1. Файлы cookie используются для сохранения текущего прогресса интерактивного тестирования и запоминания пользовательских настроек.</p>
+      <p>6.2. Пользователь может в любой момент ограничить или полностью отключить использование файлов cookie в настройках своего браузера. При этом базовый функционал ознакомления с материалами остаётся полностью доступным.</p>
 
-      <h2>7. Политика использования файлов Cookie (Куки)</h2>
-      <p>7.1. Сайт использует технологию cookie — небольшие текстовые фрагменты данных, сохраняемые в веб-браузере Пользователя. Куки используются исключительно для:</p>
-      <ul>
-        <li>Сохранения прогресса прохождения интерактивных языковых тестов в режиме онлайн;</li>
-        <li>Запоминания факта закрытия информационных уведомлений (включая уведомление об использовании cookie);</li>
-        <li>Обеспечения корректной работы мобильной и десктопной версий сайта.</li>
-      </ul>
-      <p>7.2. Пользователь может в любой момент отключить сохранение файлов cookie в настройках своего браузера. При отключении cookie базовая функциональность чтения материалов сохраняется.</p>
-
-      <h2>8. Сроки обработки и права Пользователя</h2>
-      <p>8.1. Обработка персональных данных осуществляется бессрочно либо до момента достижения заявленных целей обработки, либо до получения от Пользователя отзыва согласия на обработку персональных данных.</p>
-      <p>8.2. Пользователь имеет право:</p>
-      <ul>
-        <li>Получать информацию, касающуюся обработки его персональных данных;</li>
-        <li>Требовать уточнения своих персональных данных, их блокирования или уничтожения в случае, если данные являются неполными, устаревшими, неточными или незаконно полученными;</li>
-        <li>Отозвать свое согласие на обработку персональных данных в любой момент времени.</li>
-      </ul>
-      <p>8.3. Для отзыва согласия на обработку данных или направления запроса Пользователю достаточно направить обращение Оператору в мессенджере Telegram на имя <a href="https://t.me/mollydamnbro" target="_blank"><strong>@mollydamnbro</strong></a> с пометкой <em>«Отзыв согласия на обработку персональных данных 152-ФЗ»</em>. Запрос обрабатывается Оператором в срок не более 10 (десяти) рабочих дней.</p>
-
-      <h2>9. Изменение настоящей Политики</h2>
-      <p>9.1. Оператор имеет право вносить изменения в настоящую Политику в связи с изменениями законодательства Российской Федерации или развитием функционала Сайта. Новая редакция Политики вступает в силу с момента ее размещения на Сайте.</p>
-      <p>9.2. Действующая редакция Политики всегда доступна в открытом доступе в сети Интернет по постоянному адресу: <code>https://mysterio3-8.github.io/LangNative/privacy.html</code>.</p>
+      <h2>7. Права пользователя и порядок обращения</h2>
+      <p>7.1. Пользователь имеет право в любой момент запросить сведения об объёме имеющихся у Оператора данных о нём, потребовать их уточнения, обновления или полного уничтожения.</p>
+      <p>7.2. Запрос на уточнение или удаление данных направляется в службу поддержки проекта. Срок рассмотрения и исполнения запроса составляет не более 10 рабочих дней.</p>
     </div>
 
-    <!-- Official Contacts Card -->
-    <div class="legal-contacts-card">
-      <h3 style="margin-top:0; font-size:1.15rem; color:var(--text-primary);">Контактная информация Оператора</h3>
-      <p style="margin-bottom:8px; font-size:0.92rem; color:var(--text-secondary);">По всем юридическим и техническим вопросам, защите прав субъектов 152-ФЗ и клиентской поддержке:</p>
-      <ul style="margin: 8px 0 16px 20px; font-size: 0.92rem;">
-        <li>Telegram-поддержка: <a href="https://t.me/mollydamnbro" target="_blank" style="color:var(--brand-blue); font-weight:600;">@mollydamnbro</a></li>
-        <li>Официальные сообщества ВК: <a href="https://vk.com/club239331012" target="_blank" style="color:var(--brand-blue);">English Community</a>, <a href="https://vk.com/club242408187" target="_blank" style="color:var(--brand-blue);">Chinese Community</a>, <a href="https://vk.com/club243301314" target="_blank" style="color:var(--brand-blue);">Spanish Community</a></li>
-        <li>Идентификатор интернет-магазина ЮKassa: <code>Shop ID 1314296</code></li>
-      </ul>
-      <a href="index.html" class="btn btn-primary" style="display:inline-block; font-size:0.9rem; padding:10px 20px;">Вернуться к выбору курсов</a>
-    </div>
+    <!-- Collapsible Discreet Legal Disclosures (Clean & Professional) -->
+    <details class="legal-disclosure">
+      <summary>Юридические сведения и каналы обращения по вопросам защиты информации</summary>
+      <div class="legal-disclosure-body">
+        <p>По всем правовым вопросам, защите информации и взаимодействию со службой клиентского сервиса:</p>
+        <ul>
+          <li>Служба клиентской поддержки в Telegram: <a href="https://t.me/mollydamnbro" target="_blank" style="color:var(--brand-blue); font-weight:600;">@mollydamnbro</a></li>
+          <li>Официальные сообщества проекта: <a href="https://vk.com/club239331012" target="_blank">English Community</a>, <a href="https://vk.com/club242408187" target="_blank">Chinese Community</a>, <a href="https://vk.com/club243301314" target="_blank">Spanish Community</a></li>
+          <li>Идентификатор интернет-магазина в платёжном шлюзе: <code>Shop ID 1314296</code></li>
+        </ul>
+      </div>
+    </details>
   </main>
 
   <footer class="footer">
-    <div class="container" style="text-align: center;">
-      <p class="footer-legal">© 2026 NATIVE Edu. Все права защищены. Обработка данных осуществляется в соответствии с Федеральным законом РФ № 152-ФЗ.</p>
-      <div style="margin-top: 12px; font-size: 0.85rem;">
-        <a href="index.html" style="color: var(--text-secondary); margin: 0 10px;">Главная</a>
-        <a href="offer.html" style="color: var(--text-secondary); margin: 0 10px;">Публичная оферта (54-ФЗ)</a>
-        <a href="privacy.html" style="color: var(--brand-blue); font-weight: 600; margin: 0 10px;">Политика конфиденциальности (152-ФЗ)</a>
+    <div class="container" style="text-align: center; padding: 24px 16px;">
+      <p class="footer-legal" style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">
+        © 2026 NATIVE Edu. Все права защищены. Образовательные материалы для самостоятельного изучения.
+      </p>
+      <div style="font-size: 0.84rem;">
+        <a href="index.html" style="color: var(--text-secondary); margin: 0 8px;">Главная</a>
+        <a href="offer.html" style="color: var(--text-secondary); margin: 0 8px;">Пользовательское соглашение</a>
+        <a href="privacy.html" style="color: var(--brand-blue); font-weight: 600; margin: 0 8px;">Политика конфиденциальности</a>
       </div>
     </div>
   </footer>

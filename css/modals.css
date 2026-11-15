@@ -577,6 +577,25 @@
 }
 
 @media (max-width: 768px) {
+  .modal-overlay {
+    padding: 10px;
+    align-items: flex-end;
+  }
+  .modal-window {
+    padding: 24px 18px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-close {
+    top: 14px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+  }
+  .modal-title {
+    font-size: 1.25rem;
+  }
   .cookie-banner {
     bottom: 12px;
     flex-direction: column;

@@ -25,15 +25,8 @@
   <link rel="canonical" href="https://mysterio3-8.github.io/LangNative/">
   <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
 
-  <!-- Modular Stylesheets (Zero FOUC Cascade) -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/ambient.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/trainer.css">
-  <link rel="stylesheet" href="css/courses.css">
-  <link rel="stylesheet" href="css/modals.css">
-  <link rel="stylesheet" href="css/reviews.css">
-  <link rel="stylesheet" href="css/reader.css">
+  <!-- Unified Ultra-Fast Stylesheet (Zero FOUC & Single Network Request) -->
+  <link rel="stylesheet" href="style.css">
 
   <!-- Schema.org Educational JSON-LD (Search Engine Rich Snippets) -->
   <script type="application/ld+json">
@@ -59,7 +52,7 @@
         "provider": { "@type": "Organization", "name": "NATIVE Edu" },
         "offers": {
           "@type": "Offer",
-          "price": "290",
+          "price": "390",
           "priceCurrency": "RUB",
           "availability": "https://schema.org/InStock",
           "validFrom": "2026-11-15"
@@ -72,7 +65,7 @@
         "provider": { "@type": "Organization", "name": "NATIVE Edu" },
         "offers": {
           "@type": "Offer",
-          "price": "390",
+          "price": "490",
           "priceCurrency": "RUB",
           "availability": "https://schema.org/InStock",
           "validFrom": "2026-11-15"
@@ -86,6 +79,19 @@
         "offers": {
           "@type": "Offer",
           "price": "290",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2026-11-15"
+        }
+      },
+      {
+        "@type": "Course",
+        "name": "NATIVE Polyglot — Комплект 3 в 1 (Английский + Китайский + Испанский)",
+        "description": "Максимальный доступ ко всем 3 курсам, 4200+ слов и аудиобазе носителей навсегда.",
+        "provider": { "@type": "Organization", "name": "NATIVE Edu" },
+        "offers": {
+          "@type": "Offer",
+          "price": "790",
           "priceCurrency": "RUB",
           "availability": "https://schema.org/InStock",
           "validFrom": "2026-11-15"
@@ -428,79 +434,7 @@
       </div>
 
       <div class="courses-grid">
-        <!-- English Card -->
-        <div class="course-card theme-en">
-          <div class="course-top">
-            <img src="assets/branding/avatar_english.jpg" alt="NATIVE English" class="course-avatar">
-            <span class="course-badge badge-en">A0 → C1 (Все уровни)</span>
-          </div>
-          
-          <h3 class="course-title">NATIVE English</h3>
-          <div class="course-level">5 навыков под ключ • Все уровни A0–C1</div>
-          <p class="course-desc">От первого кирпичика A0 до беглой речи C1. Системная прокачка 5 ключевых навыков: слова и сленг, грамматика без таблиц, чтение в контексте, разговорные чанки и аудирование.</p>
-
-          <div class="price-tag-wrapper">
-            <div class="price-main">
-              <span class="price-current">290 ₽</span>
-              <span class="price-old">1 290 ₽</span>
-            </div>
-            <span class="price-pill-discount">-77%</span>
-          </div>
-
-          <ul class="course-checklist">
-            <li class="check-item"><span class="check-icon">✓</span> <strong>📚 Слова:</strong> 1 500+ выражений Oxford 3000 и живой сленг сериалов</li>
-            <li class="check-item"><span class="check-icon">✓</span> <strong>🧩 Грамматика:</strong> Речевые паттерны носителей без заучивания 12 времен</li>
-            <li class="check-item"><span class="check-icon">✓</span> <strong>📖 Чтение:</strong> Реальные переписки, диалоги и разборы текстов с переводом</li>
-            <li class="check-item"><span class="check-icon">✓</span> <strong>🗣️ Говорение:</strong> Техника Shadowing и преодоление языкового барьера</li>
-            <li class="check-item"><span class="check-icon">✓</span> <strong>🎧 Слух:</strong> 365 тестов на восприятие беглой речи носителей за 5 секунд</li>
-          </ul>
-
-          <button class="btn btn-primary btn-block" data-buy="english" data-title="NATIVE English" data-price="290 ₽">
-            <span>Получить курс за 290 ₽</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <button class="btn btn-secondary btn-block btn-syllabus" data-course="english" style="margin-top: 8px;">
-            <span>📖 Программа по уровням & 1-й урок</span>
-          </button>
-        </div>
-
-        <!-- Chinese Card -->
-        <div class="course-card theme-cn">
-          <div class="course-top">
-            <img src="assets/branding/avatar_chinese.jpg" alt="NATIVE Chinese" class="course-avatar">
-            <span class="course-badge badge-cn">HSK 1 → 5 (Все уровни)</span>
-          </div>
-          
-          <h3 class="course-title">NATIVE Chinese</h3>
-          <div class="course-level">5 навыков под ключ • Все уровни HSK 1–5</div>
-          <p class="course-desc">Полноценный путь от первых черт и тонов до свободного понимания китайской речи. 5 направлений: иероглифика, грамматика HSK, чтение текстов, разговорный пиньинь и слуховые тесты.</p>
-
-          <div class="price-tag-wrapper">
-            <div class="price-main">
-              <span class="price-current">390 ₽</span>
-              <span class="price-old">1 690 ₽</span>
-            </div>
-            <span class="price-pill-discount">-77%</span>
-          </div>
-
-          <ul class="course-checklist">
-            <li class="check-item"><span class="check-icon">✓</span> <strong>📚 Слова:</strong> 1 200+ ключевых иероглифов стандарта HSK 1-5</li>
-            <li class="check-item"><span class="check-icon">✓</span> <strong>🧩 Грамматика:</strong> Порядок слов и конструкции 比 / 是...的</li>
-            <li class="check-item"><span class="check-icon">✓</span> <strong>📖 Чтение:</strong> Вывески, меню и навигация в цифровом Китае (WeChat/Alipay)</li>
-            <li class="check-item"><span class="check-icon">✓</span> <strong>🗣️ Говорение:</strong> Физика 4 тонов, тоновые сандхи (3+3->2+3)</li>
-            <li class="check-item"><span class="check-icon">✓</span> <strong>🎧 Слух:</strong> Аудио-тренажер распознавания тонов за 5 секунд (Yunxi)</li>
-          </ul>
-
-          <button class="btn btn-primary btn-block" data-buy="chinese" data-title="NATIVE Chinese" data-price="390 ₽">
-            <span>Получить курс за 390 ₽</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <button class="btn btn-secondary btn-block btn-syllabus" data-course="chinese" style="margin-top: 8px;">
-            <span>📖 Программа по уровням & 1-й урок</span>
-          </button>
-        </div>
-
-        <!-- Spanish Card -->
+        <!-- Spanish Card (Starter / Fast Conversational) -->
         <div class="course-card theme-es">
           <div class="course-top">
             <img src="assets/branding/avatar_spanish.jpg" alt="NATIVE Spanish" class="course-avatar">
@@ -516,7 +450,7 @@
               <span class="price-current">290 ₽</span>
               <span class="price-old">1 290 ₽</span>
             </div>
-            <span class="price-pill-discount">-77%</span>
+            <span class="price-pill-discount">-78%</span>
           </div>
 
           <ul class="course-checklist">
@@ -533,6 +467,98 @@
           </button>
           <button class="btn btn-secondary btn-block btn-syllabus" data-course="spanish" style="margin-top: 8px;">
             <span>📖 Программа по уровням & 1-й урок</span>
+          </button>
+        </div>
+
+        <!-- English Card (Core Flagship) -->
+        <div class="course-card theme-en">
+          <div class="course-top">
+            <img src="assets/branding/avatar_english.jpg" alt="NATIVE English" class="course-avatar">
+            <span class="course-badge badge-en">A0 → C1 (Все уровни)</span>
+          </div>
+          
+          <h3 class="course-title">NATIVE English</h3>
+          <div class="course-level">5 навыков под ключ • Все уровни A0–C1</div>
+          <p class="course-desc">От первого кирпичика A0 до беглой речи C1. Системная прокачка 5 ключевых навыков: слова и сленг, грамматика без таблиц, чтение в контексте, разговорные чанки и аудирование.</p>
+
+          <div class="price-tag-wrapper">
+            <div class="price-main">
+              <span class="price-current">390 ₽</span>
+              <span class="price-old">1 690 ₽</span>
+            </div>
+            <span class="price-pill-discount">-77%</span>
+          </div>
+
+          <ul class="course-checklist">
+            <li class="check-item"><span class="check-icon">✓</span> <strong>📚 Слова:</strong> 1 500+ выражений Oxford 3000 и живой сленг сериалов</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>🧩 Грамматика:</strong> Речевые паттерны носителей без заучивания 12 времен</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>📖 Чтение:</strong> Реальные переписки, диалоги и разборы текстов с переводом</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>🗣️ Говорение:</strong> Техника Shadowing и преодоление языкового барьера</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>🎧 Слух:</strong> 365 тестов на восприятие беглой речи носителей за 5 секунд</li>
+          </ul>
+
+          <button class="btn btn-primary btn-block" data-buy="english" data-title="NATIVE English" data-price="390 ₽">
+            <span>Получить курс за 390 ₽</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn btn-secondary btn-block btn-syllabus" data-course="english" style="margin-top: 8px;">
+            <span>📖 Программа по уровням & 1-й урок</span>
+          </button>
+        </div>
+
+        <!-- Chinese Card (Specialized & High Value) -->
+        <div class="course-card theme-cn">
+          <div class="course-top">
+            <img src="assets/branding/avatar_chinese.jpg" alt="NATIVE Chinese" class="course-avatar">
+            <span class="course-badge badge-cn">HSK 1 → 5 (Все уровни)</span>
+          </div>
+          
+          <h3 class="course-title">NATIVE Chinese</h3>
+          <div class="course-level">5 навыков под ключ • Все уровни HSK 1–5</div>
+          <p class="course-desc">Полноценный путь от первых черт и тонов до свободного понимания китайской речи. 5 направлений: иероглифика, грамматика HSK, чтение текстов, разговорный пиньинь и слуховые тесты.</p>
+
+          <div class="price-tag-wrapper">
+            <div class="price-main">
+              <span class="price-current">490 ₽</span>
+              <span class="price-old">1 990 ₽</span>
+            </div>
+            <span class="price-pill-discount">-75%</span>
+          </div>
+
+          <ul class="course-checklist">
+            <li class="check-item"><span class="check-icon">✓</span> <strong>📚 Слова:</strong> 1 200+ ключевых иероглифов стандарта HSK 1-5</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>🧩 Грамматика:</strong> Порядок слов и конструкции 比 / 是...的</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>📖 Чтение:</strong> Вывески, меню и навигация в цифровом Китае (WeChat/Alipay)</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>🗣️ Говорение:</strong> Физика 4 тонов, тоновые сандхи (3+3->2+3)</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>🎧 Слух:</strong> Аудио-тренажер распознавания тонов за 5 секунд (Yunxi)</li>
+          </ul>
+
+          <button class="btn btn-primary btn-block" data-buy="chinese" data-title="NATIVE Chinese" data-price="490 ₽">
+            <span>Получить курс за 490 ₽</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn btn-secondary btn-block btn-syllabus" data-course="chinese" style="margin-top: 8px;">
+            <span>📖 Программа по уровням & 1-й урок</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Combo Bundle Banner (Maximum Perceived Value) -->
+      <div class="combo-bundle-card" style="margin-top: 24px; background: linear-gradient(135deg, #090d16 0%, #1e293b 100%); border-radius: var(--radius-lg); padding: 28px 32px; color: #ffffff; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; box-shadow: var(--shadow-hover); border: 1px solid rgba(255,255,255,0.12);">
+        <div style="max-width: 620px;">
+          <span style="display: inline-block; background: #2563eb; color: #ffffff; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: var(--radius-full); margin-bottom: 10px;">🌟 Пакет «Полиглот» • Максимальная выгода</span>
+          <h3 style="font-family: var(--font-display); font-size: clamp(1.3rem, 2.8vw, 1.7rem); font-weight: 800; margin-bottom: 8px; color: #ffffff;">Все 3 курса (Английский + Китайский + Испанский) навсегда</h3>
+          <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; margin: 0;">Полная языковая свобода: 4 200+ карточек, 3 учебника PDF, студийная аудиобаза и доступ в 3 закрытых Telegram-канала без ограничений по времени.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 200px;">
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span style="font-family: var(--font-display); font-size: 2.1rem; font-weight: 800; color: #38bdf8;">790 ₽</span>
+            <span style="font-size: 1.05rem; color: #94a3b8; text-decoration: line-through;">2 990 ₽</span>
+            <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 0.78rem; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-full);">-74%</span>
+          </div>
+          <button class="btn btn-primary" data-buy="bundle" data-title="NATIVE Polyglot (Комплект 3 в 1)" data-price="790 ₽" style="background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%); border-color: #0369a1; width: 100%;">
+            <span>Забрать все 3 курса за 790 ₽</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
       </div>
@@ -689,7 +715,7 @@
           </button>
 
           <p style="font-size: 0.76rem; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.4;">
-            🔒 Нажимая кнопку, вы даете согласие на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" style="color: var(--brand-blue); text-decoration: underline;">152-ФЗ</a>.
+            🔒 Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" target="_blank" style="color: var(--brand-blue); text-decoration: underline;">Политикой конфиденциальности</a> и правилами сайта.
           </p>
         </form>
 
@@ -775,231 +801,33 @@
         </p>
       </div>
 
-      <div class="faq-list">
-        <!-- Q1: Формат и комплект -->
+      <div id="faq-accordion-list" class="faq-list">
+        <!-- Core pre-rendered items for SEO bots; hydrated from data/faq.json -->
         <div class="faq-card active">
           <div class="faq-q">
             <span>В каком формате выдаются материалы и что именно входит в курс?</span>
             <span class="faq-q-icon">+</span>
           </div>
-          <div class="faq-a">
-            <p>Вы получаете полный самодостаточный комплект для самостоятельного обучения без необходимости докупать книги или платить за подписки:</p>
-            <ul>
-              <li><strong>📖 Полноценная электронная книга-самоучитель (PDF):</strong> структурированный учебник с крупным чётким шрифтом для комфортного чтения с экрана любого смартфона и возможностью распечатки на принтере формата A4. Файл без ограничений DRM — навсегда остаётся у вас.</li>
-              <li><strong>🎧 Аудио-приложение от носителей языка (MP3):</strong> чистая студийная озвучка каждого слова, фразы, диалога и иероглифа. Можно слушать в наушниках в транспорте, на пробежке или в автомобиле.</li>
-              <li><strong>🧠 Интерактивные карточки для запоминания:</strong> продуманные наборы для интервального повторения ключевой лексики и разговорных формул.</li>
-              <li><strong>✍️ Практические упражнения и ключи с ответами:</strong> в конце каждого микромодуля есть проверочный тест, а в конце книги — ключи с подробными ответами для мгновенной самопроверки без посторонней помощи.</li>
-            </ul>
+          <div class="faq-a" style="display:block;">
+            <p>Вы получаете полный самодостаточный комплект для самостоятельного обучения: электронную книгу-учебник PDF для смартфона и печати на A4, студийную MP3-аудиобазу от носителей языка, карточки для запоминания и практические упражнения с ключами для самопроверки.</p>
           </div>
         </div>
-
-        <!-- Q1.1: Все уровни и 5 навыков -->
         <div class="faq-card">
           <div class="faq-q">
             <span>Охватывает ли курс все уровни и развивает ли слова, грамматику, чтение, говорение и слух?</span>
             <span class="faq-q-icon">+</span>
           </div>
           <div class="faq-a">
-            <p><strong>Да, на 100%.</strong> Каждый курс NATIVE построен как полноценная 5-мерная экосистема, которая закрывает все ступени владения (от A0 до C1 / HSK 1–5) и одновременно развивает все 5 ключевых навыков:</p>
-            <ul>
-              <li><strong>📚 Слова и сленг:</strong> частотная база Oxford 3000 / HSK 1-5 / Top Verbs + актуальный разговорный сленг из фильмов и подкастов.</li>
-              <li><strong>🧩 Интуитивная грамматика:</strong> готовые речевые формулы и связки («chunks») без зубрежки абстрактных таблиц из 12 времен.</li>
-              <li><strong>📖 Чтение в контексте:</strong> неадаптированные диалоги, ресторанные чеки, вывески, меню и переписки в мессенджерах с параллельным русским переводом.</li>
-              <li><strong>🗣️ Говорение и снятие барьера:</strong> готовые речевые шаблоны на все жизненные ситуации и техника теневого повторения (Shadowing).</li>
-              <li><strong>🎧 Слушание и распознавание речи:</strong> 365 тестов на слух за 5 секунд, разбор «проглатывания» звуков (редукции, flap T, тоны) и понимание быстрой речи сквозь городской шум.</li>
-            </ul>
-            <p>Вам не нужно докупать отдельные тренажеры или курсы по грамматике — вся система собрана в едином комплекте навсегда.</p>
+            <p>Да, на 100%. Каждый курс NATIVE закрывает все ступени (от A0 до C1 / HSK 1–5) и одновременно развивает 5 ключевых навыков: слова и сленг, грамматику без таблиц, чтение в контексте, разговорные шаблоны (Shadowing) и аудирование.</p>
           </div>
         </div>
-
-        <!-- Q2: Моментальное получение -->
         <div class="faq-card">
           <div class="faq-q">
             <span>Как быстро я получу доступ к материалам после оплаты картой?</span>
             <span class="faq-q-icon">+</span>
           </div>
           <div class="faq-a">
-            <p><strong>Мгновенно.</strong> Процесс на 100% автоматизирован:</p>
-            <ol>
-              <li>Сразу после подтверждения оплаты через платёжный шлюз ЮKassa в вашем браузере открывается защищённая страница с прямыми ссылками на скачивание всех файлов курса.</li>
-              <li>Одновременно вы получаете бессрочную ссылку-приглашение в закрытый Telegram-канал курса, где материалы надёжно сохранены в облаке (даже если вы смените телефон или удалите файл).</li>
-              <li>Если вы указали E-mail при оформлении заказа, электронный кассовый чек по 54-ФЗ и прямая ссылка на скачивание моментально дублируются на вашу электронную почту.</li>
-            </ol>
-          </div>
-        </div>
-
-        <!-- Q3: Честная разовая цена и отсутствие подписок -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Есть ли скрытые подписки, автопродления или списания в будущем?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p><strong>Категорически нет.</strong> Никаких регулярных списаний, скрытых подписок и привязок банковских карт с автопродлением. Вы оплачиваете курс <strong>ровно один раз</strong> (290 ₽ или 390 ₽).</p>
-            <p>Все материалы, аудиодорожки, обновления и будущие дополнения к выбранному курсу остаются у вас в бессрочном доступе навсегда.</p>
-          </div>
-        </div>
-
-        <!-- Q4: Почему такие доступные цены -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Почему у вас честные цены 290–390 ₽, когда у онлайн-школ курсы стоят от 5 000 до 30 000 ₽?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Мы осознанно отказались от традиционной модели дорогих онлайн-школ с раздутыми расходами:</p>
-            <ul>
-              <li>У нас нет дорогой аренды офисов в центрах мегаполисов и штата назойливых менеджеров по продажам с холодными звонками.</li>
-              <li>Мы не навязываем вам принудительные индивидуальные уроки по 2 000 ₽ в час, а даём концентрированную авторскую выжимку и систему для эффективного самостоятельного обучения.</li>
-              <li>Вы платите честную и доступную каждому стоимость разработки материалов без скрытых маркетинговых накруток.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Q5: Подходит ли для новичков -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Подойдет ли курс, если у меня абсолютный «ноль» в языке?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p><strong>Да, на 100%.</strong> Программы разработаны именно для тех, кто начинает учить язык с чистого листа или помнит лишь разрозненные слова со школы:</p>
-            <ul>
-              <li><strong>🇬🇧 Английский (290 ₽):</strong> стартует с базового золотого фонда Oxford 3000 и простых речевых формул, без занудной академической теории и таблиц из 12 времен.</li>
-              <li><strong>🇨🇳 Китайский (390 ₽):</strong> с первых страниц шаг за шагом разбирает черты, ключи-графемы, правила чтения пиньиня и ставит 4 тона с помощью аудио-тренажера носителя.</li>
-              <li><strong>🇪🇸 Испанский (290 ₽):</strong> сразу даёт топ-100 самых нужных глаголов и готовые разговорные шаблоны для жизни и поездок без заучивания бесконечных окончаний.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Q6: Самостоятельно без репетитора -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Действительно ли можно выучить язык самостоятельно без репетитора?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Да, именно под задачу независимого освоения языка и создавалась методология NATIVE:</p>
-            <ul>
-              <li><strong>Простой человеческий язык:</strong> все правила объясняются простыми русскими словами без заумных филологических терминов.</li>
-              <li><strong>Озвучка каждого примера:</strong> вам не нужно гадать, как читается слово — рядом с каждым выражением есть русская подсказка, транскрипция и аудиозапись носителя.</li>
-              <li><strong>Самоконтроль на каждом шаге:</strong> в конце каждого урока даются практические упражнения, а в конце книги — ключи с правильными ответами. Вы сами видите свой прогресс.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Q7: Устройства и печать -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>На каких устройствах открываются файлы и можно ли их распечатать?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Материалы адаптированы для <strong>любых современных устройств</strong> без необходимости покупать платные приложения:</p>
-            <ul>
-              <li><strong>📱 Смартфоны и планшеты:</strong> iPhone и iPad (в штатном приложении «Книги» / Telegram / Files), Android (Google Drive, Adobe Acrobat или любая бесплатная читалка).</li>
-              <li><strong>💻 Компьютеры и ноутбуки:</strong> Windows, macOS, Linux — файл открывается в любом интернет-браузере (Яндекс, Chrome, Safari) в один клик.</li>
-              <li><strong>🖨️ Печать на бумаге:</strong> вёрстка оптимизирована под стандартный формат листа A4. Вы можете распечатать всю книгу целиком или только нужные страницы, чтобы делать пометки карандашом.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Q8: Оплата картой через ЮKassa -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Как проходит оплата картой через ЮKassa? Безопасно ли вводить данные?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Оплата полностью безопасна и осуществляется исключительно через официальный платёжный шлюз <strong>ЮKassa (ООО НКО «ЮМани», лицензия Банка России № 3510-К, Shop ID 1314296)</strong>:</p>
-            <ul>
-              <li>Все платежи защищены по высшему банковскому стандарту <strong>PCI DSS 3.2 Level 1</strong> и протоколам шифрования TLS/SSL.</li>
-              <li>Данные вашей банковской карты вводятся на защищённой странице банка-эквайера и никогда не сохраняются на нашем сайте.</li>
-              <li>Мы не принимаем частные переводы на карту в соцсетях или мессенджерах: все расчёты строго официальные и защищены законом РФ.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Q9: Способы оплаты (МИР, СБП, SberPay, T-Pay) -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Принимаются ли карты МИР и оплата через СБП?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Да, поддерживаются все популярные способы безналичной оплаты в России без комиссии (0%):</p>
-            <ul>
-              <li><strong>⚡ СБП (Система быстрых платежей):</strong> мгновенная оплата по QR-коду за 3 секунды через мобильное приложение любого российского банка (Сбер, Т-Банк, ВТБ, Альфа и др.).</li>
-              <li><strong>💳 Банковские карты РФ:</strong> платёжные системы МИР, Visa, Mastercard, выпущенные любыми банками России.</li>
-              <li><strong>📲 SberPay и T-Pay:</strong> быстрая оплата в 1 клик со смартфона без ручного ввода номера карты.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Q10: Чек по 54-ФЗ -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Выдаётся ли официальный электронный кассовый чек по 54-ФЗ?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p><strong>Да, безусловно.</strong> В соответствии с Федеральным законом от 22.05.2003 № 54-ФЗ «О применении контрольно-кассовой техники при осуществлении расчётов в РФ»:</p>
-            <p>После проведения оплаты платёжный шлюз автоматически формирует фискальный чек через аккредитованного оператора фискальных данных (ОФД). Чек с QR-кодом и фискальным признаком отправляется на указанный вами адрес электронной почты.</p>
-          </div>
-        </div>
-
-        <!-- Q11: 152-ФЗ и конфиденциальность -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Как защищены мои персональные данные (152-ФЗ)?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Мы строго соблюдаем Федеральный закон РФ № 152-ФЗ «О персональных данных»:</p>
-            <p>Все собираемые технические данные (например, E-mail для отправки чека или имя при публикации отзыва) хранятся исключительно на серверах, расположенных на территории Российской Федерации. Мы не передаём ваши контакты третьим лицам и не занимаемся рекламными спам-рассылками. Ознакомиться с полным текстом политики можно в разделе <a href="privacy.html" target="_blank">Политика конфиденциальности</a>.</p>
-          </div>
-        </div>
-
-        <!-- Q12: Восстановление ссылки и поддержка -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Что делать, если платёж прошёл, но я случайно закрыл вкладку или потерял ссылку?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Не переживайте — <strong>ваш доступ гарантирован и никуда не пропадет</strong>:</p>
-            <ol>
-              <li>Каждый платеж сохраняется в реестре платежной системы с уникальным номером транзакции и временем.</li>
-              <li>Если вы указали E-mail, ссылки и чек уже ждут вас во входящих сообщениях (проверьте также папку «Спам» / «Рассылки»).</li>
-              <li>Вы также всегда можете обратиться в нашу службу заботы в Telegram: <a href="https://t.me/mollydamnbro" target="_blank"><strong>@mollydamnbro</strong></a>. Назовите время оплаты или почту — менеджер подтвердит транзакцию в реестре ЮKassa и продублирует все ссылки в течение 5 минут.</li>
-            </ol>
-          </div>
-        </div>
-
-        <!-- Q13: Сколько времени уделять -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Сколько времени в день нужно уделять, чтобы увидеть реальный результат?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Достаточно всего <strong>15–20 минут в день</strong>.</p>
-            <p>Курс построен по доказанной методике микрообучения (microlearning): вы берёте один компактный модуль, разбираете 5–8 полезных фраз, слушаете аудио носителя, повторяете вслух и делаете короткое проверочное задание. Ежедневные 15 минут формируют прочную языковую привычку и дают результат быстрее, чем редкие двухчасовые штурмы по выходным.</p>
-          </div>
-        </div>
-
-        <!-- Q14: Отличие от бесплатных роликов -->
-        <div class="faq-card">
-          <div class="faq-q">
-            <span>Чем курс NATIVE отличается от бесплатных роликов на YouTube и постов в соцсетях?</span>
-            <span class="faq-q-icon">+</span>
-          </div>
-          <div class="faq-a">
-            <p>Главная проблема бесплатного контента в интернете — <strong>хаос и отсутствие структуры</strong>:</p>
-            <ul>
-              <li>На YouTube и в соцсетях вы тратите десятки часов на разрозненные 40-минутные ролики с тоннами рекламы и воды, не понимая, в каком порядке учить материал.</li>
-              <li>В курсах NATIVE вы получаете <strong>готовую пошаговую систему без «воды»</strong>: только то, что реально используется в живой разговорной речи, чёткий порядок от простого к сложному, чистый студийный звук и упражнения с самоконтролем. Вы экономите сотни часов своей жизни.</li>
-            </ul>
+            <p>Мгновенно. Ссылка на скачивание файлов и закрытый Telegram-канал открывается в браузере сразу после подтверждения онлайн-оплаты через платёжный шлюз ЮKassa, а также дублируется на указанный Email вместе с чеком.</p>
           </div>
         </div>
       </div>
@@ -1015,15 +843,14 @@
         <a href="#reviews">Отзывы</a>
         <a href="#community">Сообщества</a>
         <a href="#faq">Вопросы и ответы</a>
-        <a href="offer.html">Публичная оферта (54-ФЗ)</a>
-        <a href="privacy.html">Конфиденциальность (152-ФЗ)</a>
-        <a href="https://t.me/mollydamnbro" target="_blank">Поддержка (Telegram @mollydamnbro)</a>
+        <a href="offer.html">Пользовательское соглашение и оферта</a>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="https://t.me/mollydamnbro" target="_blank">Служба заботы (Telegram)</a>
         <a href="https://vk.com/im?sel=-239331012" target="_blank">ВКонтакте</a>
       </div>
       <p class="footer-legal">
-        © 2026 NATIVE Edu. Все права защищены. Образовательные материалы для самостоятельного изучения языков.<br>
-        Обработка персональных данных осуществляется в строгом соответствии с Федеральным законом РФ № 152-ФЗ «О персональных данных».<br>
-        Безналичные расчёты и фискализация электронных кассовых чеков выполняются в соответствии с Федеральным законом № 54-ФЗ через платёжный шлюз ЮKassa.
+        © 2026 NATIVE Edu. Все права защищены. Авторские обучающие материалы для самостоятельного изучения языков.<br>
+        Все онлайн-расчёты производятся в безналичном порядке через сертифицированный платёжный шлюз ЮKassa с выдачей фискального электронного чека.
       </p>
     </div>
   </footer>
@@ -1040,12 +867,12 @@
 
       <div class="modal-order-summary">
         <span class="summary-label">Стоимость (навсегда):</span>
-        <span id="modal-course-price" class="summary-price">290 ₽</span>
+        <span id="modal-course-price" class="summary-price">390 ₽</span>
       </div>
 
       <div style="margin-bottom: 16px;">
         <label for="checkout-email" style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; text-align: left;">
-          E-mail для получения чека (54-ФЗ) и файлов:
+          E-mail для получения чека и файлов:
         </label>
         <input type="email" id="checkout-email" placeholder="например, ivan@mail.ru" class="text-input" style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-card); border-radius: var(--radius-md); font-size: 0.92rem; background: #ffffff;">
       </div>
@@ -1058,7 +885,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
             </div>
             <div class="pay-btn-text-group">
-              <span id="yookassa-btn-label" class="pay-btn-title">Оплатить картой РФ / СБП (ЮKassa) — 290 ₽</span>
+              <span id="yookassa-btn-label" class="pay-btn-title">Оплатить картой РФ / СБП (ЮKassa)</span>
               <span class="pay-btn-sub">МИР, СБП, Visa, Mastercard, SberPay, T-Pay • 0% комиссии</span>
             </div>
           </div>
@@ -1071,17 +898,17 @@
           <span class="pay-method-pill">⚡ СБП (0%)</span>
           <span class="pay-method-pill">🟢 SberPay</span>
           <span class="pay-method-pill">🟡 T-Pay</span>
-          <span class="pay-method-pill">🧾 Чек 54-ФЗ</span>
+          <span class="pay-method-pill">🧾 Электронный чек</span>
         </div>
       </div>
 
       <div class="checkout-legal-notice">
-        <p style="margin: 0 0 6px;">🔒 <strong>Безопасность и соответствие законодательству РФ (152-ФЗ / 54-ФЗ):</strong></p>
+        <p style="margin: 0 0 6px;">🔒 <strong>Безопасность платежей и защита информации:</strong></p>
         <p style="margin: 0 0 6px;">
-          Оплата производится исключительно банковской картой или через СБП через официальный платёжный шлюз <strong>ЮKassa (ООО НКО «ЮМани», лицензия Банка России № 3510-К)</strong>. Данные защищены по высшему банковскому стандарту PCI DSS 3.2.
+          Оплата производится в защищённом режиме банковской картой или через СБП через сертифицированный платёжный шлюз <strong>ЮKassa (ООО НКО «ЮМани», лицензия Банка России № 3510-К)</strong>. Данные защищены по стандарту PCI DSS 3.2.
         </p>
         <p style="margin: 0;">
-          Нажимая кнопку оплаты, вы подтверждаете согласие с <a href="offer.html" target="_blank">Публичной офертой</a> и <a href="privacy.html" target="_blank">Политикой обработки персональных данных (152-ФЗ)</a>. Электронный чек ОФД формируется автоматически.
+          Нажимая кнопку оплаты, вы подтверждаете согласие с <a href="offer.html" target="_blank">Пользовательским соглашением (Офертой)</a> и <a href="privacy.html" target="_blank">Политикой конфиденциальности</a>. Электронный кассовый чек формируется автоматически.
         </p>
       </div>
     </div>
@@ -1120,21 +947,21 @@
 
       <div class="reader-footer-actions">
         <button id="reader-btn-buy" class="btn btn-primary btn-block" style="padding: 14px 24px; font-size: 1rem;">
-          <span id="reader-btn-buy-text">Получить полный курс за 290 ₽</span>
+          <span id="reader-btn-buy-text">Получить полный курс за 390 ₽</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Cookie Consent Banner (152-ФЗ Compliance) -->
+  <!-- Cookie Consent Banner -->
   <div id="cookie-banner" class="cookie-banner">
     <div class="cookie-content">
       <div class="cookie-icon">🍪</div>
       <div class="cookie-text">
-        <strong>Мы заботимся о вашей конфиденциальности</strong>
+        <strong>Мы заботимся о вашем удобстве и приватности</strong>
         <p>
-          Мы используем файлы cookie и аналитику для корректной работы онлайн-тренажера и интерфейса в соответствии с <a href="privacy.html" target="_blank">152-ФЗ</a>. Продолжая просмотр сайта, вы соглашаетесь с нашей <a href="privacy.html" target="_blank">Политикой конфиденциальности</a>.
+          Сайт использует файлы cookie и базовую аналитику для корректной работы тренажера и адаптивного интерфейса. Продолжая просмотр сайта, вы соглашаетесь с нашей <a href="privacy.html" target="_blank">Политикой конфиденциальности</a>.
         </p>
       </div>
     </div>

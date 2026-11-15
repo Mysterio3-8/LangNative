@@ -1,10 +1,8 @@
 /* ==========================================================================
-   NATIVE Edu — Ambient Background & Light Orbs System
+   NATIVE Edu — Ultra High-Performance Ambient System (GPU Optimized)
+   Eliminates scrolling lag & frame drops on mobile & desktop browsers
    ========================================================================== */
 
-/* ==========================================================================
-   Ambient Background Glow & Depth System (Linear / Apple Aesthetics)
-   ========================================================================== */
 .site-ambient-bg {
   position: absolute;
   top: 0;
@@ -14,6 +12,8 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  contain: paint layout;
+  transform: translateZ(0);
 }
 
 /* Ensure content sits cleanly above ambient glow */
@@ -32,91 +32,117 @@
   z-index: 1;
 }
 
+/* Below-the-fold render containment: browser skips rendering until scrolled near */
+.skills-matrix-section,
+.reviews-section,
+.community-section,
+.faq-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 650px;
+}
+
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.7;
-  will-change: transform;
+  opacity: 0.65;
+  filter: blur(40px);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  pointer-events: none;
 }
 
 /* Orb 1: Oxford Sapphire / Sky Blue glow behind Hero header */
 .orb-hero-blue {
-  top: -100px;
-  left: 20%;
-  width: 720px;
-  height: 560px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.28) 0%, rgba(96, 165, 250, 0.12) 60%, transparent 80%);
-  animation: floatOrb1 18s ease-in-out infinite alternate;
+  top: -80px;
+  left: 15%;
+  width: 580px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.24) 0%, rgba(96, 165, 250, 0.08) 55%, transparent 75%);
+  animation: floatOrb1 20s ease-in-out infinite alternate;
 }
 
 /* Orb 2: Imperial Coral / Vermilion glow behind Hero Showcase cards */
 .orb-hero-coral {
-  top: 160px;
-  right: -80px;
-  width: 620px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(244, 63, 94, 0.22) 0%, rgba(251, 113, 133, 0.08) 55%, transparent 75%);
-  animation: floatOrb2 22s ease-in-out infinite alternate;
+  top: 140px;
+  right: -60px;
+  width: 520px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.18) 0%, rgba(251, 113, 133, 0.06) 50%, transparent 72%);
+  animation: floatOrb2 24s ease-in-out infinite alternate;
 }
 
 /* Orb 3: Saffron Amber / Gold glow behind Courses & Skills */
 .orb-mid-amber {
   top: 1350px;
-  left: -120px;
-  width: 680px;
-  height: 680px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, rgba(251, 191, 36, 0.06) 60%, transparent 80%);
-  animation: floatOrb3 25s ease-in-out infinite alternate;
+  left: -100px;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.14) 0%, rgba(251, 191, 36, 0.04) 55%, transparent 75%);
 }
 
 /* Orb 4: Emerald / Mint glow behind Reviews & Community */
 .orb-lower-emerald {
   top: 2750px;
   right: 5%;
-  width: 740px;
-  height: 620px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, rgba(52, 211, 153, 0.05) 60%, transparent 80%);
-  animation: floatOrb4 20s ease-in-out infinite alternate;
+  width: 580px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.14) 0%, rgba(52, 211, 153, 0.04) 55%, transparent 75%);
 }
 
-/* Subtle blueprint grid lattice with radial fade */
+/* Subtle blueprint grid lattice with lightweight opacity */
 .ambient-grid-lattice {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 1200px;
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.038) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.038) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 85% 65% at 50% 25%, black 40%, transparent 92%);
-  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 25%, black 40%, transparent 92%);
+  pointer-events: none;
 }
 
 @keyframes floatOrb1 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(50px, 40px) scale(1.08); }
-  100% { transform: translate(-40px, 20px) scale(0.96); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(35px, 25px, 0) scale(1.05); }
+  100% { transform: translate3d(-25px, 15px, 0) scale(0.96); }
 }
 
 @keyframes floatOrb2 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-50px, 50px) scale(1.06); }
-  100% { transform: translate(30px, -30px) scale(0.94); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-35px, 35px, 0) scale(1.04); }
+  100% { transform: translate3d(20px, -20px, 0) scale(0.95); }
 }
 
-@keyframes floatOrb3 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(60px, -40px) scale(1.1); }
-  100% { transform: translate(-30px, 40px) scale(0.95); }
-}
-
-@keyframes floatOrb4 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-50px, -40px) scale(1.08); }
-  100% { transform: translate(40px, 30px) scale(0.96); }
+/* Mobile & Low-Power Performance Mode: zero blur repaint, zero lag */
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  .ambient-orb {
+    animation: none !important;
+    filter: none !important;
+    opacity: 0.85;
+  }
+  .orb-hero-blue {
+    width: 320px;
+    height: 320px;
+    top: -40px;
+    left: -40px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  }
+  .orb-hero-coral {
+    width: 300px;
+    height: 300px;
+    top: 180px;
+    right: -40px;
+    background: radial-gradient(circle, rgba(244, 63, 94, 0.12) 0%, transparent 70%);
+  }
+  .orb-mid-amber,
+  .orb-lower-emerald {
+    display: none;
+  }
+  .ambient-grid-lattice {
+    display: none;
+  }
 }
 
 .container {
@@ -126,3 +152,8 @@
   padding: 0 24px;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+}

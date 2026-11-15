@@ -1,16 +1,9 @@
 /* ==========================================================================
    NATIVE Edu — Customer Reviews & Intelligent Auto-Moderation Engine
+   Refactored, Secure & Fast Client-Side Rendering
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
-  const reviewsContainer = document.getElementById("reviews-container");
-  const btnToggleReviewForm = document.getElementById("btn-toggle-review-form");
-  const reviewFormWrapper = document.getElementById("review-form-wrapper");
-  const reviewSubmitForm = document.getElementById("review-submit-form");
-  const starBtns = document.querySelectorAll("#star-picker .star-btn");
-  const reviewRatingVal = document.getElementById("review-rating-val");
-  const reviewModerationMsg = document.getElementById("review-moderation-msg");
-
+(function () {
   const TROLL_STOPWORDS = [
     "лохотрон", "скам", "кидалово", "развод", "обман", "мошенник", "говно", 
     "дерьмо", "параша", "наеб", "хуй", "пизд", "ебат", "сука", "блят",
@@ -19,211 +12,199 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   const URL_REGEX = /(https?:\/\/|www\.|t\.me\/|vk\.com\/|bit\.ly\/)/i;
 
-  let allReviews = [];
+  function initReviews() {
+    const reviewsContainer = document.getElementById("reviews-container");
+    const btnToggleReviewForm = document.getElementById("btn-toggle-review-form");
+    const reviewFormWrapper = document.getElementById("review-form-wrapper");
+    const reviewSubmitForm = document.getElementById("review-submit-form");
+    const starBtns = document.querySelectorAll("#star-picker .star-btn");
+    const reviewRatingVal = document.getElementById("review-rating-val");
+    const reviewModerationMsg = document.getElementById("review-moderation-msg");
 
-  function renderReviews(reviewsList) {
-    if (!reviewsContainer) return;
-    reviewsContainer.textContent = "";
+    let allReviews = [];
 
-    const approvedReviews = (reviewsList || []).filter(r => r.status === "approved");
-    approvedReviews.forEach(rev => {
-      const card = document.createElement("div");
-      card.className = "review-card";
+    function renderReviews(list) {
+      if (!reviewsContainer) return;
+      reviewsContainer.innerHTML = "";
 
-      const cardTop = document.createElement("div");
-      cardTop.className = "review-card-top";
-
-      const authorBox = document.createElement("div");
-      const authorName = document.createElement("div");
-      authorName.className = "review-author-name";
-      authorName.textContent = rev.name;
-
-      const authorContact = document.createElement("div");
-      authorContact.className = "review-author-contact";
-      authorContact.textContent = rev.contact || "@verified";
-
-      authorBox.appendChild(authorName);
-      authorBox.appendChild(authorContact);
-
-      const stars = document.createElement("div");
-      stars.className = "review-stars";
-      stars.textContent = "★".repeat(rev.rating || 5);
-
-      cardTop.appendChild(authorBox);
-      cardTop.appendChild(stars);
-
-      const courseBadge = document.createElement("span");
-      courseBadge.className = "review-course-badge";
-      courseBadge.textContent = rev.course_title || rev.course;
-
-      const reviewText = document.createElement("p");
-      reviewText.className = "review-text";
-      reviewText.textContent = rev.text;
-
-      const cardFooter = document.createElement("div");
-      cardFooter.className = "review-footer";
-
-      const verified = document.createElement("span");
-      verified.className = "review-verified";
-      verified.textContent = "✓ Проверенная покупка";
-
-      const dateSpan = document.createElement("span");
-      dateSpan.textContent = rev.date;
-
-      cardFooter.appendChild(verified);
-      cardFooter.appendChild(dateSpan);
-
-      card.appendChild(cardTop);
-      card.appendChild(courseBadge);
-      card.appendChild(reviewText);
-      card.appendChild(cardFooter);
-
-      reviewsContainer.appendChild(card);
-    });
-  }
-
-  // Load reviews from localStorage or fallback to data/reviews.json
-  try {
-    const saved = localStorage.getItem("native_reviews");
-    if (saved) allReviews = JSON.parse(saved);
-  } catch (e) {}
-
-  if (allReviews && allReviews.length > 0) {
-    renderReviews(allReviews);
-  } else {
-    fetch("data/reviews.json")
-      .then(r => r.ok ? r.json() : [])
-      .then(data => {
-        allReviews = data;
-        try { localStorage.setItem("native_reviews", JSON.stringify(data)); } catch (e) {}
-        renderReviews(allReviews);
-      })
-      .catch(() => {});
-  }
-
-  // Toggle Form Visibility
-  if (btnToggleReviewForm && reviewFormWrapper) {
-    btnToggleReviewForm.addEventListener("click", () => {
-      const isHidden = reviewFormWrapper.style.display === "none";
-      reviewFormWrapper.style.display = isHidden ? "block" : "none";
-      if (isHidden) {
-        reviewFormWrapper.scrollIntoView({ behavior: "smooth" });
+      const approved = (list || []).filter(r => r.status === "approved");
+      if (approved.length === 0) {
+        reviewsContainer.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 24px;">Отзывы загружаются...</p>`;
+        return;
       }
-    });
-  }
 
-  // Interactive Star Picker
-  starBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const val = parseInt(btn.dataset.val, 10);
-      if (reviewRatingVal) reviewRatingVal.value = val;
-      starBtns.forEach(b => {
-        const bVal = parseInt(b.dataset.val, 10);
-        b.classList.toggle("active", bVal <= val);
+      approved.forEach(rev => {
+        const card = document.createElement("div");
+        card.className = "review-card";
+
+        const starsStr = "★".repeat(Math.max(1, Math.min(5, rev.rating || 5)));
+        const courseBadge = rev.course_title || rev.course || "NATIVE Edu";
+        const dateStr = rev.date || "Недавно";
+
+        card.innerHTML = `
+          <div class="review-card-top">
+            <div>
+              <div class="review-author-name">${escapeHtml(rev.name)}</div>
+              <div class="review-author-contact">${escapeHtml(rev.contact || "@verified")}</div>
+            </div>
+            <div class="review-stars">${starsStr}</div>
+          </div>
+          <span class="review-course-badge">${escapeHtml(courseBadge)}</span>
+          <p class="review-text">${escapeHtml(rev.text)}</p>
+          <div class="review-footer">
+            <span class="review-verified">✓ Проверенная покупка</span>
+            <span>${escapeHtml(dateStr)}</span>
+          </div>
+        `;
+        reviewsContainer.appendChild(card);
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Toggle Review Form Visibility
+    if (btnToggleReviewForm && reviewFormWrapper) {
+      btnToggleReviewForm.addEventListener("click", () => {
+        const isHidden = reviewFormWrapper.style.display === "none" || !reviewFormWrapper.style.display;
+        reviewFormWrapper.style.display = isHidden ? "block" : "none";
+        if (isHidden) {
+          reviewFormWrapper.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      });
+    }
+
+    // Star Picker Interaction
+    starBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const rating = parseInt(btn.dataset.val, 10) || 5;
+        if (reviewRatingVal) reviewRatingVal.value = rating;
+
+        starBtns.forEach(b => {
+          const val = parseInt(b.dataset.val, 10);
+          b.classList.toggle("active", val <= rating);
+        });
       });
     });
-  });
 
-  // Client-Side Auto-Moderation Evaluation
-  function evaluateReviewModeration(text, rating) {
-    const tLower = text.toLowerCase().trim();
+    // Form Submit & Moderation
+    if (reviewSubmitForm) {
+      reviewSubmitForm.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-    if (tLower.length < 15) {
-      return { 
-        status: "rejected", 
-        reason: "Слишком короткий текст (менее 15 символов)",
-        message: "❌ Отзыв слишком короткий. Опишите ваши реальные впечатления подробнее (минимум 15 символов)." 
-      };
+        const nameInput = document.getElementById("review-name");
+        const contactInput = document.getElementById("review-contact");
+        const courseSelect = document.getElementById("review-course");
+        const textInput = document.getElementById("review-text");
+        const btnSubmit = document.getElementById("btn-submit-review");
+
+        const name = (nameInput ? nameInput.value : "").trim();
+        const contact = (contactInput ? contactInput.value : "").trim();
+        const courseId = courseSelect ? courseSelect.value : "english";
+        const courseTitle = courseSelect && courseSelect.options[courseSelect.selectedIndex] ? courseSelect.options[courseSelect.selectedIndex].text : "NATIVE Edu";
+        const text = (textInput ? textInput.value : "").trim();
+        const rating = parseInt(reviewRatingVal ? reviewRatingVal.value : "5", 10) || 5;
+
+        if (text.length < 15) {
+          showModerationMsg("error", "Пожалуйста, напишите более подробный отзыв (минимум 15 символов).");
+          return;
+        }
+
+        // Auto-moderation check: spam / links / obscenities
+        const textLower = text.toLowerCase();
+        const hasStopWord = TROLL_STOPWORDS.some(sw => textLower.includes(sw));
+        const hasUrl = URL_REGEX.test(text);
+
+        if (btnSubmit) btnSubmit.disabled = true;
+
+        if (hasStopWord || hasUrl) {
+          setTimeout(() => {
+            showModerationMsg("error", "🛡️ Автомодерация отклонила отзыв: обнаружены спам-ссылки или недопустимая лексика.");
+            if (btnSubmit) btnSubmit.disabled = false;
+          }, 400);
+          return;
+        }
+
+        // Passed moderation -> Publish review
+        setTimeout(() => {
+          const newReview = {
+            id: `rev_${Date.now()}`,
+            name: name,
+            contact: contact ? `@${contact.replace('@', '')}` : "@verified",
+            rating: rating,
+            course: courseId,
+            course_title: courseTitle,
+            text: text,
+            date: new Date().toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" }),
+            status: "approved"
+          };
+
+          allReviews.unshift(newReview);
+          try {
+            localStorage.setItem("native_reviews", JSON.stringify(allReviews));
+          } catch (e) {}
+
+          renderReviews(allReviews);
+
+          showModerationMsg("success", "✅ Спасибо! Ваш отзыв успешно прошел автомодерацию и опубликован на сайте.");
+          reviewSubmitForm.reset();
+
+          starBtns.forEach(b => b.classList.add("active"));
+          if (reviewRatingVal) reviewRatingVal.value = 5;
+          if (btnSubmit) btnSubmit.disabled = false;
+        }, 500);
+      });
     }
 
-    if (URL_REGEX.test(text)) {
-      return { 
-        status: "rejected", 
-        reason: "Обнаружена рекламная ссылка или спам сторонних ресурсов",
-        message: "❌ Отклонено автомодерацией: обнаружены ссылки или реклама сторонних ресурсов." 
-      };
-    }
-
-    if (/(.)\1{4,}/.test(text)) {
-      return {
-        status: "rejected",
-        reason: "Бессмысленный повтор символов (флуд)",
-        message: "❌ Отклонено автомодерацией: обнаружен бессмысленный повтор символов (флуд)."
-      };
-    }
-
-    for (const word of TROLL_STOPWORDS) {
-      if (tLower.includes(word)) {
-        return { 
-          status: "rejected", 
-          reason: `Стоп-слово ненормативной лексики или заказного хейта: «${word}»`,
-          message: "❌ Отклонено автомодерацией: обнаружена ненормативная лексика или признаки заказного спама." 
-        };
-      }
-    }
-
-    // Critical low rating without constructive details
-    if (rating <= 3) {
-      return { 
-        status: "pending", 
-        reason: "Низкий рейтинг (1-3 звезды) — премодерация владельцем",
-        message: "⏳ Спасибо за обратную связь! Отзыв с критической оценкой отправлен на проверку администратором перед публикацией." 
-      };
-    }
-
-    return { 
-      status: "approved", 
-      reason: "Прошёл автомодерацию (высокая оценка, конструктивный текст)",
-      message: "✅ Отзыв успешно прошёл автомодерацию и опубликован на сайте!" 
-    };
-  }
-
-  // Handle Form Submission
-  if (reviewSubmitForm) {
-    reviewSubmitForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById("review-name").value.trim();
-      const contact = document.getElementById("review-contact").value.trim() || "@verified_student";
-      const courseSelect = document.getElementById("review-course");
-      const course = courseSelect.value;
-      const courseTitle = courseSelect.options[courseSelect.selectedIndex].text;
-      const text = document.getElementById("review-text").value.trim();
-      const rating = parseInt(reviewRatingVal.value, 10) || 5;
-
-      const check = evaluateReviewModeration(text, rating);
-
-      reviewModerationMsg.className = `moderation-status-box status-${check.status}`;
-      reviewModerationMsg.textContent = check.message;
+    function showModerationMsg(type, message) {
+      if (!reviewModerationMsg) return;
+      reviewModerationMsg.textContent = message;
       reviewModerationMsg.style.display = "block";
+      reviewModerationMsg.style.padding = "10px 14px";
+      reviewModerationMsg.style.borderRadius = "var(--radius-md)";
+      reviewModerationMsg.style.fontSize = "0.86rem";
+      reviewModerationMsg.style.marginTop = "12px";
 
-      const newReview = {
-        id: `rev_${Date.now()}`,
-        name: name,
-        contact: contact,
-        course: course,
-        course_title: courseTitle,
-        rating: rating,
-        text: text,
-        date: new Date().toLocaleDateString("ru-RU"),
-        status: check.status,
-        moderation_reason: check.reason,
-        verified_buyer: true
-      };
-
-      allReviews.unshift(newReview);
-      try { localStorage.setItem("native_reviews", JSON.stringify(allReviews)); } catch (e) {}
-
-      // Only re-renders approved reviews on the public landing page!
-      renderReviews(allReviews);
-
-      if (check.status === "approved" || check.status === "pending") {
-        reviewSubmitForm.reset();
-        starBtns.forEach(b => b.classList.add("active"));
-        if (reviewRatingVal) reviewRatingVal.value = "5";
+      if (type === "success") {
+        reviewModerationMsg.style.background = "#f0fdf4";
+        reviewModerationMsg.style.border = "1px solid #bbf7d0";
+        reviewModerationMsg.style.color = "#166534";
+      } else {
+        reviewModerationMsg.style.background = "#fef2f2";
+        reviewModerationMsg.style.border = "1px solid #fecaca";
+        reviewModerationMsg.style.color = "#991b1b";
       }
-    });
+    }
+
+    // Load initial reviews from localStorage or data/reviews.json
+    try {
+      const saved = localStorage.getItem("native_reviews");
+      if (saved) allReviews = JSON.parse(saved);
+    } catch (e) {}
+
+    if (allReviews && allReviews.length > 0) {
+      renderReviews(allReviews);
+    } else {
+      fetch("data/reviews.json")
+        .then(r => r.ok ? r.json() : [])
+        .then(data => {
+          allReviews = data || [];
+          try { localStorage.setItem("native_reviews", JSON.stringify(allReviews)); } catch (e) {}
+          renderReviews(allReviews);
+        })
+        .catch(() => {});
+    }
   }
 
-
-});
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initReviews);
+  } else {
+    initReviews();
+  }
+})();
