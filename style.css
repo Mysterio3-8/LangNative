@@ -621,6 +621,211 @@ body {
 }
 
 /* ==========================================================================
+   Progress Bar & Level Diagnostic Matcher
+   ========================================================================== */
+.demo-progress-bar-wrap {
+  padding: 16px 32px 0;
+}
+
+.demo-progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.demo-difficulty-badge {
+  background: #eff6ff;
+  color: var(--brand-blue);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.demo-progress-track {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.demo-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand-blue) 0%, #3b82f6 100%);
+  border-radius: var(--radius-full);
+  transition: width 0.35s ease;
+}
+
+.demo-score-chip {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* Course Recommendation & Level Result Card */
+.demo-result-card {
+  animation: fadeIn 0.35s ease;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: var(--radius-lg);
+  margin-bottom: 20px;
+}
+
+.result-trophy-badge {
+  font-size: 2.2rem;
+  line-height: 1;
+  background: #ffffff;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  flex-shrink: 0;
+}
+
+.result-supertitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0369a1;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.result-level-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 2px;
+}
+
+.result-score-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.result-diagnosis-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-card);
+  border-left: 4px solid var(--brand-blue);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.result-diagnosis-box h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.result-diagnosis-box p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.result-course-offer {
+  background: #ffffff;
+  border: 2px solid var(--brand-blue);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.12);
+  margin-bottom: 18px;
+}
+
+.offer-tag {
+  display: inline-block;
+  background: #eff6ff;
+  color: var(--brand-blue);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-bottom: 6px;
+}
+
+.result-course-details h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.result-course-details p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.result-course-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.result-course-price {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.result-retry-box {
+  text-align: center;
+  margin-top: 14px;
+}
+
+@media (max-width: 640px) {
+  .demo-body {
+    padding: 24px 18px;
+  }
+  .demo-progress-bar-wrap {
+    padding: 12px 18px 0;
+  }
+  .result-course-offer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    padding: 18px;
+  }
+  .result-course-action {
+    align-items: stretch;
+    margin-top: 12px;
+  }
+}
+
+/* ==========================================================================
    Courses Catalog Grid
    ========================================================================== */
 .courses-section {

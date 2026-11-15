@@ -67,23 +67,141 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- 1. Interactive Level Diagnostic Test & Course Matcher ---
   let currentLang = "en";
-  let quizIndex = 0;
+  let currentStep = 0;
+  let userScore = 0;
+  const TOTAL_STEPS = 3;
 
+  const STEP_DIFFICULTIES = [
+    "Базовый уровень (A0 → A1)",
+    "Средний уровень (A1 → A2)",
+    "Разговорный уровень (A2 → B1+)"
+  ];
+
+  // DOM Elements
+  const demoQuizView = document.getElementById("demo-quiz-view");
+  const demoResultCard = document.getElementById("demo-result-card");
+  const demoStepLabel = document.getElementById("demo-step-label");
+  const demoDifficultyLabel = document.getElementById("demo-difficulty-label");
+  const demoProgressFill = document.getElementById("demo-progress-fill");
+  const demoScoreChip = document.getElementById("demo-score-chip");
   const demoTag = document.getElementById("demo-tag");
   const demoQuestion = document.getElementById("demo-question");
   const demoSubtext = document.getElementById("demo-subtext");
   const demoOptionsContainer = document.getElementById("demo-options");
   const demoFeedback = document.getElementById("demo-feedback");
+  const demoNextBox = document.getElementById("demo-next-box");
+  const btnNextDemoQuiz = document.getElementById("btn-next-demo-quiz");
+  const btnNextText = document.getElementById("btn-next-text");
+  const btnRetryQuiz = document.getElementById("btn-retry-quiz");
+  const btnResultBuy = document.getElementById("btn-result-buy");
   const tabBtns = document.querySelectorAll(".demo-tab, .demo-tab-btn");
+
+  // Recommendation Matcher Profiles
+  const RECOMMENDATIONS = {
+    en: {
+      low: {
+        level: "A0–A1 (Начальный)",
+        trophy: "🌱",
+        diagnosis: "Вам пока трудно даются времена и речевые связки. На старте критически важно поставить базу: освоить 1 000 самых частых слов Oxford 3000 и слушать правильное произношение без занудных таблиц.",
+        courseId: "english",
+        courseName: "NATIVE English",
+        courseFocus: "Рекомендованный фокус: Экспресс-старт с нуля, 1 000 ключевых слов Oxford 3000 и аудио от носителей Christopher навсегда."
+      },
+      mid: {
+        level: "A1–A2 (Базовый разговорный)",
+        trophy: "🚀",
+        diagnosis: "У вас отличный фундамент базовых слов, но вы спотыкаетесь на предлогах и связках. Чтобы перестать переводить фразы в голове с русского, вам нужны готовые речевые чанки носителей.",
+        courseId: "english",
+        courseName: "NATIVE English",
+        courseFocus: "Рекомендованный фокус: Речевые связки, устойчивые коллокации и живой сленг для свободного преодоления языкового барьера."
+      },
+      high: {
+        level: "A2–B1+ (Уверенный разговорный)",
+        trophy: "🏆",
+        diagnosis: "Великолепная грамматическая интуиция! Ваша ключевая точка роста — естественность живой речи, американский сленг, идиомы и понимание беглого темпа носителей на слух.",
+        courseId: "english",
+        courseName: "NATIVE English",
+        courseFocus: "Рекомендованный фокус: Живой сленг сериалов, идиомы и тренировка восприятия беглой речи за 5 секунд."
+      }
+    },
+    cn: {
+      low: {
+        level: "HSK 1 (С нуля)",
+        trophy: "🌱",
+        diagnosis: "Иероглифика и тоны часто пугают новичков. На старте главное — разложить черты по полочкам и поставить 4 тона с помощью слухового аудио-тренажера без перегрузки лишней теорией.",
+        courseId: "chinese",
+        courseName: "NATIVE Chinese",
+        courseFocus: "Рекомендованный фокус: 150 базовых иероглифов HSK 1, правила пиньиня и аудио-постановка 4 тонов от носителя Yunxi."
+      },
+      mid: {
+        level: "HSK 1–2 (Начальный разговорный)",
+        trophy: "🚀",
+        diagnosis: "Вы узнаете базовые иероглифы и вопросительные конструкции, но путаете созвучные морфемы (как 在 и 再). Вам нужна практика реальных бытовых диалогов и чтения чанков.",
+        courseId: "chinese",
+        courseName: "NATIVE Chinese",
+        courseFocus: "Рекомендованный фокус: Разговорные шаблоны покупок, ориентации в городе и устойчивые конструкции HSK 1-2."
+      },
+      high: {
+        level: "HSK 2–3 (Уверенная база)",
+        trophy: "🏆",
+        diagnosis: "Отличный результат! Вы безошибочно чувствуете структуру китайского предложения (включая сравнения с 比). Дальше вам нужно нарабатывать беглость чтения без подстрочника пиньиня.",
+        courseId: "chinese",
+        courseName: "NATIVE Chinese",
+        courseFocus: "Рекомендованный фокус: Расширение словарного запаса до 600 слов HSK 1-3 и чтение живых текстов без пиньиня."
+      }
+    },
+    es: {
+      low: {
+        level: "A0–A1 (Старт с нуля)",
+        trophy: "🌱",
+        diagnosis: "Разница между Ser и Estar — типичное препятствие новичков. Наш курс избавляет от зубрежки бесконечных таблиц спряжений и сразу даёт практические речевые формулы.",
+        courseId: "spanish",
+        courseName: "NATIVE Spanish",
+        courseFocus: "Рекомендованный фокус: 100 ключевых глаголов и готовые шаблоны для уверенного первого разговора."
+      },
+      mid: {
+        level: "A1–A2 (Базовый туристический)",
+        trophy: "🚀",
+        diagnosis: "Вы уверенно ориентируетесь в основах и различаете временные и постоянные состояния. Теперь самое время набрать активный запас фраз для поездок, кафе и отелей.",
+        courseId: "spanish",
+        courseName: "NATIVE Spanish",
+        courseFocus: "Рекомендованный фокус: Практические диалоги для путешествий, связки и бытовые разговорные конструкции."
+      },
+      high: {
+        level: "A2–B1 (Разговорный для жизни)",
+        trophy: "🏆",
+        diagnosis: "Блестяще! Вы безошибочно чувствуете живую речь и культовые фразы носителей (¡No pasa nada!). Вам нужен контент для поддержания беглости и понимания культурного контекста.",
+        courseId: "spanish",
+        courseName: "NATIVE Spanish",
+        courseFocus: "Рекомендованный фокус: Живые идиомы, сленг носителей Испании и Латинской Америки без языкового барьера."
+      }
+    }
+  };
+
+  let recommendedCourseForCheckout = "english";
 
   function renderDemo(lang) {
     currentLang = lang;
     const items = demoData[lang] || [];
     if (!items.length) return;
-    const data = items[quizIndex % items.length];
 
-    if (demoTag) demoTag.textContent = data.tag || "Тест";
+    // Show quiz view, hide result card
+    if (demoQuizView) demoQuizView.style.display = "block";
+    if (demoResultCard) demoResultCard.style.display = "none";
+    if (demoNextBox) demoNextBox.style.display = "none";
+
+    const data = items[currentStep % items.length];
+
+    // Stepper & Progress Bar
+    const progressPercent = Math.round(((currentStep + 1) / TOTAL_STEPS) * 100);
+    if (demoStepLabel) demoStepLabel.textContent = `Вопрос ${currentStep + 1} из ${TOTAL_STEPS}`;
+    if (demoDifficultyLabel) demoDifficultyLabel.textContent = STEP_DIFFICULTIES[currentStep] || "Тест уровня";
+    if (demoProgressFill) demoProgressFill.style.width = `${progressPercent}%`;
+    if (demoScoreChip) demoScoreChip.textContent = `Баллы: ${userScore} / ${TOTAL_STEPS}`;
+
+    if (demoTag) demoTag.textContent = data.tag || "Тест уровня";
     if (demoQuestion) setSafeMultilineText(demoQuestion, data.question);
     if (demoSubtext) demoSubtext.textContent = data.subtext || data.translation || "Выберите правильный вариант:";
     
@@ -121,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
     allButtons.forEach(btn => btn.disabled = true);
 
     if (isCorrect) {
+      userScore++;
       selectedBtn.classList.add("correct");
       const status = selectedBtn.querySelector(".opt-status");
       if (status) status.textContent = "✓ Верно";
@@ -155,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Highlight correct option safely
       const items = demoData[currentLang] || [];
-      const currentQuiz = items[quizIndex % items.length];
+      const currentQuiz = items[currentStep % items.length];
       if (currentQuiz) {
         allButtons.forEach(b => {
           const text = b.textContent;
@@ -166,6 +285,83 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     }
+
+    // Update score chip
+    if (demoScoreChip) demoScoreChip.textContent = `Баллы: ${userScore} / ${TOTAL_STEPS}`;
+
+    // Show next button
+    if (demoNextBox) {
+      demoNextBox.style.display = "block";
+      if (btnNextText) {
+        btnNextText.textContent = (currentStep + 1 < TOTAL_STEPS) 
+          ? "Следующий вопрос" 
+          : "Узнать результат и подобрать курс";
+      }
+    }
+  }
+
+  // Next Question Button Handler
+  if (btnNextDemoQuiz) {
+    btnNextDemoQuiz.addEventListener("click", () => {
+      if (currentStep + 1 < TOTAL_STEPS) {
+        currentStep++;
+        renderDemo(currentLang);
+      } else {
+        showLevelResults();
+      }
+    });
+  }
+
+  // Show Level Diagnosis & Matched Course
+  function showLevelResults() {
+    if (demoQuizView) demoQuizView.style.display = "none";
+    if (demoResultCard) demoResultCard.style.display = "block";
+
+    const langRecs = RECOMMENDATIONS[currentLang] || RECOMMENDATIONS.en;
+    let tier = "mid";
+    if (userScore <= 1) tier = "low";
+    else if (userScore === 3) tier = "high";
+
+    const rec = langRecs[tier];
+    recommendedCourseForCheckout = rec.courseId;
+
+    const badgeIcon = document.getElementById("result-badge-icon");
+    const levelTitle = document.getElementById("result-level-title");
+    const scoreText = document.getElementById("result-score-text");
+    const diagnosisText = document.getElementById("result-diagnosis-text");
+    const courseName = document.getElementById("result-course-name");
+    const courseFocus = document.getElementById("result-course-focus");
+
+    if (badgeIcon) badgeIcon.textContent = rec.trophy;
+    if (levelTitle) levelTitle.textContent = `Ваш уровень: ${rec.level}`;
+    if (scoreText) scoreText.textContent = `Правильных ответов: ${userScore} из ${TOTAL_STEPS}`;
+    if (diagnosisText) diagnosisText.textContent = rec.diagnosis;
+    if (courseName) courseName.textContent = rec.courseName;
+    if (courseFocus) courseFocus.textContent = rec.courseFocus;
+  }
+
+  // Retry Quiz Button Handler
+  if (btnRetryQuiz) {
+    btnRetryQuiz.addEventListener("click", () => {
+      currentStep = 0;
+      userScore = 0;
+      renderDemo(currentLang);
+    });
+  }
+
+  // Result Course Buy Button Handler
+  if (btnResultBuy) {
+    btnResultBuy.addEventListener("click", () => {
+      const targetBtn = document.querySelector(`[data-buy="${recommendedCourseForCheckout}"]`);
+      if (targetBtn) {
+        targetBtn.click();
+      } else {
+        if (modal) {
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+      }
+    });
   }
 
   // Load external real quiz database asynchronously
@@ -181,13 +377,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     .catch(() => {
-      // Gracefully uses in-memory fallback
       renderDemo(currentLang);
     });
 
   tabBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      quizIndex = 0;
+      currentStep = 0;
+      userScore = 0;
       renderDemo(btn.dataset.lang);
     });
   });

@@ -305,9 +305,9 @@
   <section id="demo" class="demo-section">
     <div class="container">
       <div class="section-head">
-        <span class="section-tag">Интерактивный тренажер</span>
-        <h2 class="section-title">Оцените методику прямо сейчас</h2>
-        <p class="section-desc">Реальные задания из нашей базы. Проверьте понимание живой разговорной речи и нюансов грамматики.</p>
+        <span class="section-tag">Интерактивный тест & Подбор курса</span>
+        <h2 class="section-title">Определите ваш уровень за 1 минуту</h2>
+        <p class="section-desc">Пройдите короткий 3-вопросный экспресс-тест. Тренажер мгновенно определит ваш реальный уровень и подберёт идеальную программу обучения.</p>
       </div>
 
       <div class="demo-console">
@@ -323,22 +323,77 @@
           </button>
         </div>
 
+        <!-- Progress Bar & Stepper -->
+        <div class="demo-progress-bar-wrap">
+          <div class="demo-progress-info">
+            <span id="demo-step-label">Вопрос 1 из 3</span>
+            <span id="demo-difficulty-label" class="demo-difficulty-badge">Базовый уровень (A1)</span>
+          </div>
+          <div class="demo-progress-track">
+            <div id="demo-progress-fill" class="demo-progress-fill" style="width: 33%;"></div>
+          </div>
+        </div>
+
         <div class="demo-body">
-          <div class="demo-meta">
-            <span id="demo-tag" class="demo-pill">Разговорная грамматика</span>
-            <div class="demo-timer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              <span>Тест за 5 секунд</span>
+          <div id="demo-quiz-view">
+            <div class="demo-meta">
+              <span id="demo-tag" class="demo-pill">Разговорная грамматика</span>
+              <div id="demo-score-chip" class="demo-score-chip">Баллы: 0 / 3</div>
+            </div>
+
+            <div class="demo-question-card">
+              <div id="demo-question" class="demo-question-text">Загрузка вопроса...</div>
+              <div id="demo-subtext" class="demo-question-sub">Выберите правильный вариант:</div>
+            </div>
+
+            <div id="demo-options" class="demo-options"></div>
+            <div id="demo-feedback" class="demo-explanation"></div>
+
+            <div id="demo-next-box" style="display: none; margin-top: 20px; text-align: right;">
+              <button id="btn-next-demo-quiz" class="btn btn-primary" style="padding: 10px 22px; font-size: 0.92rem;">
+                <span id="btn-next-text">Следующий вопрос</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
             </div>
           </div>
 
-          <div class="demo-question-card">
-            <div id="demo-question" class="demo-question-text">Загрузка вопроса...</div>
-            <div id="demo-subtext" class="demo-question-sub">Выберите правильный вариант:</div>
-          </div>
+          <!-- Result & Course Recommendation Card -->
+          <div id="demo-result-card" class="demo-result-card" style="display: none;">
+            <div class="result-header">
+              <div class="result-trophy-badge" id="result-badge-icon">🎯</div>
+              <div>
+                <span class="result-supertitle">Диагностика завершена</span>
+                <h3 class="result-level-title" id="result-level-title">Ваш уровень: A1 (Базовый)</h3>
+                <div class="result-score-text" id="result-score-text">Правильных ответов: 2 из 3</div>
+              </div>
+            </div>
 
-          <div id="demo-options" class="demo-options"></div>
-          <div id="demo-feedback" class="demo-explanation"></div>
+            <div class="result-diagnosis-box">
+              <h4>💡 Индивидуальный диагноз:</h4>
+              <p id="result-diagnosis-text">
+                У вас есть хорошее чутье базовых слов, но не хватает живых разговорных связок и речевых чанков.
+              </p>
+            </div>
+
+            <div class="result-course-offer">
+              <div class="result-course-details">
+                <span class="offer-tag">Рекомендованный курс под ваш уровень</span>
+                <h4 id="result-course-name">NATIVE English</h4>
+                <p id="result-course-focus">Фокус: 1 000 ключевых слов Oxford 3000 + связки и американский сленг навсегда.</p>
+              </div>
+              <div class="result-course-action">
+                <div class="result-course-price">199 ₽</div>
+                <button id="btn-result-buy" class="btn btn-primary btn-block">
+                  <span>Оформить курс за 199 ₽</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="result-retry-box">
+              <button id="btn-retry-quiz" class="btn btn-secondary btn-sm">↺ Пройти тест заново</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
