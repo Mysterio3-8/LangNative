@@ -23,8 +23,17 @@
   <meta name="twitter:image" content="assets/branding/logo_master.jpg">
   
   <link rel="canonical" href="https://mysterio3-8.github.io/LangNative/">
-  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
+
+  <!-- Modular Stylesheets (Zero FOUC Cascade) -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/ambient.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/trainer.css">
+  <link rel="stylesheet" href="css/courses.css">
+  <link rel="stylesheet" href="css/modals.css">
+  <link rel="stylesheet" href="css/reviews.css">
+  <link rel="stylesheet" href="css/reader.css">
 
   <!-- Schema.org Educational JSON-LD (Search Engine Rich Snippets) -->
   <script type="application/ld+json">
@@ -1135,6 +1144,11 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <!-- Modular High-Cohesion Application Scripts -->
+  <script src="js/common.js" defer></script>
+  <script src="js/trainer.js" defer></script>
+  <script src="js/checkout.js" defer></script>
+  <script src="js/reviews.js" defer></script>
+  <script src="js/reader.js" defer></script>
 </body>
 </html>

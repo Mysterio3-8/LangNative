@@ -1,0 +1,96 @@
+/* ==========================================================================
+   NATIVE Edu — Design Tokens, Colors & Reset
+   ========================================================================== */
+
+/* ==========================================================================
+   NATIVE Edu — High-End Visual Design & Apple HIG Design System
+   Archetype: Modern Cupertino Precision & Linear High-Performance EdTech
+   Zero AI-Slop, Multi-Layer Depth, Strict 8pt Spatial Rhythm, Vector Precision
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Spatial & Typography Scale */
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Color Tokens: Strict Apple/Linear Contrast */
+  --bg-page: #fbfcfd;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f4f6f8;
+  --bg-muted: #eef2f6;
+  
+  --text-primary: #090d16;     /* Deep Obsidian */
+  --text-secondary: #3b4555;   /* Slate Neutral */
+  --text-muted: #64748b;       /* Cool Slate */
+  --text-faint: #94a3b8;       /* Subtle Border / Hairline text */
+  
+  /* Accent Tokens: High-Purity Royal Cobalt (Zero Purple) */
+  --brand-cobalt: #1e40af;
+  --brand-primary: #2563eb;
+  --brand-light: #eff6ff;
+  --brand-glow: rgba(37, 99, 235, 0.12);
+  
+  /* Semantic Tokens */
+  --accent-en: #0284c7;        /* Sky Blue */
+  --accent-cn: #dc2626;        /* Imperial Crimson */
+  --accent-es: #ea580c;        /* Saffron Terracotta */
+
+  --success: #10b981;
+  --success-bg: #f0fdf4;
+  --danger: #ef4444;
+  --danger-bg: #fef2f2;
+  
+  /* Apple Precision Borders & Hairlines */
+  --border-hairline: rgba(15, 23, 42, 0.08);
+  --border-card: rgba(15, 23, 42, 0.09);
+  --border-focus: #2563eb;
+  
+  /* High-End Multi-Layer Elevation (Ambient + Keylight) */
+  --shadow-micro: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.03), 0 8px 24px -4px rgba(15, 23, 42, 0.05);
+  --shadow-hover: 0 1px 3px rgba(15, 23, 42, 0.03), 0 16px 36px -6px rgba(37, 99, 235, 0.12), 0 0 0 1px rgba(37, 99, 235, 0.15);
+  --shadow-button: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(37, 99, 235, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --shadow-modal: 0 24px 64px -12px rgba(15, 23, 42, 0.24), 0 0 0 1px rgba(15, 23, 42, 0.08);
+  
+  /* Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+  
+  /* Easing Kinetics */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 160ms;
+  --duration-normal: 260ms;
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.55;
+  background-color: #f8fafc;
+}
+
