@@ -34,23 +34,48 @@ app = FastAPI(title="NATIVE Edu Secure Payment Gateway", docs_url=None, redoc_ur
 COURSE_CATALOG = {
     "spanish": {
         "title": "NATIVE Spanish",
-        "price_rub": 290,
-        "description": "Курс «NATIVE Spanish» (A1 → B2) — 5 навыков под ключ навсегда",
+        "price_rub": 390,
+        "description": "Курс «NATIVE Spanish» — все уровни навсегда",
     },
     "english": {
         "title": "NATIVE English",
         "price_rub": 390,
-        "description": "Курс «NATIVE English» (A0 → C1) — 5 навыков под ключ навсегда",
+        "description": "Курс «NATIVE English» — все уровни навсегда",
     },
     "chinese": {
         "title": "NATIVE Chinese",
-        "price_rub": 490,
-        "description": "Курс «NATIVE Chinese» (HSK 1 → 5) — 5 навыков под ключ навсегда",
+        "price_rub": 390,
+        "description": "Курс «NATIVE Chinese» — все уровни навсегда",
     },
-    "bundle": {
-        "title": "NATIVE Polyglot (Комплект 3 в 1)",
-        "price_rub": 790,
-        "description": "Комплект 3 в 1: Английский + Китайский + Испанский навсегда",
+    "spanish-base": {
+        "title": "NATIVE Spanish (Базовый старт)",
+        "price_rub": 290,
+        "description": "Курс «NATIVE Spanish» — Базовый старт",
+    },
+    "english-base": {
+        "title": "NATIVE English (Базовый старт)",
+        "price_rub": 290,
+        "description": "Курс «NATIVE English» — Базовый старт",
+    },
+    "chinese-base": {
+        "title": "NATIVE Chinese (Базовый старт)",
+        "price_rub": 290,
+        "description": "Курс «NATIVE Chinese» — Базовый старт",
+    },
+    "spanish-full": {
+        "title": "NATIVE Spanish (Полный курс)",
+        "price_rub": 490,
+        "description": "Курс «NATIVE Spanish» — Полный курс со сленгом и аудио",
+    },
+    "english-full": {
+        "title": "NATIVE English (Полный курс)",
+        "price_rub": 490,
+        "description": "Курс «NATIVE English» — Полный курс со сленгом и аудио",
+    },
+    "chinese-full": {
+        "title": "NATIVE Chinese (Полный курс)",
+        "price_rub": 490,
+        "description": "Курс «NATIVE Chinese» — Полный курс со сленгом и аудио",
     },
 }
 
@@ -91,9 +116,11 @@ YOOKASSA_SECRET_KEY = os.getenv("YOOKASSA_SECRET_KEY", "")
 
 # 4. Strict Whitelist Return URLs (Защита от Open Redirect)
 SAFE_RETURN_URLS = {
-    "local": "http://localhost:8080/#success",
+    "ru": "https://mysterio3-8.github.io/LangNative/download.html",
+    "vercel": "https://langnative.vercel.app/download.html",
+    "local": "http://localhost:8080/download.html",
 }
-DEFAULT_RETURN_URL = os.getenv("RETURN_URL", SAFE_RETURN_URLS["local"])
+DEFAULT_RETURN_URL = os.getenv("RETURN_URL", SAFE_RETURN_URLS["ru"])
 
 
 class PaymentCreateRequest(BaseModel):

@@ -223,6 +223,132 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- Admin Materials & Course Reader Engine ---
+  let adminCoursesData = null;
+  let adminCurrentCourse = "english";
+
+  const adminViewTitle = document.getElementById("admin-course-view-title");
+  const adminViewSub = document.getElementById("admin-course-view-sub");
+  const adminMdLink = document.getElementById("admin-download-md-link");
+  const adminSyllabusList = document.getElementById("admin-syllabus-nav-list");
+  const adminLessonRender = document.getElementById("admin-lesson-view-render");
+
+  const btnSwitchEn = document.getElementById("btn-admin-switch-en");
+  const btnSwitchCn = document.getElementById("btn-admin-switch-cn");
+  const btnSwitchEs = document.getElementById("btn-admin-switch-es");
+
+  const MD_FILES = {
+    english: "courses/english/lesson_01_first_contact_and_greetings.md",
+    chinese: "courses/chinese/lesson_01_pinyin_tones_mastery_and_real_greetings.md",
+    spanish: "courses/spanish/lesson_01_real_greetings_and_cafe_culture.md"
+  };
+
+  async function loadAdminCourses() {
+    if (!adminCoursesData) {
+      try {
+        const r = await fetch("data/course_previews.json");
+        if (r.ok) adminCoursesData = await r.json();
+      } catch (e) {}
+    }
+    renderAdminCourse(adminCurrentCourse);
+  }
+
+  function renderAdminCourse(courseKey) {
+    adminCurrentCourse = courseKey;
+    if (!adminCoursesData || !adminCoursesData[courseKey]) return;
+
+    const data = adminCoursesData[courseKey];
+
+    if (adminViewTitle) adminViewTitle.textContent = data.title;
+    if (adminViewSub) adminViewSub.textContent = data.subtitle;
+    if (adminMdLink) adminMdLink.href = MD_FILES[courseKey] || "#";
+
+    // Highlight active button
+    [btnSwitchEn, btnSwitchCn, btnSwitchEs].forEach(b => {
+      if (b) b.style.borderColor = "rgba(255,255,255,0.15)";
+    });
+    if (courseKey === "english" && btnSwitchEn) btnSwitchEn.style.borderColor = "var(--primary)";
+    if (courseKey === "chinese" && btnSwitchCn) btnSwitchCn.style.borderColor = "var(--primary)";
+    if (courseKey === "spanish" && btnSwitchEs) btnSwitchEs.style.borderColor = "var(--primary)";
+
+    // Render Syllabus
+    if (adminSyllabusList) {
+      adminSyllabusList.innerHTML = "";
+      (data.syllabus || []).forEach((item, idx) => {
+        const div = document.createElement("div");
+        div.style.padding = "8px 10px";
+        div.style.background = idx === 0 ? "rgba(37,99,235,0.15)" : "rgba(255,255,255,0.02)";
+        div.style.borderRadius = "6px";
+        div.style.fontSize = "0.82rem";
+        div.style.color = idx === 0 ? "#93c5fd" : "#cbd5e1";
+        div.style.border = idx === 0 ? "1px solid rgba(59,130,246,0.3)" : "1px solid transparent";
+        div.textContent = item;
+        adminSyllabusList.appendChild(div);
+      });
+    }
+
+    // Render Lesson 1
+    if (adminLessonRender && data.sample_lesson) {
+      const les = data.sample_lesson;
+
+      let dialHtml = "";
+      (les.dialogue || []).forEach(d => {
+        dialHtml += `
+          <div style="margin-bottom: 10px; padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 8px;">
+            <strong style="color: #60a5fa;">${d.speaker}:</strong> 
+            <span style="font-weight: 600; color: #fff;">${d.phrase}</span>
+            ${d.phonetic ? `<div style="font-size: 0.8rem; color: #94a3b8; font-family: monospace;">${d.phonetic}</div>` : ""}
+            <div style="font-size: 0.82rem; color: #a5b4fc; margin-top: 3px;">«${d.translation}»</div>
+          </div>
+        `;
+      });
+
+      let chunksHtml = "";
+      (les.chunks || []).forEach(c => {
+        chunksHtml += `
+          <div style="padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid #10b981;">
+            <div style="font-weight: 700; color: #fff;">${c.chunk}</div>
+            <div style="font-size: 0.8rem; color: #34d399;">«${c.rus}»</div>
+            <div style="font-size: 0.76rem; color: #94a3b8; margin-top: 4px;">${c.usage}</div>
+          </div>
+        `;
+      });
+
+      adminLessonRender.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 18px;">
+          <div>
+            <span style="font-size: 0.75rem; text-transform: uppercase; color: #38bdf8; font-weight: 700;">${les.number}</span>
+            <h3 style="margin: 4px 0 0; font-size: 1.25rem; color: #fff;">${les.title}</h3>
+          </div>
+        </div>
+
+        <div style="background: rgba(59,130,246,0.1); border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 6px; margin-bottom: 18px;">
+          <strong style="color: #93c5fd; font-size: 0.85rem;">🎯 Цель урока:</strong>
+          <div style="font-size: 0.88rem; color: #e2e8f0; margin-top: 4px;">${les.goal}</div>
+        </div>
+
+        <h4 style="color: #fff; font-size: 0.95rem; margin: 18px 0 10px;">🗣️ Реальный диалог носителей:</h4>
+        <div style="margin-bottom: 20px;">${dialHtml}</div>
+
+        <h4 style="color: #fff; font-size: 0.95rem; margin: 18px 0 10px;">🧩 Готовые речевые чанки:</h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 20px;">${chunksHtml}</div>
+
+        ${les.secret ? `
+          <div style="background: rgba(245,158,11,0.1); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 6px;">
+            <strong style="color: #fcd34d; font-size: 0.85rem;">💡 Секрет беглости:</strong>
+            <div style="font-size: 0.88rem; color: #fde68a; margin-top: 4px;">${les.secret}</div>
+          </div>
+        ` : ""}
+      `;
+    }
+  }
+
+  if (btnSwitchEn) btnSwitchEn.addEventListener("click", () => renderAdminCourse("english"));
+  if (btnSwitchCn) btnSwitchCn.addEventListener("click", () => renderAdminCourse("chinese"));
+  if (btnSwitchEs) btnSwitchEs.addEventListener("click", () => renderAdminCourse("spanish"));
+
+  loadAdminCourses();
+
   // Lead Triage Logic
   const btnRunTriage = document.getElementById("btn-run-triage");
   const triageInput = document.getElementById("triage-input");

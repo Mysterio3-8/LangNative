@@ -27,11 +27,11 @@
         .then(faqs => {
           if (!faqs || !faqs.length) return;
           faqContainer.innerHTML = "";
-          faqs.forEach((item, idx) => {
+          faqs.forEach((item) => {
             const card = document.createElement("details");
             card.className = "faq-card";
             card.setAttribute("name", "faq-group");
-            if (idx === 0) card.open = true;
+            // All items start closed by default (user decides what to open)
             card.innerHTML = `
               <summary class="faq-q">
                 <span>${item.q}</span>
@@ -83,24 +83,31 @@
       });
     });
 
-    // 3. Cookie Consent Banner
+    // 3. Cookie Consent Banner (Persistent, Unobtrusive, 1-Year Validity)
     const cookieBanner = document.getElementById("cookie-banner");
     const btnCookieAccept = document.getElementById("btn-cookie-accept");
     if (cookieBanner) {
-      const isConsentGiven = localStorage.getItem("native_cookie_consent");
-      if (!isConsentGiven) {
+      const hasCookie = document.cookie.split("; ").some(c => c.trim().startsWith("native_cookie_consent="));
+      const hasStorage = localStorage.getItem("native_cookie_consent") === "accepted";
+      
+      if (!hasCookie && !hasStorage) {
         setTimeout(() => {
           cookieBanner.style.display = "flex";
-        }, 1200);
+        }, 2000);
       } else {
         cookieBanner.style.display = "none";
       }
 
-      if (btnCookieAccept) {
-        btnCookieAccept.addEventListener("click", () => {
+      function acceptCookie() {
+        try {
           localStorage.setItem("native_cookie_consent", "accepted");
-          cookieBanner.style.display = "none";
-        });
+          document.cookie = "native_cookie_consent=accepted; path=/; max-age=31536000; SameSite=Lax";
+        } catch (e) {}
+        cookieBanner.style.display = "none";
+      }
+
+      if (btnCookieAccept) {
+        btnCookieAccept.addEventListener("click", acceptCookie);
       }
     }
   }

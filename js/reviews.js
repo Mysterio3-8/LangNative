@@ -104,61 +104,64 @@
         const textInput = document.getElementById("review-text");
         const btnSubmit = document.getElementById("btn-submit-review");
 
-        const name = (nameInput ? nameInput.value : "").trim();
+        const name = (nameInput ? nameInput.value : "").trim() || "Пользователь";
         const contact = (contactInput ? contactInput.value : "").trim();
         const courseId = courseSelect ? courseSelect.value : "english";
-        const courseTitle = courseSelect && courseSelect.options[courseSelect.selectedIndex] ? courseSelect.options[courseSelect.selectedIndex].text : "NATIVE Edu";
+        const courseTitle = courseSelect && courseSelect.options[courseSelect.selectedIndex] ? courseSelect.options[courseSelect.selectedIndex].text : "NATIVE";
         const text = (textInput ? textInput.value : "").trim();
         const rating = parseInt(reviewRatingVal ? reviewRatingVal.value : "5", 10) || 5;
 
-        if (text.length < 15) {
-          showModerationMsg("error", "Пожалуйста, напишите более подробный отзыв (минимум 15 символов).");
+        if (text.length < 5) {
+          showModerationMsg("error", "Пожалуйста, напишите отзыв (хотя бы пару слов о впечатлениях).");
           return;
         }
 
-        // Auto-moderation check: spam / links / obscenities
-        const textLower = text.toLowerCase();
-        const hasStopWord = TROLL_STOPWORDS.some(sw => textLower.includes(sw));
+        // Spam and obvious links check
         const hasUrl = URL_REGEX.test(text);
 
         if (btnSubmit) btnSubmit.disabled = true;
 
-        if (hasStopWord || hasUrl) {
+        if (hasUrl) {
           setTimeout(() => {
-            showModerationMsg("error", "🛡️ Автомодерация отклонила отзыв: обнаружены спам-ссылки или недопустимая лексика.");
+            showModerationMsg("error", "🛡️ В целях безопасности ссылки в отзывах запрещены.");
             if (btnSubmit) btnSubmit.disabled = false;
-          }, 400);
+          }, 300);
           return;
         }
 
-        // Passed moderation -> Publish review
-        setTimeout(() => {
-          const newReview = {
-            id: `rev_${Date.now()}`,
-            name: name,
-            contact: contact ? `@${contact.replace('@', '')}` : "@verified",
-            rating: rating,
-            course: courseId,
-            course_title: courseTitle,
-            text: text,
-            date: new Date().toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" }),
-            status: "approved"
-          };
+        // Publish review immediately
+        const newReview = {
+          id: `rev_${Date.now()}`,
+          name: name,
+          contact: contact ? (contact.startsWith("@") ? contact : `@${contact}`) : "@verified",
+          rating: rating,
+          course: courseId,
+          course_title: courseTitle,
+          text: text,
+          date: new Date().toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" }),
+          status: "approved"
+        };
 
-          allReviews.unshift(newReview);
-          try {
-            localStorage.setItem("native_reviews", JSON.stringify(allReviews));
-          } catch (e) {}
+        allReviews.unshift(newReview);
+        try {
+          localStorage.setItem("native_reviews", JSON.stringify(allReviews));
+        } catch (e) {}
 
-          renderReviews(allReviews);
+        // Send to backend API asynchronously if available
+        fetch("/api/reviews", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newReview)
+        }).catch(() => {});
 
-          showModerationMsg("success", "✅ Спасибо! Ваш отзыв успешно прошел автомодерацию и опубликован на сайте.");
-          reviewSubmitForm.reset();
+        renderReviews(allReviews);
 
-          starBtns.forEach(b => b.classList.add("active"));
-          if (reviewRatingVal) reviewRatingVal.value = 5;
-          if (btnSubmit) btnSubmit.disabled = false;
-        }, 500);
+        showModerationMsg("success", "✅ Спасибо! Ваш отзыв успешно добавлен и опубликован.");
+        reviewSubmitForm.reset();
+
+        starBtns.forEach(b => b.classList.add("active"));
+        if (reviewRatingVal) reviewRatingVal.value = 5;
+        if (btnSubmit) btnSubmit.disabled = false;
       });
     }
 

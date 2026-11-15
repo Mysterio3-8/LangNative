@@ -1,21 +1,31 @@
 /* ==========================================================================
-   NATIVE Edu — Checkout Modal & YooKassa Pay Integration
+   NATIVE — Checkout Modal & YooKassa Pay Integration
    Refactored, High Reliability, 100% Card & SBP
    ========================================================================== */
 
 (function () {
   const COURSE_DEFAULT_PRICES = {
-    spanish: "290 ₽",
+    spanish: "390 ₽",
     english: "390 ₽",
-    chinese: "490 ₽",
-    bundle: "790 ₽"
+    chinese: "390 ₽",
+    "spanish-base": "290 ₽",
+    "english-base": "290 ₽",
+    "chinese-base": "290 ₽",
+    "spanish-full": "490 ₽",
+    "english-full": "490 ₽",
+    "chinese-full": "490 ₽"
   };
 
   const COURSE_NUMERIC_PRICES = {
-    spanish: 290,
+    spanish: 390,
     english: 390,
-    chinese: 490,
-    bundle: 790
+    chinese: 390,
+    "spanish-base": 290,
+    "english-base": 290,
+    "chinese-base": 290,
+    "spanish-full": 490,
+    "english-full": 490,
+    "chinese-full": 490
   };
 
   let selectedCourseId = "english";

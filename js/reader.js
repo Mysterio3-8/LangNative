@@ -8,16 +8,15 @@
   let activePreviewCourse = "english";
 
   const COURSE_PRICE_MAP = {
-    spanish: "290 ₽",
+    spanish: "390 ₽",
     english: "390 ₽",
-    chinese: "490 ₽",
-    bundle: "790 ₽"
+    chinese: "390 ₽"
   };
 
   const BADGES = {
-    english: "A0 → C1 (Все уровни)",
-    chinese: "HSK 1 → 5 (Все уровни)",
-    spanish: "A1 → B2 (Все уровни)"
+    english: "От нуля до свободного владения",
+    chinese: "От первых иероглифов до свободного общения",
+    spanish: "От первых фраз до уверенного диалога"
   };
 
   function initReader() {

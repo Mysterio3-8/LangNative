@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Материалы курса — NATIVE</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
+  <style>
+    .download-page {
+      max-width: 860px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+    .success-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: #ecfdf5;
+      color: #059669;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 16px;
+    }
+    .download-card {
+      background: #ffffff;
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .download-btn-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-hairline);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+    }
+    .download-btn-box:hover {
+      border-color: var(--brand-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-micro);
+    }
+    .download-btn-icon {
+      font-size: 1.8rem;
+    }
+    .download-btn-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .download-btn-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .action-badge {
+      display: inline-block;
+      align-self: flex-start;
+      margin-top: auto;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--brand-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Header -->
+  <div class="header-wrapper">
+    <header class="header">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="assets/branding/logo_master.jpg" alt="NATIVE Logo" class="logo-symbol" width="34" height="34">
+          <div class="logo-text-group">
+            <span class="logo-title">NATIVE</span>
+            <span class="logo-subtitle">Разговорные языковые курсы</span>
+          </div>
+        </a>
+
+        <div class="header-cta">
+          <a href="index.html" class="btn btn-secondary btn-sm">← На главную</a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <main class="download-page">
+    <div style="text-align: center; margin-bottom: 32px;">
+      <span class="success-badge">✓ Оплата подтверждена • Доступ открыт навсегда</span>
+      <h1 class="hero-title" style="font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 12px;">Ваши обучающие материалы</h1>
+      <p style="color: var(--text-secondary); max-width: 580px; margin: 0 auto; line-height: 1.5;">
+        Все файлы, аудиобаза и закрытые каналы доступны для моментального скачивания. Файлы остаются у вас бессрочно.
+      </p>
+    </div>
+
+    <!-- English Course -->
+    <div class="download-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <img src="assets/branding/avatar_english.jpg" alt="English" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover;">
+          <div>
+            <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">NATIVE English</h3>
+            <span style="font-size: 0.8rem; color: var(--text-secondary);">Полный курс: 20 модулей • Аудиобаза 365 тестов • Сленг</span>
+          </div>
+        </div>
+        <span class="course-badge badge-en">Доступ активен</span>
+      </div>
+
+      <div class="download-grid">
+        <a href="courses/english/lesson_01_first_contact_and_greetings.md" class="download-btn-box" target="_blank" download>
+          <div class="download-btn-icon">📖</div>
+          <div class="download-btn-title">Учебник курса (PDF)</div>
+          <div class="download-btn-desc">Формат для смартфонов и печати на A4. Все 20 модулей с транскрипцией и переводом.</div>
+          <span class="action-badge">Скачать файл →</span>
+        </a>
+
+        <a href="https://t.me/mollydamnbro" class="download-btn-box" target="_blank">
+          <div class="download-btn-icon">🎧</div>
+          <div class="download-btn-title">Аудиобаза (MP3)</div>
+          <div class="download-btn-desc">Студийные записи дикторов из Лондона и Нью-Йорка для тренировки восприятия на слух.</div>
+          <span class="action-badge">Открыть архив в облаке →</span>
+        </a>
+
+        <a href="https://vk.com/club239331012" class="download-btn-box" target="_blank">
+          <div class="download-btn-icon">💬</div>
+          <div class="download-btn-title">Закрытое сообщество</div>
+          <div class="download-btn-desc">Разборы сериалов, опросы, дополнительные материалы и ответы на вопросы.</div>
+          <span class="action-badge">Войти в канал →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Chinese Course -->
+    <div class="download-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <img src="assets/branding/avatar_chinese.jpg" alt="Chinese" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover;">
+          <div>
+            <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">NATIVE Chinese</h3>
+            <span style="font-size: 0.8rem; color: var(--text-secondary);">Полный курс: 20 модулей • Иероглифика HSK • Аудио тонов</span>
+          </div>
+        </div>
+        <span class="course-badge badge-cn">Доступ активен</span>
+      </div>
+
+      <div class="download-grid">
+        <a href="courses/chinese/lesson_01_pinyin_tones_mastery_and_real_greetings.md" class="download-btn-box" target="_blank" download>
+          <div class="download-btn-icon">📖</div>
+          <div class="download-btn-title">Учебник курса (PDF)</div>
+          <div class="download-btn-desc">Порядок черт, пиньинь с тонами, грамматика HSK и реальные диалоги Китая.</div>
+          <span class="action-badge">Скачать файл →</span>
+        </a>
+
+        <a href="https://t.me/mollydamnbro" class="download-btn-box" target="_blank">
+          <div class="download-btn-icon">🎧</div>
+          <div class="download-btn-title">Тренажер тонов (MP3)</div>
+          <div class="download-btn-desc">Озвучка носителей путунхуа (Пекин) для постановки идеального произношения.</div>
+          <span class="action-badge">Открыть архив в облаке →</span>
+        </a>
+
+        <a href="https://vk.com/club242408187" class="download-btn-box" target="_blank">
+          <div class="download-btn-icon">💬</div>
+          <div class="download-btn-title">Закрытое сообщество</div>
+          <div class="download-btn-desc">Разборы иероглифов, обучающие клипы и практика с преподавателями.</div>
+          <span class="action-badge">Войти в канал →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Spanish Course -->
+    <div class="download-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <img src="assets/branding/avatar_spanish.jpg" alt="Spanish" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover;">
+          <div>
+            <h3 style="font-size: 1.2rem; font-weight: 800; margin: 0;">NATIVE Spanish</h3>
+            <span style="font-size: 0.8rem; color: var(--text-secondary);">Полный курс: 20 модулей • Разговорные шаблоны • Аудио</span>
+          </div>
+        </div>
+        <span class="course-badge badge-es">Доступ активен</span>
+      </div>
+
+      <div class="download-grid">
+        <a href="courses/spanish/lesson_01_real_greetings_and_cafe_culture.md" class="download-btn-box" target="_blank" download>
+          <div class="download-btn-icon">📖</div>
+          <div class="download-btn-title">Учебник курса (PDF)</div>
+          <div class="download-btn-desc">Разговорный испанский для путешествий и жизни: диалоги, меню, чеки и конструкции.</div>
+          <span class="action-badge">Скачать файл →</span>
+        </a>
+
+        <a href="https://t.me/mollydamnbro" class="download-btn-box" target="_blank">
+          <div class="download-btn-icon">🎧</div>
+          <div class="download-btn-title">Аудиобаза (MP3)</div>
+          <div class="download-btn-desc">Живое кастильское и латиноамериканское произношение без акцента.</div>
+          <span class="action-badge">Открыть архив в облаке →</span>
+        </a>
+
+        <a href="https://vk.com/club243301314" class="download-btn-box" target="_blank">
+          <div class="download-btn-icon">💬</div>
+          <div class="download-btn-title">Закрытое сообщество</div>
+          <div class="download-btn-desc">Ежедневная разговорная практика, карточки фраз и разборы сленга.</div>
+          <span class="action-badge">Войти в канал →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Support Notice -->
+    <div style="text-align: center; padding: 24px; background: #eff6ff; border-radius: var(--radius-lg); border: 1px solid #bfdbfe;">
+      <h4 style="margin: 0 0 6px; color: #1e3a8a; font-size: 1rem;">Нужна помощь с файлами или есть вопросы?</h4>
+      <p style="margin: 0 0 12px; font-size: 0.88rem; color: #1e40af;">Служба поддержки всегда на связи в Telegram. Ответим в течение нескольких минут.</p>
+      <a href="https://t.me/mollydamnbro" target="_blank" class="btn btn-primary" style="display: inline-flex;">Написать в поддержку: @mollydamnbro</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-legal">
+        © 2026 NATIVE. Все права защищены. Авторские обучающие материалы для самостоятельного изучения языков.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
