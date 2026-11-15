@@ -19,7 +19,7 @@
   window.setSafeMultilineText = setSafeMultilineText;
 
   function initCommon() {
-    // 1. Dynamic FAQ Accordion loader
+    // 1. Dynamic FAQ Accordion loader (Native <details name="faq-group"> & Modern Web Guidance)
     const faqContainer = document.getElementById("faq-accordion-list");
     if (faqContainer) {
       fetch("data/faq.json")
@@ -28,38 +28,46 @@
           if (!faqs || !faqs.length) return;
           faqContainer.innerHTML = "";
           faqs.forEach((item, idx) => {
-            const card = document.createElement("div");
-            card.className = `faq-card ${idx === 0 ? "active" : ""}`;
+            const card = document.createElement("details");
+            card.className = "faq-card";
+            card.setAttribute("name", "faq-group");
+            if (idx === 0) card.open = true;
             card.innerHTML = `
-              <div class="faq-q">
+              <summary class="faq-q">
                 <span>${item.q}</span>
                 <span class="faq-q-icon">+</span>
-              </div>
-              <div class="faq-a">${item.a}</div>
+              </summary>
+              <div class="faq-a"><p>${item.a}</p></div>
             `;
-            const qEl = card.querySelector(".faq-q");
-            qEl.addEventListener("click", () => {
-              const isActive = card.classList.contains("active");
-              faqContainer.querySelectorAll(".faq-card").forEach(c => c.classList.remove("active"));
-              if (!isActive) card.classList.add("active");
-            });
             faqContainer.appendChild(card);
           });
         })
         .catch(() => {});
-    } else {
-      // Fallback for static cards
-      const staticCards = document.querySelectorAll(".faq-card");
-      staticCards.forEach(card => {
-        const question = card.querySelector(".faq-q");
-        if (question) {
-          question.addEventListener("click", () => {
-            const isActive = card.classList.contains("active");
-            staticCards.forEach(c => c.classList.remove("active"));
-            if (!isActive) card.classList.add("active");
-          });
+    }
+
+    // Modern Web Guidance: Mutually exclusive <details> fallback for older browsers
+    if (!Object.hasOwn(HTMLDetailsElement.prototype, "name")) {
+      document.addEventListener("toggle", event => {
+        const details = event.target;
+        if (!(details instanceof HTMLDetailsElement) || !details.open || !details.hasAttribute("name")) return;
+        const name = CSS.escape(details.getAttribute("name"));
+        for (const other of document.querySelectorAll(`details[name="${name}"]`)) {
+          if (other !== details) other.open = false;
         }
-      });
+      }, { capture: true });
+    }
+
+    // Modern Web Guidance: Native <dialog closedby="any"> light dismiss fallback for older browsers
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      const outside = (e, dialog) => {
+        const r = dialog.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      };
+      for (const dialog of document.querySelectorAll('dialog[closedby="any"]')) {
+        let pressedOutside = false;
+        dialog.addEventListener('pointerdown', (e) => { pressedOutside = outside(e, dialog); });
+        dialog.addEventListener('pointerup', (e) => { if (pressedOutside && outside(e, dialog)) dialog.close(); });
+      }
     }
 
     // 2. Smooth Anchor Scrolling

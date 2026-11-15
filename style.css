@@ -1385,6 +1385,7 @@ img {
   transition: border-color var(--duration-fast) ease;
 }
 
+.faq-card[open],
 .faq-card.active {
   border-color: rgba(37, 99, 235, 0.35);
   box-shadow: var(--shadow-micro);
@@ -1401,6 +1402,11 @@ img {
   color: var(--text-primary);
   cursor: pointer;
   user-select: none;
+  list-style: none;
+}
+
+.faq-q::-webkit-details-marker {
+  display: none;
 }
 
 .faq-q-icon {
@@ -1410,6 +1416,7 @@ img {
   transition: transform var(--duration-fast) ease;
 }
 
+.faq-card[open] .faq-q-icon,
 .faq-card.active .faq-q-icon {
   transform: rotate(45deg);
 }
@@ -1419,10 +1426,25 @@ img {
   font-size: 0.88rem;
   color: var(--text-secondary);
   line-height: 1.6;
-  display: none;
 }
 
-.faq-card.active .faq-a {
+/* Modern Web Guidance: Native details-content transition with interpolate-size */
+details.faq-card::details-content {
+  interpolate-size: allow-keywords;
+  overflow: clip;
+  contain: layout;
+  transition: block-size 0.28s ease, content-visibility 0.28s allow-discrete;
+}
+
+details.faq-card:not([open])::details-content {
+  block-size: 0;
+}
+
+/* Fallback for non-details elements */
+div.faq-card:not(.active) .faq-a {
+  display: none;
+}
+div.faq-card.active .faq-a {
   display: block;
 }
 
@@ -1467,25 +1489,53 @@ img {
 }
 
 /* ==========================================================================
-   14. Modals (Checkout Sheet, Reader, Cookie Banner)
+   14. Modals (Native <dialog> & Apple / Stripe Design)
+   Modern Web Guidance: Native dialog with ::backdrop, overscroll-behavior: contain
    ========================================================================== */
+dialog.modal-overlay,
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(9, 13, 22, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 20px;
+  border: none;
+  background: transparent;
   z-index: 1000;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  box-sizing: border-box;
+}
+
+dialog.modal-overlay:modal {
+  overscroll-behavior: contain;
+}
+
+dialog.modal-overlay::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: rgba(9, 13, 22, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Fallback for browsers or non-dialog elements */
+.modal-overlay:not(dialog) {
+  background: rgba(9, 13, 22, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   visibility: hidden;
   transition: all var(--duration-normal) var(--ease-spring);
 }
 
+dialog.modal-overlay[open],
 .modal-overlay.active {
+  display: flex;
   opacity: 1;
   visibility: visible;
 }
@@ -1879,6 +1929,7 @@ img {
   .skills-grid { grid-template-columns: 1fr; gap: 14px; }
   .skill-card { padding: 18px 16px; }
 
+  dialog.modal-overlay,
   .modal-overlay { padding: 10px; align-items: flex-end; }
   .modal-window {
     padding: 22px 16px;

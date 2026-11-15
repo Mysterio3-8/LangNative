@@ -148,15 +148,23 @@
       }
 
       if (readerModal) {
-        readerModal.classList.add("active");
-        document.body.style.overflow = "hidden";
+        if (typeof readerModal.showModal === "function") {
+          if (!readerModal.open) readerModal.showModal();
+        } else {
+          readerModal.classList.add("active");
+          readerModal.setAttribute("open", "");
+        }
       }
     }
 
     function closeReaderModal() {
       if (readerModal) {
-        readerModal.classList.remove("active");
-        document.body.style.overflow = "";
+        if (typeof readerModal.close === "function") {
+          if (readerModal.open) readerModal.close();
+        } else {
+          readerModal.classList.remove("active");
+          readerModal.removeAttribute("open");
+        }
       }
     }
 
@@ -177,12 +185,6 @@
         if (e.target === readerModal) closeReaderModal();
       });
     }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && readerModal && readerModal.classList.contains("active")) {
-        closeReaderModal();
-      }
-    });
 
     // Tab switcher
     if (tabBtnSyllabus && tabBtnLesson && paneSyllabus && paneLesson) {

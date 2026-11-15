@@ -42,15 +42,23 @@
       }
 
       if (modal) {
-        modal.classList.add("active");
-        document.body.style.overflow = "hidden";
+        if (typeof modal.showModal === "function") {
+          if (!modal.open) modal.showModal();
+        } else {
+          modal.classList.add("active");
+          modal.setAttribute("open", "");
+        }
       }
     }
 
     function closeModal() {
       if (modal) {
-        modal.classList.remove("active");
-        document.body.style.overflow = "";
+        if (typeof modal.close === "function") {
+          if (modal.open) modal.close();
+        } else {
+          modal.classList.remove("active");
+          modal.removeAttribute("open");
+        }
       }
     }
 
@@ -70,17 +78,12 @@
 
     if (modalClose) modalClose.addEventListener("click", closeModal);
 
+    // Light dismiss for legacy fallback
     if (modal) {
       modal.addEventListener("click", (e) => {
         if (e.target === modal) closeModal();
       });
     }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal && modal.classList.contains("active")) {
-        closeModal();
-      }
-    });
 
     // YooKassa Payment Submit Handler
     if (yookassaPayBtn) {
