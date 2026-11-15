@@ -48,7 +48,7 @@ def register_successful_payment(payment_data: Dict[str, Any]) -> Dict[str, Any]:
     """
     metadata = payment_data.get("metadata", {})
     course_id = metadata.get("course_id", "english")
-    amount = float(payment_data.get("amount", {}).get("value", 249))
+    amount = float(payment_data.get("amount", {}).get("value", 199))
     order_id = f"ORD-{payment_data.get('id', '')[-6:].upper()}"
 
     invite_link = COURSE_INVITES.get(course_id, COURSE_INVITES["english"])
@@ -92,7 +92,7 @@ def triage_incoming_lead(message_text: str) -> Dict[str, Any]:
             "suggested_action": "Отправить ссылку на СБП ЮKassa",
             "reply_template": (
                 "Привет! Оплатить можно моментально и без комиссии через СБП или картой:\n"
-                "👉 Ссылка на оплату: http://localhost:8080/#courses (249 ₽ навсегда)\n"
+                "👉 Ссылка на оплату: https://mysterio3-8.github.io/LangNative/#courses (199 ₽ навсегда)\n"
                 "После оплаты доступ к материалам и закрытому каналу открывается сразу."
             )
         }
@@ -106,7 +106,7 @@ def triage_incoming_lead(message_text: str) -> Dict[str, Any]:
                 "Да, все материалы созданы специально для старта с полного нуля! "
                 "Занятия построены по принципу микрообучения (15 минут в день): "
                 "сначала базовые кирпичики и произношение, затем живые диалоги. "
-                "Попробуйте бесплатный интерактивный тест на сайте: http://localhost:8080/#demo"
+                "Попробуйте бесплатный интерактивный тест на сайте: https://mysterio3-8.github.io/LangNative/#demo"
             )
         }
 
@@ -114,10 +114,10 @@ def triage_incoming_lead(message_text: str) -> Dict[str, Any]:
         return {
             "intent": "PRICE_INQUIRY",
             "priority": "MEDIUM",
-            "suggested_action": "Озвучить оффер со скидкой 75%",
+            "suggested_action": "Озвучить цену 199 ₽",
             "reply_template": (
-                "Сейчас действует специальная цена: любой курс всего 249 ₽ навсегда (вместо 990 ₽). "
-                "А если хотите сразу английский, китайский и испанский — комбо-пакет 3-в-1 всего за 499 ₽!"
+                "Сейчас действует специальная цена: любой курс всего 199 ₽ навсегда (вместо 990 ₽). "
+                "Никаких подписок, доступ бессрочный со всеми материалами и аудио!"
             )
         }
 
