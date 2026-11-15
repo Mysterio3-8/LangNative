@@ -12,8 +12,10 @@ from pathlib import Path
 
 SITE_DIR = Path(__file__).resolve().parent
 
-STATIC_URL = "https://langnative.vercel.app"
-ADMIN_URL = "https://langnative.vercel.app/admin"
+STATIC_URL_VERCEL = "https://langnative.vercel.app"
+STATIC_URL_RU = "https://mysterio3-8.github.io/LangNative/"
+ADMIN_URL_RU = "https://mysterio3-8.github.io/LangNative/admin.html"
+ADMIN_URL_VERCEL = "https://langnative.vercel.app/admin"
 GITHUB_REPO = "https://github.com/Mysterio3-8/LangNative"
 
 
@@ -47,13 +49,16 @@ def main():
         print("✅ Успешно отправлено на GitHub!")
 
     print("\n" + "=" * 65)
-    print("🎉 ВЕРСЕЛЬ АВТОДЕПЛОЙ АКТИВИРОВАН!")
+    print("🎉 СИНХРОНИЗАЦИЯ И АВТОДЕПЛОЙ ВЫПОЛНЕНЫ УСПЕШНО!")
     print("=" * 65)
-    print(f"🌐 Постоянная статичная ссылка на сайт:   {STATIC_URL}")
-    print(f"🛡️ Ссылка на панель администратора:     {ADMIN_URL}")
-    print(f"📦 Исходный код на GitHub:              {GITHUB_REPO}")
+    print("🇷🇺 Доступно в РФ без VPN (GitHub Pages):")
+    print(f"   🌐 Сайт:     {STATIC_URL_RU}")
+    print(f"   🛡️ Админка:  {ADMIN_URL_RU}")
+    print("\n🌍 Зеркало Vercel (Глобальный CDN):")
+    print(f"   🌐 Сайт:     {STATIC_URL_VERCEL}")
+    print(f"   🛡️ Админка:  {ADMIN_URL_VERCEL}")
     print("=" * 65)
-    print("Vercel автоматически собирает и публикует сайт за 10–15 секунд при каждом запуске этого скрипта.\n")
+    print("GitHub Pages и Vercel автоматически обновляют сайт за 10–15 секунд при каждом запуске.\n")
 
 
 if __name__ == "__main__":
