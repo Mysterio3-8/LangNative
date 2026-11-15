@@ -34,22 +34,22 @@ app = FastAPI(title="NATIVE Edu Secure Payment Gateway", docs_url=None, redoc_ur
 COURSE_CATALOG = {
     "english": {
         "title": "NATIVE English",
-        "price_rub": 249,
-        "description": "Курс «NATIVE English» — Разговорный английский навсегда",
+        "price_rub": 199,
+        "description": "Курс «NATIVE English» — Словарный буст & Живой сленг навсегда",
     },
     "chinese": {
         "title": "NATIVE Chinese",
-        "price_rub": 249,
-        "description": "Курс «NATIVE Chinese» — Китайский HSK Turbo навсегда",
+        "price_rub": 199,
+        "description": "Курс «NATIVE Chinese» — Иероглифы & Тоны HSK 1 навсегда",
     },
     "spanish": {
         "title": "NATIVE Spanish",
-        "price_rub": 249,
-        "description": "Курс «NATIVE Spanish» — Практический испанский навсегда",
+        "price_rub": 199,
+        "description": "Курс «NATIVE Spanish» — Разговорные фразы & Топ-100 глаголов навсегда",
     },
     "combo": {
         "title": "Комбо 3-в-1",
-        "price_rub": 499,
+        "price_rub": 399,
         "description": "Пакет «Все 3 языка навсегда» (EN + CN + ES)",
     },
 }
@@ -59,6 +59,8 @@ ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",
     "http://localhost:3000",
+    "https://mysterio3-8.github.io",
+    "https://langnative.vercel.app",
 ]
 custom_origin = os.getenv("ALLOWED_ORIGIN")
 if custom_origin:

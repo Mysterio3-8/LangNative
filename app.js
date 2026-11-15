@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let selectedCourseId = "english";
   let selectedCourseTitle = "NATIVE English";
-  let selectedCoursePrice = "249 ₽";
+  let selectedCoursePrice = "199 ₽";
 
   // Strict whitelist mapping for VK direct chat links
   const VK_COMMUNITY_MAP = {
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       selectedCourseId = btn.dataset.buy || "english";
-      selectedCoursePrice = btn.dataset.price || "249 ₽";
+      selectedCoursePrice = btn.dataset.price || "199 ₽";
       selectedCourseTitle = btn.dataset.title || "Языковой курс NATIVE";
 
       if (modalTitle) modalTitle.textContent = selectedCourseTitle;

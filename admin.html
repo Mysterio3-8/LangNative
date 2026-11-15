@@ -9,6 +9,22 @@
 </head>
 <body>
 
+  <!-- Secret Admin Auth Gate (PIN Protection) -->
+  <div id="admin-auth-overlay" class="admin-auth-overlay">
+    <div class="admin-auth-card">
+      <div class="auth-icon-lock">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h2 class="auth-title">NATIVE Edu Admin</h2>
+      <p class="auth-sub">Закрытая панель управления. Введите PIN-код администратора для входа в систему.</p>
+      <form id="admin-pin-form">
+        <input type="password" id="admin-pin-input" placeholder="••••" maxlength="8" class="text-input auth-pin-input" autofocus autocomplete="current-password">
+        <button type="submit" class="btn btn-primary btn-block" style="padding: 12px; margin-top: 14px; width: 100%;">Войти в систему</button>
+        <div id="auth-error-msg" class="auth-error">Неверный PIN-код доступа</div>
+      </form>
+    </div>
+  </div>
+
   <div class="admin-layout">
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -52,6 +68,9 @@
           <span class="status-dot"></span>
           <span>ЮKassa: #1314296</span>
         </div>
+        <button id="btn-admin-logout" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 10px; font-size: 0.76rem; border-color: rgba(255,255,255,0.1);">
+          Выйти из панели
+        </button>
       </div>
     </aside>
 
@@ -61,7 +80,7 @@
       <header class="topbar">
         <div>
           <h1 class="page-title">Управление продажами курсов</h1>
-          <p class="page-desc">Статистика заказов, статус платежей через ЮKassa и модерация</p>
+          <p class="page-desc">Реальные заказы, статус платежей через ЮKassa и модерация</p>
         </div>
         <div class="topbar-actions">
           <button id="btn-export-csv" class="btn btn-secondary">
@@ -76,24 +95,24 @@
 
       <!-- Tab: Dashboard & Orders -->
       <section id="tab-dashboard" class="tab-pane active">
-        <!-- KPI Metrics Grid -->
+        <!-- KPI Metrics Grid (Real Dynamic Data) -->
         <div class="kpi-grid">
           <div class="kpi-card">
             <div class="kpi-label">Выручка за сегодня</div>
-            <div class="kpi-val" id="metric-today-rev">1 494 ₽</div>
-            <div class="kpi-badge badge-up">+498 ₽ к вчера</div>
+            <div class="kpi-val" id="metric-today-rev">0 ₽</div>
+            <div class="kpi-badge badge-up" id="metric-today-badge">0 ₽ к вчера</div>
           </div>
 
           <div class="kpi-card">
             <div class="kpi-label">Выручка за месяц (Ноябрь)</div>
-            <div class="kpi-val" id="metric-month-rev">8 217 ₽</div>
-            <div class="kpi-sub">Цель: 3 000 ₽ / мес (Выполнена на 273%)</div>
+            <div class="kpi-val" id="metric-month-rev">0 ₽</div>
+            <div class="kpi-sub">Цель: 3 000 ₽ / мес</div>
           </div>
 
           <div class="kpi-card">
             <div class="kpi-label">Всего оформлений</div>
-            <div class="kpi-val" id="metric-orders-count">28 заказов</div>
-            <div class="kpi-sub">Средний чек: 293 ₽</div>
+            <div class="kpi-val" id="metric-orders-count">0 заказов</div>
+            <div class="kpi-sub" id="metric-avg-check">Средний чек: —</div>
           </div>
 
           <div class="kpi-card">
@@ -108,15 +127,15 @@
           <div class="panel-header">
             <div>
               <h3 class="panel-title">Журнал заказов</h3>
-              <p class="panel-subtitle">Все оформленные подписки и транзакции с сайта и каналов</p>
+              <p class="panel-subtitle">Реальные оформления с сайта, переводы через СБП и Telegram</p>
             </div>
             <div class="filter-group">
               <select id="filter-course" class="select-input">
                 <option value="all">Все курсы</option>
-                <option value="english">NATIVE English (249 ₽)</option>
-                <option value="chinese">NATIVE Chinese (249 ₽)</option>
-                <option value="spanish">NATIVE Spanish (249 ₽)</option>
-                <option value="combo">Комбо 3-в-1 (499 ₽)</option>
+                <option value="english">NATIVE English (199 ₽)</option>
+                <option value="chinese">NATIVE Chinese (199 ₽)</option>
+                <option value="spanish">NATIVE Spanish (199 ₽)</option>
+                <option value="combo">Комбо 3-в-1 (399 ₽)</option>
               </select>
               <select id="filter-status" class="select-input">
                 <option value="all">Все статусы</option>
@@ -166,7 +185,7 @@
               </div>
               <div class="input-group">
                 <label>Текущая цена (₽)</label>
-                <input type="number" id="price-en" value="249" class="text-input">
+                <input type="number" id="price-en" value="199" class="text-input">
               </div>
               <div class="input-group">
                 <label>Старая цена (перечёркнутая)</label>
@@ -181,7 +200,7 @@
               </div>
               <div class="input-group">
                 <label>Текущая цена (₽)</label>
-                <input type="number" id="price-cn" value="249" class="text-input">
+                <input type="number" id="price-cn" value="199" class="text-input">
               </div>
               <div class="input-group">
                 <label>Старая цена (перечёркнутая)</label>
@@ -196,7 +215,7 @@
               </div>
               <div class="input-group">
                 <label>Текущая цена (₽)</label>
-                <input type="number" id="price-es" value="249" class="text-input">
+                <input type="number" id="price-es" value="199" class="text-input">
               </div>
               <div class="input-group">
                 <label>Старая цена (перечёркнутая)</label>
@@ -211,7 +230,7 @@
               </div>
               <div class="input-group">
                 <label>Текущая цена (₽)</label>
-                <input type="number" id="price-combo" value="499" class="text-input">
+                <input type="number" id="price-combo" value="399" class="text-input">
               </div>
               <div class="input-group">
                 <label>Старая цена (перечёркнутая)</label>
@@ -298,9 +317,9 @@
 
           <div class="kpi-grid" style="margin-bottom: 24px;">
             <div class="kpi-card">
-              <div class="kpi-label">Модель 1: Только курсы (249 ₽)</div>
-              <div class="kpi-val">12 продаж</div>
-              <div class="kpi-sub">2 988 ₽ / мес (3 продажи в неделю)</div>
+              <div class="kpi-label">Модель 1: Только курсы (199 ₽)</div>
+              <div class="kpi-val">15 продаж</div>
+              <div class="kpi-sub">2 985 ₽ / мес (по 1 продаже в 2 дня)</div>
             </div>
 
             <div class="kpi-card">
@@ -311,8 +330,8 @@
 
             <div class="kpi-card" style="border-color: var(--brand-blue);">
               <div class="kpi-label">Модель 3: Оптимальный гибрид ⭐</div>
-              <div class="kpi-val" style="color: var(--brand-blue);">2 994 ₽</div>
-              <div class="kpi-sub">6 курсов (1 494 ₽) + 6 реклам (1 500 ₽)</div>
+              <div class="kpi-val" style="color: var(--brand-blue);">3 092 ₽</div>
+              <div class="kpi-sub">8 курсов (1 592 ₽) + 6 реклам (1 500 ₽)</div>
             </div>
 
             <div class="kpi-card">

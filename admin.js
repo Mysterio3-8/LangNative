@@ -4,61 +4,51 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Initial Seed Orders
-  let orders = [
-    {
-      id: "ORD-9481",
-      date: "15.11.2026, 12:42",
-      course: "english",
-      courseName: "NATIVE English",
-      price: 249,
-      method: "ЮKassa (СБП)",
-      customer: "@alex_novikov",
-      status: "paid"
-    },
-    {
-      id: "ORD-9480",
-      date: "15.11.2026, 11:15",
-      course: "combo",
-      courseName: "Комбо «Все 3 языка навсегда»",
-      price: 499,
-      method: "ЮKassa (Карта МИР)",
-      customer: "dmitry.spb@mail.ru",
-      status: "paid"
-    },
-    {
-      id: "ORD-9479",
-      date: "15.11.2026, 09:30",
-      course: "chinese",
-      courseName: "NATIVE Chinese",
-      price: 249,
-      method: "Telegram Pay",
-      customer: "@kate_lingo",
-      status: "paid"
-    },
-    {
-      id: "ORD-9478",
-      date: "14.11.2026, 21:54",
-      course: "spanish",
-      courseName: "NATIVE Spanish",
-      price: 249,
-      method: "ВКонтакте (VK Pay)",
-      customer: "vk.com/id4819201",
-      status: "paid"
-    },
-    {
-      id: "ORD-9477",
-      date: "14.11.2026, 18:20",
-      course: "english",
-      courseName: "NATIVE English",
-      price: 249,
-      method: "ЮKassa (СБП)",
-      customer: "sergey.t@yandex.ru",
-      status: "pending"
-    }
-  ];
+  // --- Secret PIN Authentication Gate ---
+  const authOverlay = document.getElementById("admin-auth-overlay");
+  const pinForm = document.getElementById("admin-pin-form");
+  const pinInput = document.getElementById("admin-pin-input");
+  const authError = document.getElementById("auth-error-msg");
+  const btnLogout = document.getElementById("btn-admin-logout");
 
-  // Load persisted orders if present
+  const MASTER_PIN = "2026";
+
+  function checkAuth() {
+    if (sessionStorage.getItem("native_admin_auth") === "true") {
+      if (authOverlay) authOverlay.style.display = "none";
+    } else {
+      if (authOverlay) authOverlay.style.display = "flex";
+      if (pinInput) setTimeout(() => pinInput.focus(), 100);
+    }
+  }
+
+  if (pinForm) {
+    pinForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const val = (pinInput.value || "").trim();
+      if (val === MASTER_PIN) {
+        sessionStorage.setItem("native_admin_auth", "true");
+        if (authOverlay) authOverlay.style.display = "none";
+        if (authError) authError.style.display = "none";
+      } else {
+        if (authError) authError.style.display = "block";
+        pinInput.value = "";
+        pinInput.focus();
+      }
+    });
+  }
+
+  if (btnLogout) {
+    btnLogout.addEventListener("click", () => {
+      sessionStorage.removeItem("native_admin_auth");
+      checkAuth();
+    });
+  }
+
+  checkAuth();
+
+  // --- Real Orders (Clean Slate: loads from localStorage or starts empty) ---
+  let orders = [];
   try {
     const saved = localStorage.getItem("native_orders");
     if (saved) orders = JSON.parse(saved);
@@ -85,38 +75,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     ordersTableBody.innerHTML = "";
-    filtered.forEach(o => {
-      const tr = document.createElement("tr");
 
-      const statusBadge = o.status === "paid" 
-        ? `<span class="badge-paid">Оплачен</span>` 
-        : `<span class="badge-pending">Ожидает</span>`;
-
-      tr.innerHTML = `
-        <td style="font-family: monospace; font-weight: 600;">${o.id}</td>
-        <td style="color: var(--text-sub);">${o.date}</td>
-        <td><strong>${o.courseName}</strong></td>
-        <td style="font-weight: 700;">${o.price} ₽</td>
-        <td style="color: var(--text-sub);">${o.method}</td>
-        <td>${o.customer}</td>
-        <td>${statusBadge}</td>
-        <td>
-          <button class="btn btn-secondary btn-sm" onclick="toggleStatus('${o.id}')" style="padding: 4px 10px; font-size: 0.78rem;">
-            ${o.status === "paid" ? "Отметить ожид." : "Подтвердить оплату"}
-          </button>
+    if (filtered.length === 0) {
+      const emptyTr = document.createElement("tr");
+      emptyTr.innerHTML = `
+        <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 36px 16px; font-size: 0.9rem;">
+          <div style="margin-bottom: 6px; font-weight: 600; color: var(--text-sub);">Заказов пока нет</div>
+          <div>Новые оплаты с сайта через ЮKassa и заявки из Telegram будут появляться здесь автоматически.</div>
         </td>
       `;
-      ordersTableBody.appendChild(tr);
-    });
+      ordersTableBody.appendChild(emptyTr);
+    } else {
+      filtered.forEach(o => {
+        const tr = document.createElement("tr");
 
-    // Update KPI metrics
+        const statusBadge = o.status === "paid" 
+          ? `<span class="badge-paid">Оплачен</span>` 
+          : `<span class="badge-pending">Ожидает</span>`;
+
+        tr.innerHTML = `
+          <td style="font-family: monospace; font-weight: 600;">${o.id}</td>
+          <td style="color: var(--text-sub);">${o.date}</td>
+          <td><strong>${o.courseName}</strong></td>
+          <td style="font-weight: 700;">${o.price} ₽</td>
+          <td style="color: var(--text-sub);">${o.method}</td>
+          <td>${o.customer}</td>
+          <td>${statusBadge}</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" onclick="toggleStatus('${o.id}')" style="padding: 4px 10px; font-size: 0.78rem;">
+              ${o.status === "paid" ? "Отметить ожид." : "Подтвердить оплату"}
+            </button>
+          </td>
+        `;
+        ordersTableBody.appendChild(tr);
+      });
+    }
+
+    // Update KPI metrics dynamically from real orders
     const paidOrders = orders.filter(o => o.status === "paid");
-    const todayTotal = paidOrders.filter(o => o.date.includes("15.11.2026")).reduce((sum, o) => sum + o.price, 0);
+    const todayStr = new Date().toLocaleDateString("ru-RU");
+    const todayTotal = paidOrders.filter(o => o.date && o.date.includes(todayStr)).reduce((sum, o) => sum + o.price, 0);
     const monthTotal = paidOrders.reduce((sum, o) => sum + o.price, 0);
+    const avgCheck = paidOrders.length > 0 ? Math.round(monthTotal / paidOrders.length) : 0;
 
     if (metricTodayRev) metricTodayRev.textContent = `${todayTotal.toLocaleString("ru-RU")} ₽`;
     if (metricMonthRev) metricMonthRev.textContent = `${monthTotal.toLocaleString("ru-RU")} ₽`;
     if (metricOrdersCount) metricOrdersCount.textContent = `${orders.length} заказов`;
+    const metricAvg = document.getElementById("metric-avg-check");
+    if (metricAvg) metricAvg.textContent = paidOrders.length > 0 ? `Средний чек: ${avgCheck} ₽` : "Средний чек: —";
+    const metricTodayBadge = document.getElementById("metric-today-badge");
+    if (metricTodayBadge) metricTodayBadge.textContent = `${todayTotal} ₽ сегодня`;
   }
 
   window.toggleStatus = function(orderId) {
@@ -137,11 +145,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const course = prompt("Выберите курс (english / chinese / spanish / combo):", "english");
       if (!course) return;
       const customer = prompt("Контакт покупателя (Telegram или Email):", "@new_student") || "@unknown";
-      const price = course === "combo" ? 499 : 249;
+      const price = course === "combo" ? 399 : 199;
       const titles = {
-        english: "NATIVE English",
-        chinese: "NATIVE Chinese",
-        spanish: "NATIVE Spanish",
+        english: "NATIVE English (Словарный буст)",
+        chinese: "NATIVE Chinese (Иероглифы & Тоны HSK 1)",
+        spanish: "NATIVE Spanish (Разговорные фразы)",
         combo: "Комбо «Все 3 языка навсегда»"
       };
 
@@ -228,17 +236,17 @@ document.addEventListener("DOMContentLoaded", () => {
         intent = "🔥 ГОРЯЧИЙ ЛИД (ГОТОВ К ОПЛАТЕ)";
         priority = "Высокий приоритет (Конвертировать сейчас)";
         action = "Отправить прямую ссылку на оплату через СБП ЮKassa";
-        reply = "Привет! Оплатить можно в 1 клик через СБП или картой (без комиссии):\n👉 Ссылка: http://localhost:8080/#courses (249 ₽ навсегда).\nПосле оплаты доступ к материалам и закрытому каналу открывается моментально!";
+        reply = "Привет! Оплатить можно в 1 клик через СБП или картой (без комиссии):\n👉 Ссылка: https://mysterio3-8.github.io/LangNative/#courses (всего 199 ₽ навсегда).\nПосле оплаты доступ к материалам и закрытому каналу открывается моментально!";
       } else if (text.includes("нуля") || text.includes("начинающ") || text.includes("сложн") || text.includes("уровен")) {
         intent = "💡 КВАЛИФИКАЦИЯ НОВИЧКА";
         priority = "Средний приоритет";
         action = "Снять возражение по сложности и предложить демо-тест";
-        reply = "Да, все материалы разработаны именно для старта с полного нуля! Занятия идут по 15 минут в день: сначала понятные кирпичики и произношение, затем живые диалоги. Попробуйте бесплатный тест на сайте: http://localhost:8080/#demo";
+        reply = "Да, все материалы разработаны именно для старта с полного нуля! Занятия идут по 15 минут в день: сначала понятные кирпичики и произношение, затем живые диалоги. Попробуйте бесплатный тест на сайте: https://mysterio3-8.github.io/LangNative/#demo";
       } else if (text.includes("цен") || text.includes("скольк") || text.includes("скидк") || text.includes("руб")) {
         intent = "💰 ЗАПРОС СТОИМОСТИ";
         priority = "Средний приоритет";
-        action = "Озвучить ограниченный оффер со скидкой 75%";
-        reply = "Сейчас действует специальная цена: любой курс всего 249 ₽ навсегда (вместо 990 ₽). А если хотите сразу английский, китайский и испанский — комбо-пакет 3-в-1 всего за 499 ₽!";
+        action = "Озвучить ограниченный оффер со скидкой 80%";
+        reply = "Сейчас действует специальная цена: любой курс всего 199 ₽ навсегда (вместо 990 ₽). А если хотите сразу английский, китайский и испанский — комбо-пакет 3-в-1 всего за 399 ₽!";
       }
 
       triageBadge.textContent = intent;
