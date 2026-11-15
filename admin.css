@@ -458,10 +458,6 @@ body {
   padding: 20px;
 }
 
-.price-edit-box.combo-highlight {
-  border-color: var(--brand-blue);
-  box-shadow: 0 0 16px rgba(37, 99, 235, 0.15);
-}
 
 .price-edit-header {
   display: flex;

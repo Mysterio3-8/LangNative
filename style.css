@@ -32,7 +32,6 @@
   --accent-en: #0284c7;        /* Sky Blue */
   --accent-cn: #dc2626;        /* Imperial Crimson */
   --accent-es: #ea580c;        /* Saffron Terracotta */
-  --accent-combo: #059669;     /* Emerald Success */
 
   --success: #10b981;
   --success-bg: #f0fdf4;
@@ -785,93 +784,6 @@ body {
 }
 
 /* ==========================================================================
-   Combo Banner (Stripe / Apple Keynote Box)
-   ========================================================================== */
-.combo-card {
-  background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
-  border: 2px solid #2563eb;
-  border-radius: var(--radius-xl);
-  padding: 40px;
-  box-shadow: 0 12px 36px -6px rgba(37, 99, 235, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 36px;
-  position: relative;
-  overflow: hidden;
-}
-
-.combo-card::before {
-  content: '';
-  position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 260px;
-  height: 260px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.12), transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.combo-info {
-  max-width: 620px;
-}
-
-.combo-ribbon {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #eff6ff;
-  color: #1d4ed8;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  margin-bottom: 12px;
-}
-
-.combo-heading {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  margin-bottom: 10px;
-}
-
-.combo-desc {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-.combo-checkout {
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.combo-price-group {
-  margin-bottom: 16px;
-}
-
-.combo-price-val {
-  font-family: var(--font-display);
-  font-size: 2.6rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.04em;
-}
-
-.combo-price-old {
-  font-size: 1.25rem;
-  color: var(--text-faint);
-  text-decoration: line-through;
-  margin-left: 8px;
-}
-
-/* ==========================================================================
    Checkout Modal (Apple Pay / Stripe Sheet)
    ========================================================================== */
 .modal-overlay {
@@ -1548,13 +1460,6 @@ body {
   }
   .hero-highlights {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .combo-card {
-    flex-direction: column;
-    text-align: center;
-  }
-  .combo-checkout {
-    text-align: center;
   }
   .nav-links {
     display: none;

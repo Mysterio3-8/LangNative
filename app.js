@@ -210,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
     english: "https://vk.com/im?sel=-239331012",
     chinese: "https://vk.com/im?sel=-242408187",
     spanish: "https://vk.com/im?sel=-243301314",
-    combo: "https://vk.com/im?sel=-239331012",
   };
 
   const buyButtons = document.querySelectorAll("[data-buy]");

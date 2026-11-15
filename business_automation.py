@@ -23,7 +23,6 @@ COURSE_INVITES = {
     "english": "https://t.me/+native_english_closed_vip",
     "chinese": "https://t.me/+native_chinese_closed_vip",
     "spanish": "https://t.me/+native_spanish_closed_vip",
-    "combo": "https://t.me/+native_combo_all_closed_vip",
 }
 
 
@@ -135,16 +134,14 @@ def calculate_unit_economics(target_monthly_revenue: int = 3000) -> Dict[str, An
     """
     Расчёт юнит-экономики для достижения финансовой цели владельца (≥ 3000 ₽ / месяц к концу декабря 2026).
     """
-    course_price = 249
-    combo_price = 499
+    course_price = 199
     ad_post_price = 250  # Заявленная минимальная цена рекламы в пабликах
 
-    needed_course_sales = int(target_monthly_revenue / course_price) + 1  # 13 продаж
-    needed_combo_sales = int(target_monthly_revenue / combo_price) + 1   # 7 продаж
+    needed_course_sales = int(target_monthly_revenue / course_price) + 1  # 16 продаж
     needed_ad_posts = int(target_monthly_revenue / ad_post_price)         # 12 рекламных постов
 
-    # Гибридная оптимальная модель (6 курсов + 6 рекламных постов)
-    hybrid_revenue = (6 * course_price) + (6 * ad_post_price)
+    # Гибридная оптимальная модель (8 курсов + 6 рекламных постов)
+    hybrid_revenue = (8 * course_price) + (6 * ad_post_price)
 
     return {
         "target_monthly_revenue": target_monthly_revenue,
@@ -162,8 +159,8 @@ def calculate_unit_economics(target_monthly_revenue: int = 3000) -> Dict[str, An
             "funnel_note": "По 2-3 рекламных поста в месяц в КиноЛайф, Infinity Music, Мемы, Языки."
         },
         "strategy_hybrid_recommended": {
-            "course_sales": 6,
-            "course_revenue": 6 * course_price,
+            "course_sales": 8,
+            "course_revenue": 8 * course_price,
             "ad_posts": 6,
             "ad_revenue": 6 * ad_post_price,
             "total_projected_revenue": hybrid_revenue,

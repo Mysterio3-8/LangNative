@@ -142,15 +142,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // New Order Modal / Prompt
   if (btnNewOrder) {
     btnNewOrder.addEventListener("click", () => {
-      const course = prompt("Выберите курс (english / chinese / spanish / combo):", "english");
+      const course = prompt("Выберите курс (english / chinese / spanish):", "english");
       if (!course) return;
       const customer = prompt("Контакт покупателя (Telegram или Email):", "@new_student") || "@unknown";
-      const price = course === "combo" ? 399 : 199;
+      const price = 199;
       const titles = {
         english: "NATIVE English (Словарный буст)",
         chinese: "NATIVE Chinese (Иероглифы & Тоны HSK 1)",
-        spanish: "NATIVE Spanish (Разговорные фразы)",
-        combo: "Комбо «Все 3 языка навсегда»"
+        spanish: "NATIVE Spanish (Разговорные фразы)"
       };
 
       const newOrder = {

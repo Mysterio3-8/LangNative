@@ -47,11 +47,6 @@ COURSE_CATALOG = {
         "price_rub": 199,
         "description": "Курс «NATIVE Spanish» — Разговорные фразы & Топ-100 глаголов навсегда",
     },
-    "combo": {
-        "title": "Комбо 3-в-1",
-        "price_rub": 399,
-        "description": "Пакет «Все 3 языка навсегда» (EN + CN + ES)",
-    },
 }
 
 # 2. CORS Whitelist
@@ -97,7 +92,7 @@ DEFAULT_RETURN_URL = os.getenv("RETURN_URL", SAFE_RETURN_URLS["local"])
 
 
 class PaymentCreateRequest(BaseModel):
-    course_id: Literal["english", "chinese", "spanish", "combo"] = Field(
+    course_id: Literal["english", "chinese", "spanish"] = Field(
         ..., description="Идентификатор курса из строгого белого списка"
     )
     email: EmailStr | None = Field(None, description="Email для чека (54-ФЗ)")
