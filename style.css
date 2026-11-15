@@ -1682,3 +1682,250 @@ body {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Course Reader & Syllabus Modal (Apple / Notion Minimalist)
+   ========================================================================== */
+.reader-modal-window {
+  max-width: 820px !important;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 36px !important;
+}
+
+.reader-tabs-nav {
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: 24px;
+}
+
+.reader-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 18px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.reader-tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.reader-tab-btn.active {
+  color: var(--brand-primary);
+  border-bottom-color: var(--brand-primary);
+}
+
+.reader-content-body {
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.reader-pane {
+  display: none;
+}
+
+.reader-pane.active {
+  display: block;
+}
+
+.syllabus-header-note {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.reader-syllabus-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.syllabus-item-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  transition: transform var(--duration-fast) ease, border-color var(--duration-fast) ease;
+}
+
+.syllabus-item-card:hover {
+  transform: translateX(4px);
+  border-color: var(--brand-primary);
+}
+
+.syllabus-item-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--brand-primary);
+  background: #eff6ff;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+/* Sample Lesson Styling */
+.lesson-view-box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lesson-goal-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+}
+
+.lesson-goal-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #166534;
+  margin-bottom: 4px;
+}
+
+.lesson-goal-desc {
+  font-size: 0.88rem;
+  color: #15803d;
+  line-height: 1.45;
+}
+
+.lesson-block-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.lesson-traps-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.lesson-traps-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-hairline);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lesson-traps-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-hairline);
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.trap-bad {
+  color: #dc2626;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.trap-good {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.lesson-dialogue-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-subtle);
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-hairline);
+}
+
+.dialogue-turn {
+  line-height: 1.5;
+}
+
+.dialogue-speaker {
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-right: 6px;
+}
+
+.dialogue-foreign {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.dialogue-ru {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-left: 20px;
+  display: block;
+}
+
+.lesson-chunks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.lesson-chunk-card {
+  background: #ffffff;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+
+.chunk-foreign {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.chunk-ipa {
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--brand-primary);
+  margin-bottom: 4px;
+}
+
+.chunk-ru {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.lesson-secret-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  font-size: 0.9rem;
+  color: #1e40af;
+  line-height: 1.5;
+}
+

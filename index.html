@@ -347,6 +347,9 @@
             <span>Получить курс за 249 ₽</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
+          <button class="btn btn-secondary btn-block btn-syllabus" data-course="english" style="margin-top: 8px;">
+            <span>📖 Программа курса & 1-й урок</span>
+          </button>
         </div>
 
         <!-- Chinese Card -->
@@ -380,6 +383,9 @@
             <span>Получить курс за 249 ₽</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
+          <button class="btn btn-secondary btn-block btn-syllabus" data-course="chinese" style="margin-top: 8px;">
+            <span>📖 Программа курса & 1-й урок</span>
+          </button>
         </div>
 
         <!-- Spanish Card -->
@@ -412,6 +418,9 @@
           <button class="btn btn-primary btn-block" data-buy="spanish" data-title="NATIVE Spanish" data-price="249 ₽">
             <span>Получить курс за 249 ₽</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn btn-secondary btn-block btn-syllabus" data-course="spanish" style="margin-top: 8px;">
+            <span>📖 Программа курса & 1-й урок</span>
           </button>
         </div>
       </div>
@@ -702,6 +711,46 @@
       <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; line-height: 1.4;">
         🔒 Безопасное соединение. Чек и закрытая ссылка выдаются моментально после оплаты.
       </p>
+    </div>
+  </div>
+
+  <!-- Course Reader & Syllabus Modal (Apple/Notion Minimalist) -->
+  <div id="course-reader-modal" class="modal-overlay">
+    <div class="modal-window reader-modal-window">
+      <button id="reader-modal-close" class="modal-close">&times;</button>
+      
+      <div class="modal-head">
+        <span id="reader-course-badge" class="course-badge" style="display: inline-block; margin-bottom: 8px;">A1 → B2</span>
+        <h3 id="reader-course-title" class="modal-title">NATIVE English</h3>
+        <p id="reader-course-desc" class="modal-sub">Разговорный английский & Живой сленг</p>
+      </div>
+
+      <div class="reader-tabs-nav">
+        <button id="tab-btn-syllabus" class="reader-tab-btn active">📋 Программа (20 уроков)</button>
+        <button id="tab-btn-lesson" class="reader-tab-btn">📖 Урок 1 (Полный разбор)</button>
+      </div>
+
+      <div class="reader-content-body">
+        <!-- Tab: Syllabus -->
+        <div id="reader-tab-syllabus" class="reader-pane active">
+          <div class="syllabus-header-note">
+            Каждый урок занимает 12–15 минут в день. Никакой лишней академической теории — только живая речь носителей, чанки и практические тренировки.
+          </div>
+          <div id="reader-syllabus-list" class="reader-syllabus-grid"></div>
+        </div>
+
+        <!-- Tab: Sample Lesson -->
+        <div id="reader-tab-lesson" class="reader-pane">
+          <div id="reader-lesson-render" class="lesson-view-box"></div>
+        </div>
+      </div>
+
+      <div class="reader-footer-actions">
+        <button id="reader-btn-buy" class="btn btn-primary btn-block" style="padding: 14px 24px; font-size: 1rem;">
+          <span>Получить полный курс за 249 ₽</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 
