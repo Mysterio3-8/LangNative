@@ -1019,6 +1019,29 @@ body {
   display: block;
 }
 
+.faq-a p {
+  margin-bottom: 10px;
+}
+.faq-a p:last-child {
+  margin-bottom: 0;
+}
+.faq-a ul, .faq-a ol {
+  margin: 8px 0 12px 20px;
+  padding: 0;
+}
+.faq-a li {
+  margin-bottom: 6px;
+  line-height: 1.55;
+}
+.faq-a strong {
+  color: var(--text-primary);
+}
+.faq-a a {
+  color: var(--brand-primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 /* Footer */
 .footer {
   padding: 48px 0;
