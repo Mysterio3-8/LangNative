@@ -12,17 +12,17 @@
   <!-- Open Graph & Social Meta (SEO Pro Max) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="NATIVE Edu — Языковые курсы и база карточек от носителей">
-  <meta property="og:description" content="Разговорный английский, китайский HSK 1-3 и испанский за 15 минут в день. 2 190+ карточек, аудио от носителей. Бессрочный доступ от 249 ₽.">
+  <meta property="og:description" content="Разговорный английский, китайский HSK 1-3 и испанский за 15 минут в день. 2 190+ карточек, аудио от носителей. Бессрочный доступ за 199 ₽ навсегда.">
   <meta property="og:image" content="assets/branding/logo_master.jpg">
   <meta property="og:locale" content="ru_RU">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NATIVE Edu — Языковые базы и аудио-тренажер">
-  <meta name="twitter:description" content="Изучение английского, китайского и испанского без зубрежки за 15 минут в день. От 249 ₽ навсегда.">
+  <meta name="twitter:description" content="Изучение английского, китайского и испанского без зубрежки за 15 минут в день. 199 ₽ навсегда.">
   <meta name="twitter:image" content="assets/branding/logo_master.jpg">
   
-  <link rel="canonical" href="http://localhost:8080/">
+  <link rel="canonical" href="https://mysterio3-8.github.io/LangNative/">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
 
@@ -526,6 +526,10 @@
           <button type="submit" id="btn-submit-review" class="btn btn-primary btn-block">
             <span>Отправить отзыв на проверку</span>
           </button>
+
+          <p style="font-size: 0.76rem; color: var(--text-muted); text-align: center; margin-top: 10px; line-height: 1.4;">
+            🔒 Нажимая кнопку, вы даете согласие на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" style="color: var(--brand-blue); text-decoration: underline;">152-ФЗ</a>.
+          </p>
         </form>
 
         <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-top: 14px;">
@@ -786,11 +790,19 @@
       <div class="footer-nav">
         <a href="#courses">Курсы</a>
         <a href="#demo">Тест онлайн</a>
+        <a href="#reviews">Отзывы</a>
         <a href="#community">Сообщества</a>
+        <a href="#faq">Вопросы и ответы</a>
+        <a href="offer.html">Публичная оферта (54-ФЗ)</a>
+        <a href="privacy.html">Конфиденциальность (152-ФЗ)</a>
         <a href="https://t.me/mollydamnbro" target="_blank">Поддержка (Telegram @mollydamnbro)</a>
         <a href="https://vk.com/im?sel=-239331012" target="_blank">ВКонтакте</a>
       </div>
-      <p class="footer-legal">© 2026 NATIVE Edu. Образовательные материалы для самостоятельного изучения языков.</p>
+      <p class="footer-legal">
+        © 2026 NATIVE Edu. Все права защищены. Образовательные материалы для самостоятельного изучения языков.<br>
+        Обработка персональных данных осуществляется в строгом соответствии с Федеральным законом РФ № 152-ФЗ «О персональных данных».<br>
+        Безналичные расчёты и фискализация электронных кассовых чеков выполняются в соответствии с Федеральным законом № 54-ФЗ через платёжный шлюз ЮKassa.
+      </p>
     </div>
   </footer>
 
@@ -807,6 +819,13 @@
       <div class="modal-order-summary">
         <span class="summary-label">Стоимость (навсегда):</span>
         <span id="modal-course-price" class="summary-price">199 ₽</span>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label for="checkout-email" style="display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; text-align: left;">
+          E-mail для получения чека (54-ФЗ) и файлов:
+        </label>
+        <input type="email" id="checkout-email" placeholder="например, ivan@mail.ru" class="text-input" style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-card); border-radius: var(--radius-md); font-size: 0.92rem; background: #ffffff;">
       </div>
 
       <div class="pay-stack">
@@ -853,9 +872,15 @@
         </a>
       </div>
 
-      <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center; line-height: 1.4;">
-        🔒 Безопасное соединение. Чек и закрытая ссылка выдаются моментально после оплаты.
-      </p>
+      <div class="checkout-legal-notice">
+        <p style="margin: 0 0 6px;">🔒 <strong>Безопасность и соответствие законодательству РФ (152-ФЗ / 54-ФЗ):</strong></p>
+        <p style="margin: 0 0 6px;">
+          Нажимая кнопку оплаты, вы подтверждаете согласие с <a href="offer.html" target="_blank">Публичной офертой</a> и <a href="privacy.html" target="_blank">Политикой обработки персональных данных (152-ФЗ)</a>.
+        </p>
+        <p style="margin: 0;">
+          Платежи обрабатываются сертифицированным платёжным шлюзом <strong>ЮKassa (ООО НКО «ЮМани», лицензия Банка России № 3510-К)</strong>. Данные защищены по стандарту PCI DSS. Электронный чек ОФД формируется автоматически.
+        </p>
+      </div>
     </div>
   </div>
 
@@ -896,6 +921,23 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner (152-ФЗ Compliance) -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-content">
+      <div class="cookie-icon">🍪</div>
+      <div class="cookie-text">
+        <strong>Мы заботимся о вашей конфиденциальности</strong>
+        <p>
+          Мы используем файлы cookie и аналитику для корректной работы онлайн-тренажера и интерфейса в соответствии с <a href="privacy.html" target="_blank">152-ФЗ</a>. Продолжая просмотр сайта, вы соглашаетесь с нашей <a href="privacy.html" target="_blank">Политикой конфиденциальности</a>.
+        </p>
+      </div>
+    </div>
+    <div class="cookie-actions">
+      <button id="btn-cookie-accept" class="btn btn-primary btn-sm">Принять и продолжить</button>
+      <a href="privacy.html" class="btn btn-secondary btn-sm">Подробнее</a>
     </div>
   </div>
 

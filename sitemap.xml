@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:8080/</loc>
+    <loc>https://mysterio3-8.github.io/LangNative/</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -19,9 +19,27 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mysterio3-8.github.io/LangNative/#community</loc>
+    <loc>https://mysterio3-8.github.io/LangNative/#reviews</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mysterio3-8.github.io/LangNative/#faq</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mysterio3-8.github.io/LangNative/offer.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mysterio3-8.github.io/LangNative/privacy.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

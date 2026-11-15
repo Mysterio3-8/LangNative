@@ -244,11 +244,17 @@ document.addEventListener("DOMContentLoaded", () => {
     yookassaPayBtn.addEventListener("click", (e) => {
       e.preventDefault();
 
+      const emailInput = document.getElementById("checkout-email");
+      const emailVal = emailInput ? emailInput.value.trim() : "";
+
+      const payload = { course_id: selectedCourseId };
+      if (emailVal) payload.email = emailVal;
+
       // Check if local/production payment backend is available
       fetch("/api/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ course_id: selectedCourseId })
+        body: JSON.stringify(payload)
       })
       .then(r => {
         if (!r.ok) throw new Error("Payment endpoint not configured");
@@ -263,7 +269,8 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(() => {
         // Fallback to Telegram SBP automated prompt
-        const sbpText = encodeURIComponent(`Привет! Хочу оплатить курс «${selectedCourseTitle}» (${selectedCoursePrice}) через СБП / Карту (ЮKassa). Сформируйте счёт.`);
+        const emailNotice = emailVal ? ` (мой Email для чека 54-ФЗ: ${emailVal})` : '';
+        const sbpText = encodeURIComponent(`Привет! Хочу оплатить курс «${selectedCourseTitle}» (${selectedCoursePrice}) через СБП / Карту (ЮKassa)${emailNotice}. Сформируйте счёт и чек 54-ФЗ.`);
         window.open(`https://t.me/mollydamnbro?text=${sbpText}`, "_blank");
       });
     });
@@ -735,5 +742,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const btn = document.querySelector(`[data-buy="${activePreviewCourse}"]`);
       if (btn) btn.click();
     });
+  }
+
+  // --- Cookie Consent Banner (152-ФЗ Compliance) ---
+  const cookieBanner = document.getElementById("cookie-banner");
+  const btnCookieAccept = document.getElementById("btn-cookie-accept");
+  if (cookieBanner) {
+    const isConsentGiven = localStorage.getItem("native_cookie_consent");
+    if (!isConsentGiven) {
+      setTimeout(() => {
+        cookieBanner.classList.add("show");
+      }, 1200);
+    }
+    if (btnCookieAccept) {
+      btnCookieAccept.addEventListener("click", () => {
+        localStorage.setItem("native_cookie_consent", "accepted");
+        cookieBanner.classList.remove("show");
+      });
+    }
   }
 });
