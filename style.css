@@ -1051,24 +1051,45 @@ img {
 
 .course-checklist {
   list-style: none;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .check-item {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: baseline;
+  gap: 10px;
   line-height: 1.45;
 }
 
 .check-icon {
-  color: #16a34a;
-  font-weight: bold;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 0.72rem;
+  font-weight: 800;
+  transform: translateY(1px);
+}
+
+.check-text {
+  flex: 1;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.check-text strong {
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 /* ==========================================================================
