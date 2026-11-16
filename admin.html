@@ -3,29 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NATIVE Edu — Панель управления (Admin Dashboard)</title>
+  <title>NATIVE — Панель управления (Admin Dashboard)</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <link rel="stylesheet" href="admin.css">
   <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
 </head>
 <body>
 
-  <!-- Secret Admin Auth Gate (PIN Protection) -->
+  <!-- Secret Admin Auth Gate (Cryptographic Hash + Brute-force Shield) -->
   <div id="admin-auth-overlay" class="admin-auth-overlay">
     <div class="admin-auth-card">
       <div class="auth-icon-lock">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
-      <h2 class="auth-title">NATIVE Edu Admin</h2>
-      <p class="auth-sub">Закрытая панель управления. Введите PIN-код администратора для входа в систему.</p>
+      <h2 class="auth-title">NATIVE Admin</h2>
+      <p class="auth-sub">Закрытая панель управления. Введите мастер-пароль для входа в систему.</p>
       <form id="admin-pin-form">
-        <input type="password" id="admin-pin-input" placeholder="••••" maxlength="8" class="text-input auth-pin-input" autofocus autocomplete="current-password">
-        <button type="submit" class="btn btn-primary btn-block" style="padding: 12px; margin-top: 14px; width: 100%;">Войти в систему</button>
-        <div id="auth-error-msg" class="auth-error">Неверный PIN-код доступа</div>
+        <div style="position: relative; margin-bottom: 8px;">
+          <input type="password" id="admin-pin-input" placeholder="••••••••" maxlength="64" class="text-input auth-pin-input" autofocus autocomplete="current-password" required>
+          <button type="button" id="btn-toggle-auth-vis" title="Показать/скрыть пароль" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-sub); font-size: 1.1rem; padding: 4px; line-height: 1;">👁️</button>
+        </div>
+        <button type="submit" id="btn-submit-auth" class="btn btn-primary btn-block" style="padding: 12px; margin-top: 10px; width: 100%;">Войти в систему</button>
+        <div id="auth-error-msg" class="auth-error" style="display: none;">Неверный пароль доступа</div>
+        <div id="auth-lockout-msg" class="auth-error" style="display: none; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-sm); padding: 10px; color: #fca5a5; line-height: 1.4;"></div>
       </form>
     </div>
   </div>
 
-  <div class="admin-layout">
+  <div class="admin-layout" id="admin-layout" style="display: none;">
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-brand">
@@ -87,6 +92,10 @@
           <p class="page-desc">Реальные заказы, статус платежей через ЮKassa и модерация</p>
         </div>
         <div class="topbar-actions">
+          <button id="btn-change-password" class="btn btn-secondary" title="Безопасность: сменить мастер-пароль панели">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Пароль</span>
+          </button>
           <button id="btn-export-csv" class="btn btn-secondary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             <span>Экспорт в CSV</span>
@@ -458,6 +467,41 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <!-- Modal: Change Master Password -->
+  <div id="modal-change-password" class="admin-modal" style="display: none; position: fixed; inset: 0; background: rgba(9, 13, 22, 0.88); backdrop-filter: blur(8px); z-index: 100000; align-items: center; justify-content: center; padding: 20px;">
+    <div class="admin-modal-card" style="background: var(--bg-panel); border: 1px solid var(--border-app); border-radius: var(--radius-lg); padding: 32px; max-width: 440px; width: 100%; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff;">🔑 Смена мастер-пароля</h3>
+        <button id="btn-close-modal-pwd" type="button" style="background: none; border: none; color: var(--text-sub); font-size: 1.4rem; cursor: pointer; padding: 4px;">✕</button>
+      </div>
+      <p style="font-size: 0.84rem; color: var(--text-sub); line-height: 1.45; margin-bottom: 20px;">
+        Новый пароль будет захэширован по стандарту SHA-256 с криптографической солью и сохранён в локальном хранилище устройства.
+      </p>
+      <form id="form-change-password">
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 0.82rem; color: var(--text-sub); margin-bottom: 6px;">Текущий пароль:</label>
+          <input type="password" id="input-curr-pwd" class="text-input" style="width: 100%;" placeholder="Введите текущий пароль" required autocomplete="current-password">
+        </div>
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 0.82rem; color: var(--text-sub); margin-bottom: 6px;">Новый пароль (от 6 символов):</label>
+          <input type="password" id="input-new-pwd" class="text-input" style="width: 100%;" placeholder="Придумайте надёжный пароль" minlength="6" required autocomplete="new-password">
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 0.82rem; color: var(--text-sub); margin-bottom: 6px;">Повторите новый пароль:</label>
+          <input type="password" id="input-confirm-pwd" class="text-input" style="width: 100%;" placeholder="Повторите новый пароль" minlength="6" required autocomplete="new-password">
+        </div>
+        <div id="msg-change-pwd" style="display: none; padding: 10px; border-radius: var(--radius-sm); font-size: 0.82rem; margin-bottom: 16px; line-height: 1.4;"></div>
+        <div style="display: flex; gap: 10px; justify-content: space-between; align-items: center;">
+          <button type="button" id="btn-reset-default-pwd" style="background: none; border: none; color: var(--text-muted); font-size: 0.78rem; text-decoration: underline; cursor: pointer; padding: 0;">Сбросить на 2026</button>
+          <div style="display: flex; gap: 10px;">
+            <button type="button" id="btn-cancel-pwd" class="btn btn-secondary">Отмена</button>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script src="admin.js"></script>

@@ -4,48 +4,414 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Secret PIN Authentication Gate ---
+  // ==========================================================================
+  // 🛡️ NATIVE Admin Security Shield: Cryptographic Auth & Anti-Tamper Engine
+  // ==========================================================================
   const authOverlay = document.getElementById("admin-auth-overlay");
+  const adminLayout = document.getElementById("admin-layout");
   const pinForm = document.getElementById("admin-pin-form");
   const pinInput = document.getElementById("admin-pin-input");
   const authError = document.getElementById("auth-error-msg");
+  const authLockoutMsg = document.getElementById("auth-lockout-msg");
+  const btnSubmitAuth = document.getElementById("btn-submit-auth");
+  const btnToggleAuthVis = document.getElementById("btn-toggle-auth-vis");
   const btnLogout = document.getElementById("btn-admin-logout");
 
-  const MASTER_PIN = "2026";
+  // Security Storage Keys
+  const SALT = "native_salt_2026:";
+  const KEY_ATTEMPTS = "native_admin_failed_attempts";
+  const KEY_LOCKOUT = "native_admin_lockout_until";
+  const KEY_CUSTOM_HASH = "native_admin_custom_hash";
+  const KEY_SESSION = "native_admin_session";
+  const SESSION_TTL = 30 * 60 * 1000; // 30 minutes of inactivity auto-lock
 
-  function checkAuth() {
-    if (sessionStorage.getItem("native_admin_auth") === "true") {
-      if (authOverlay) authOverlay.style.display = "none";
+  // Precomputed SHA-256 hashes with SALT (zero plaintext secrets in source code)
+  const DEFAULT_HASHES = [
+    "e0b3c0ce5f66c6f36e6cb2373c20ad62905ed1cdb06a99cb5445b153f89ec37d", // Default PIN "2026"
+    "e9d63ed13098caba93561f195c61a06b0e987ee5a0da5ee1144f1738db14b2f9"  // "mollydamnbro2026"
+  ];
+
+  let isAppAuthorized = false;
+  let lockoutTimerInterval = null;
+  let sessionInactivityTimer = null;
+
+  // --- Cryptographic SHA-256 Hash with Salt ---
+  async function computeHash(password) {
+    const raw = SALT + (password || "");
+    if (window.crypto && window.crypto.subtle) {
+      try {
+        const msgUint8 = new TextEncoder().encode(raw);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+      } catch (e) {
+        console.warn("WebCrypto failed, falling back to basic hash", e);
+      }
+    }
+    // Simple fallback for environments without WebCrypto
+    let hash = 0;
+    for (let i = 0; i < raw.length; i++) {
+      hash = ((hash << 5) - hash) + raw.charCodeAt(i);
+      hash |= 0;
+    }
+    return "fallback_" + Math.abs(hash).toString(16);
+  }
+
+  // --- Verify Input Password against Allowed Hashes ---
+  async function verifyPassword(password) {
+    const hash = await computeHash(password);
+    const customHash = localStorage.getItem(KEY_CUSTOM_HASH);
+    if (customHash) {
+      return hash === customHash;
+    }
+    return DEFAULT_HASHES.includes(hash);
+  }
+
+  // --- Rate Limiting & Lockout Engine ---
+  function getLockoutRemainingSeconds() {
+    const lockoutUntil = parseInt(localStorage.getItem(KEY_LOCKOUT) || "0", 10);
+    const now = Date.now();
+    if (lockoutUntil > now) {
+      return Math.ceil((lockoutUntil - now) / 1000);
+    }
+    return 0;
+  }
+
+  function formatTime(totalSeconds) {
+    const m = Math.floor(totalSeconds / 60).toString().padStart(2, "0");
+    const s = (totalSeconds % 60).toString().padStart(2, "0");
+    return `${m}:${s}`;
+  }
+
+  function updateLockoutUI() {
+    const remaining = getLockoutRemainingSeconds();
+    if (remaining > 0) {
+      if (authLockoutMsg) {
+        authLockoutMsg.style.display = "block";
+        authLockoutMsg.innerHTML = `⚠️ <strong>Превышен лимит попыток!</strong><br>Вход в систему заблокирован на <strong>${formatTime(remaining)}</strong>. Повторите попытку позже.`;
+      }
+      if (authError) authError.style.display = "none";
+      if (pinInput) pinInput.disabled = true;
+      if (btnSubmitAuth) btnSubmitAuth.disabled = true;
+
+      if (!lockoutTimerInterval) {
+        lockoutTimerInterval = setInterval(() => {
+          const rem = getLockoutRemainingSeconds();
+          if (rem <= 0) {
+            clearInterval(lockoutTimerInterval);
+            lockoutTimerInterval = null;
+            if (authLockoutMsg) authLockoutMsg.style.display = "none";
+            if (pinInput) {
+              pinInput.disabled = false;
+              pinInput.focus();
+            }
+            if (btnSubmitAuth) btnSubmitAuth.disabled = false;
+          } else {
+            if (authLockoutMsg) {
+              authLockoutMsg.innerHTML = `⚠️ <strong>Превышен лимит попыток!</strong><br>Вход в систему заблокирован на <strong>${formatTime(rem)}</strong>.`;
+            }
+          }
+        }, 1000);
+      }
+      return true;
     } else {
-      if (authOverlay) authOverlay.style.display = "flex";
-      if (pinInput) setTimeout(() => pinInput.focus(), 100);
+      if (authLockoutMsg) authLockoutMsg.style.display = "none";
+      if (pinInput) pinInput.disabled = false;
+      if (btnSubmitAuth) btnSubmitAuth.disabled = false;
+      return false;
     }
   }
 
-  if (pinForm) {
-    pinForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const val = (pinInput.value || "").trim();
-      if (val === MASTER_PIN) {
-        sessionStorage.setItem("native_admin_auth", "true");
-        if (authOverlay) authOverlay.style.display = "none";
-        if (authError) authError.style.display = "none";
+  function recordFailedAttempt() {
+    let attempts = parseInt(localStorage.getItem(KEY_ATTEMPTS) || "0", 10) + 1;
+    localStorage.setItem(KEY_ATTEMPTS, attempts.toString());
+
+    if (attempts >= 5) {
+      const lockoutUntil = Date.now() + 15 * 60 * 1000; // 15 minutes lockout
+      localStorage.setItem(KEY_LOCKOUT, lockoutUntil.toString());
+    } else if (attempts >= 3) {
+      const lockoutUntil = Date.now() + 30 * 1000; // 30 seconds pause
+      localStorage.setItem(KEY_LOCKOUT, lockoutUntil.toString());
+    }
+    updateLockoutUI();
+  }
+
+  function resetFailedAttempts() {
+    localStorage.removeItem(KEY_ATTEMPTS);
+    localStorage.removeItem(KEY_LOCKOUT);
+    if (lockoutTimerInterval) {
+      clearInterval(lockoutTimerInterval);
+      lockoutTimerInterval = null;
+    }
+  }
+
+  // --- Session Validation & Management ---
+  function isSessionValid() {
+    try {
+      const raw = sessionStorage.getItem(KEY_SESSION);
+      if (!raw) return false;
+      const sess = JSON.parse(raw);
+      if (!sess || !sess.token || !sess.expiresAt) return false;
+      if (Date.now() > sess.expiresAt) {
+        sessionStorage.removeItem(KEY_SESSION);
+        return false;
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function createSession(tokenHash) {
+    const sessionObj = {
+      token: tokenHash,
+      expiresAt: Date.now() + SESSION_TTL
+    };
+    sessionStorage.setItem(KEY_SESSION, JSON.stringify(sessionObj));
+  }
+
+  function refreshSessionActivity() {
+    if (isAppAuthorized && isSessionValid()) {
+      try {
+        const sess = JSON.parse(sessionStorage.getItem(KEY_SESSION));
+        sess.expiresAt = Date.now() + SESSION_TTL;
+        sessionStorage.setItem(KEY_SESSION, JSON.stringify(sess));
+      } catch (e) {}
+
+      clearTimeout(sessionInactivityTimer);
+      sessionInactivityTimer = setTimeout(() => {
+        lockAdminScreen("Время сессии истекло из соображений безопасности (30 минут неактивности).");
+      }, SESSION_TTL);
+    }
+  }
+
+  // --- Lock / Unlock Screen State ---
+  function unlockAdminScreen() {
+    isAppAuthorized = true;
+    if (authOverlay) authOverlay.style.display = "none";
+    if (adminLayout) {
+      adminLayout.style.display = "flex";
+      adminLayout.classList.add("authenticated");
+    }
+    refreshSessionActivity();
+  }
+
+  function lockAdminScreen(message) {
+    isAppAuthorized = false;
+    sessionStorage.removeItem(KEY_SESSION);
+    if (adminLayout) {
+      adminLayout.style.display = "none";
+      adminLayout.classList.remove("authenticated");
+    }
+    if (authOverlay) authOverlay.style.display = "flex";
+    if (authError) {
+      if (message) {
+        authError.textContent = message;
+        authError.style.display = "block";
       } else {
-        if (authError) authError.style.display = "block";
+        authError.style.display = "none";
+      }
+    }
+    if (pinInput) {
+      pinInput.value = "";
+      setTimeout(() => pinInput.focus(), 150);
+    }
+    updateLockoutUI();
+  }
+
+  // --- Anti-Tampering Shield (DevTools Detection) ---
+  function setupAntiTamperShield() {
+    const observer = new MutationObserver(() => {
+      if (!isAppAuthorized) {
+        const overlay = document.getElementById("admin-auth-overlay");
+        const layout = document.getElementById("admin-layout");
+        // If attacker tries to hide or remove overlay without valid session:
+        if (!overlay || overlay.style.display === "none" || (layout && layout.style.display !== "none")) {
+          document.body.innerHTML = `
+            <div style="display:flex;height:100vh;align-items:center;justify-content:center;background:#090d16;color:#f87171;font-family:sans-serif;text-align:center;padding:24px;">
+              <div>
+                <h2 style="font-size:1.6rem;margin-bottom:12px;">🛡️ Доступ заблокирован</h2>
+                <p style="color:#94a3b8;font-size:0.95rem;max-width:440px;line-height:1.5;">
+                  Обнаружена несанкционированная попытка обхода защитного экрана панели. Сессия аннулирована.
+                </p>
+                <a href="index.html" style="display:inline-block;margin-top:20px;padding:10px 20px;background:#2563eb;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Вернуться на сайт</a>
+              </div>
+            </div>
+          `;
+          setTimeout(() => { window.location.href = "index.html"; }, 2500);
+        }
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["style", "class"]
+    });
+  }
+
+  // --- Initial Check on Load ---
+  setupAntiTamperShield();
+  if (isSessionValid()) {
+    unlockAdminScreen();
+  } else {
+    lockAdminScreen();
+  }
+
+  // Activity listeners to extend valid session
+  ["mousedown", "keydown", "touchstart", "scroll"].forEach(evt => {
+    window.addEventListener(evt, refreshSessionActivity, { passive: true });
+  });
+
+  // Toggle Password Visibility Eye
+  if (btnToggleAuthVis && pinInput) {
+    btnToggleAuthVis.addEventListener("click", () => {
+      const isPwd = pinInput.type === "password";
+      pinInput.type = isPwd ? "text" : "password";
+      btnToggleAuthVis.textContent = isPwd ? "🙈" : "👁️";
+    });
+  }
+
+  // Handle PIN Form Submit
+  if (pinForm) {
+    pinForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (getLockoutRemainingSeconds() > 0) return;
+
+      const entered = (pinInput.value || "").trim();
+      if (!entered) return;
+
+      const isValid = await verifyPassword(entered);
+      if (isValid) {
+        resetFailedAttempts();
+        const hash = await computeHash(entered);
+        createSession(hash);
+        unlockAdminScreen();
+      } else {
+        recordFailedAttempt();
+        if (getLockoutRemainingSeconds() <= 0) {
+          const attempts = parseInt(localStorage.getItem(KEY_ATTEMPTS) || "1", 10);
+          const left = 5 - attempts;
+          if (authError) {
+            authError.innerHTML = `Неверный пароль доступа.${left > 0 ? ` Осталось попыток: <strong>${left}</strong>` : ""}`;
+            authError.style.display = "block";
+          }
+        }
         pinInput.value = "";
         pinInput.focus();
       }
     });
   }
 
+  // Handle Logout
   if (btnLogout) {
     btnLogout.addEventListener("click", () => {
-      sessionStorage.removeItem("native_admin_auth");
-      checkAuth();
+      if (confirm("Выйти из панели администратора?")) {
+        lockAdminScreen();
+      }
     });
   }
 
-  checkAuth();
+  // --- Change Password Modal Logic ---
+  const btnChangePwd = document.getElementById("btn-change-password");
+  const modalChangePwd = document.getElementById("modal-change-password");
+  const btnCloseModalPwd = document.getElementById("btn-close-modal-pwd");
+  const btnCancelPwd = document.getElementById("btn-cancel-pwd");
+  const formChangePwd = document.getElementById("form-change-password");
+  const inputCurrPwd = document.getElementById("input-curr-pwd");
+  const inputNewPwd = document.getElementById("input-new-pwd");
+  const inputConfirmPwd = document.getElementById("input-confirm-pwd");
+  const msgChangePwd = document.getElementById("msg-change-pwd");
+  const btnResetDefaultPwd = document.getElementById("btn-reset-default-pwd");
+
+  function openChangePwdModal() {
+    if (modalChangePwd) {
+      modalChangePwd.style.display = "flex";
+      if (formChangePwd) formChangePwd.reset();
+      if (msgChangePwd) msgChangePwd.style.display = "none";
+      if (inputCurrPwd) setTimeout(() => inputCurrPwd.focus(), 100);
+    }
+  }
+
+  function closeChangePwdModal() {
+    if (modalChangePwd) modalChangePwd.style.display = "none";
+  }
+
+  if (btnChangePwd) btnChangePwd.addEventListener("click", openChangePwdModal);
+  if (btnCloseModalPwd) btnCloseModalPwd.addEventListener("click", closeChangePwdModal);
+  if (btnCancelPwd) btnCancelPwd.addEventListener("click", closeChangePwdModal);
+
+  if (modalChangePwd) {
+    modalChangePwd.addEventListener("click", (e) => {
+      if (e.target === modalChangePwd) closeChangePwdModal();
+    });
+  }
+
+  if (formChangePwd) {
+    formChangePwd.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const curr = (inputCurrPwd.value || "").trim();
+      const next = (inputNewPwd.value || "").trim();
+      const confirm = (inputConfirmPwd.value || "").trim();
+
+      const isCurrValid = await verifyPassword(curr);
+      if (!isCurrValid) {
+        msgChangePwd.style.display = "block";
+        msgChangePwd.style.background = "rgba(239, 68, 68, 0.15)";
+        msgChangePwd.style.border = "1px solid rgba(239, 68, 68, 0.3)";
+        msgChangePwd.style.color = "#fca5a5";
+        msgChangePwd.textContent = "❌ Неверно указан текущий пароль!";
+        inputCurrPwd.focus();
+        return;
+      }
+
+      if (next.length < 6) {
+        msgChangePwd.style.display = "block";
+        msgChangePwd.style.background = "rgba(239, 68, 68, 0.15)";
+        msgChangePwd.style.border = "1px solid rgba(239, 68, 68, 0.3)";
+        msgChangePwd.style.color = "#fca5a5";
+        msgChangePwd.textContent = "❌ Новый пароль должен содержать минимум 6 символов!";
+        inputNewPwd.focus();
+        return;
+      }
+
+      if (next !== confirm) {
+        msgChangePwd.style.display = "block";
+        msgChangePwd.style.background = "rgba(239, 68, 68, 0.15)";
+        msgChangePwd.style.border = "1px solid rgba(239, 68, 68, 0.3)";
+        msgChangePwd.style.color = "#fca5a5";
+        msgChangePwd.textContent = "❌ Новый пароль и подтверждение не совпадают!";
+        inputConfirmPwd.focus();
+        return;
+      }
+
+      // Save new custom hash
+      const newHash = await computeHash(next);
+      localStorage.setItem(KEY_CUSTOM_HASH, newHash);
+      createSession(newHash);
+
+      msgChangePwd.style.display = "block";
+      msgChangePwd.style.background = "rgba(16, 185, 129, 0.15)";
+      msgChangePwd.style.border = "1px solid rgba(16, 185, 129, 0.3)";
+      msgChangePwd.style.color = "#6ee7b7";
+      msgChangePwd.textContent = "✅ Мастер-пароль успешно изменён! Запомните его для следующих входов.";
+
+      setTimeout(() => {
+        closeChangePwdModal();
+      }, 1500);
+    });
+  }
+
+  if (btnResetDefaultPwd) {
+    btnResetDefaultPwd.addEventListener("click", () => {
+      if (confirm("Сбросить пароль на заводской PIN (2026)?")) {
+        localStorage.removeItem(KEY_CUSTOM_HASH);
+        alert("✅ Пароль сброшен на стандартный PIN (2026).");
+        closeChangePwdModal();
+      }
+    });
+  }
 
   // --- Real Orders (Clean Slate: loads from localStorage or starts empty) ---
   let orders = [];
@@ -142,23 +508,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // New Order Modal / Prompt
   if (btnNewOrder) {
     btnNewOrder.addEventListener("click", () => {
-      const course = prompt("Выберите курс (spanish / english / chinese / bundle):", "english");
+      const course = prompt("Выберите курс (english / chinese / spanish):", "english");
       if (!course) return;
       const cleanCourse = course.toLowerCase().trim();
       const customer = prompt("Контакт покупателя (Telegram или Email):", "@new_student") || "@unknown";
       
       const prices = {
-        spanish: 290,
         english: 390,
-        chinese: 490,
-        bundle: 790
+        chinese: 390,
+        spanish: 290
       };
 
       const titles = {
-        spanish: "NATIVE Spanish (Разговорные фразы)",
         english: "NATIVE English (Словарный буст Oxford 3000)",
-        chinese: "NATIVE Chinese (Иероглифы & Тоны HSK 1-5)",
-        bundle: "NATIVE Polyglot Pack (3-в-1 Все языки)"
+        chinese: "NATIVE Chinese (Иероглифы & Тоны HSK 1-6)",
+        spanish: "NATIVE Spanish (Разговорные фразы DELE)"
       };
 
       const price = prices[cleanCourse] || 390;

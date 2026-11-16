@@ -46,8 +46,12 @@ body {
 }
 
 .admin-layout {
-  display: flex;
+  display: none;
   min-height: 100vh;
+}
+
+.admin-layout.authenticated {
+  display: flex !important;
 }
 
 /* Sidebar */
