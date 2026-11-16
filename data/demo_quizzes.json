@@ -1,125 +1,458 @@
 {
   "en": [
     {
-      "id": "en_r_quiz_001",
-      "tag": "Английский • Грамматика носителей",
-      "question": "Что пропущено в предложении?\n«I'm really looking forward ____ you.»",
-      "translation": "«Я очень жду встречи с тобой.»",
+      "id": "en_quiz_001",
+      "level": "A0",
+      "difficulty": "Самый легкий (A0)",
+      "tag": "Английский • Уровень 1: A0 (Старт с нуля)",
+      "question": "Выберите правильную форму глагола «to be»:\n«Hello! I ____ Alexander and I am from Russia.»",
+      "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) to seeing", "correct": true },
-        { "text": "B) to see", "correct": false },
-        { "text": "C) for seeing", "correct": false },
-        { "text": "D) seeing", "correct": false }
+        { "text": "A) am", "correct": true },
+        { "text": "B) is", "correct": false },
+        { "text": "C) are", "correct": false },
+        { "text": "D) be", "correct": false }
       ],
-      "explanation": "to seeing — после фразового оборота «look forward to» глагол всегда идёт с окончанием -ing (герундий)."
+      "explanation": "am — с местоимением «I» (я) в настоящем времени всегда используется форма «am» (I am). Форма «is» используется с he/she/it, а «are» — с you/we/they."
     },
     {
-      "id": "en_r_quiz_002",
-      "tag": "Английский • Времена & Предлоги",
-      "question": "Какое слово пропущено в предложении?\n«She has been working here ____ 2019.»",
-      "translation": "«Она работает здесь с 2019 года.»",
+      "id": "en_quiz_002",
+      "level": "A1",
+      "difficulty": "Легкий (A1)",
+      "tag": "Английский • Уровень 2: A1 (Базовый)",
+      "question": "Какое окончание нужно глаголу в настоящем времени?\n«My brother always ____ to work by subway.»",
+      "subtext": "Выберите правильный вариант:",
+      "options": [
+        { "text": "A) go", "correct": false },
+        { "text": "B) goes", "correct": true },
+        { "text": "C) going", "correct": false },
+        { "text": "D) gone", "correct": false }
+      ],
+      "explanation": "goes — в Present Simple с подлежащим 3-го лица ед. числа (he / she / it / my brother) к глаголу добавляется окончание -s/-es."
+    },
+    {
+      "id": "en_quiz_003",
+      "level": "A1+",
+      "difficulty": "Базовый+ (A1+)",
+      "tag": "Английский • Уровень 3: A1+ (Исключения)",
+      "question": "Какая форма множественного числа верна?\n«There are three ____ playing in the garden.»",
+      "subtext": "Выберите правильный вариант:",
+      "options": [
+        { "text": "A) childs", "correct": false },
+        { "text": "B) childes", "correct": false },
+        { "text": "C) children", "correct": true },
+        { "text": "D) childrens", "correct": false }
+      ],
+      "explanation": "children — слово «child» (ребёнок) имеет форму исключения во множественном числе: children (дети). Вариант «childrens» является грубой ошибкой."
+    },
+    {
+      "id": "en_quiz_004",
+      "level": "A2",
+      "difficulty": "Средний- (A2)",
+      "tag": "Английский • Уровень 4: A2 (Прошедшее время)",
+      "question": "Какая форма неправильного глагола нужна?\n«Yesterday we ____ an incredible film at the cinema.»",
+      "subtext": "Выберите правильный вариант:",
+      "options": [
+        { "text": "A) saw", "correct": true },
+        { "text": "B) see", "correct": false },
+        { "text": "C) seen", "correct": false },
+        { "text": "D) was seeing", "correct": false }
+      ],
+      "explanation": "saw — для простого завершённого действия в прошлом с маркером времени «yesterday» используется 2-я форма глагола see — saw."
+    },
+    {
+      "id": "en_quiz_005",
+      "level": "A2+",
+      "difficulty": "Средний (A2+)",
+      "tag": "Английский • Уровень 5: A2+ (Предлоги времени)",
+      "question": "Какой предлог времени пропущен в предложении?\n«She has been studying programming ____ 2021.»",
+      "subtext": "Выберите правильный вариант:",
       "options": [
         { "text": "A) for", "correct": false },
         { "text": "B) since", "correct": true },
         { "text": "C) from", "correct": false },
         { "text": "D) during", "correct": false }
       ],
-      "explanation": "since — используется для указания конкретной точки отсчёта в прошлом (since 2019). Предлог «for» указывает на длительность (for 5 years)."
+      "explanation": "since — указывает на конкретную точку отсчёта во времени в прошлом (since 2021). Предлог «for» указывает на промежуток времени (for 3 years)."
     },
     {
-      "id": "en_r_quiz_003",
-      "tag": "Английский • Устойчивые коллокации",
-      "question": "Какое слово пропущено в предложении?\n«Can you ____ me a favour?»",
-      "translation": "«Можешь оказать мне услугу?»",
+      "id": "en_quiz_006",
+      "level": "B1",
+      "difficulty": "Уверенный (B1)",
+      "tag": "Английский • Уровень 6: B1 (Модальные глаголы)",
+      "question": "Какое слово выражает дружеский совет или рекомендацию?\n«You look exhausted. You ____ take a day off.»",
+      "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) make", "correct": false },
-        { "text": "B) give", "correct": false },
-        { "text": "C) do", "correct": true },
+        { "text": "A) should", "correct": true },
+        { "text": "B) must", "correct": false },
+        { "text": "C) have to", "correct": false },
+        { "text": "D) would", "correct": false }
+      ],
+      "explanation": "should — выражает мягкий совет или рекомендацию («тебе стоит / следовало бы»). Глагол «must» звучит как строгий приказ."
+    },
+    {
+      "id": "en_quiz_007",
+      "level": "B1+",
+      "difficulty": "Уверенный+ (B1+)",
+      "tag": "Английский • Уровень 7: B1+ (Условные предложения)",
+      "question": "Какая форма глагола выражает нереальное условие?\n«If I ____ you, I would accept this job offer immediately.»",
+      "subtext": "Выберите правильный вариант:",
+      "options": [
+        { "text": "A) am", "correct": false },
+        { "text": "B) was", "correct": false },
+        { "text": "C) were", "correct": true },
+        { "text": "D) will be", "correct": false }
+      ],
+      "explanation": "were — в условных предложениях 2-го типа (Second Conditional) для всех лиц традиционно используется сослагательная форма «were» (If I were you — «На твоём месте я бы...»)."
+    },
+    {
+      "id": "en_quiz_008",
+      "level": "B2",
+      "difficulty": "Продвинутый (B2)",
+      "tag": "Английский • Уровень 8: B2 (Герундий & Связки)",
+      "question": "Что грамматически верно после фразового оборота?\n«I am really looking forward to ____ you in London.»",
+      "subtext": "Выберите правильный вариант:",
+      "options": [
+        { "text": "A) see", "correct": false },
+        { "text": "B) seeing", "correct": true },
+        { "text": "C) saw", "correct": false },
+        { "text": "D) have seen", "correct": false }
+      ],
+      "explanation": "seeing — в устойчивой связке «look forward to» частица «to» является предлогом, поэтому после неё всегда следует герундий (глагол с окончанием -ing)."
+    },
+    {
+      "id": "en_quiz_009",
+      "level": "B2+",
+      "difficulty": "Продвинутый+ (B2+)",
+      "tag": "Английский • Уровень 9: B2+ (Коллокации носителей)",
+      "question": "Какое слово образует естественное устойчивое сочетание?\n«Could you please ____ me a favour and call back later?»",
+      "subtext": "Выберите правильный вариант:",
+      "options": [
+        { "text": "A) do", "correct": true },
+        { "text": "B) make", "correct": false },
+        { "text": "C) give", "correct": false },
         { "text": "D) take", "correct": false }
       ],
-      "explanation": "do — устойчивое словосочетание носителей «do someone a favour» (оказать услугу). Ошибка со словом «make» — одна из самых частых!"
+      "explanation": "do a favour — устойчивая разговорная коллокация носителей языка («оказать услугу»). Сочетание «make a favour» является распространённой ошибкой."
+    },
+    {
+      "id": "en_quiz_010",
+      "level": "C1",
+      "difficulty": "Тяжелый (C1)",
+      "tag": "Английский • Уровень 10: C1 (Инверсия носителей)",
+      "question": "Какой порядок слов требуется при отрицательной инверсии?\n«Hardly ____ entered the room when the phone rang.»",
+      "subtext": "Выберите правильный вариант:",
+      "options": [
+        { "text": "A) had he", "correct": true },
+        { "text": "B) he had", "correct": false },
+        { "text": "C) did he have", "correct": false },
+        { "text": "D) has he", "correct": false }
+      ],
+      "explanation": "had he — конструкции с отрицательными наречиями (Hardly / Scarcely / Barely ... when) требуют грамматической инверсии времени Past Perfect: Hardly + had + подлежащее + 3-я форма."
     }
   ],
   "cn": [
     {
-      "id": "cn_r_quiz_001",
-      "tag": "Китайский • HSK 1-2 Различия",
-      "question": "Какой иероглиф пропущен?\n我们明天____见。\n[Wǒmen míngtiān ____ jiàn.]",
-      "translation": "«Увидимся завтра.»",
+      "id": "cn_quiz_001",
+      "level": "HSK 1",
+      "difficulty": "Самый легкий (HSK 1)",
+      "tag": "Китайский • Уровень 1: HSK 1 (Старт с нуля)",
+      "question": "Как переводится самое популярное китайское приветствие?\n«你好！»\n[Nǐ hǎo!]",
+      "subtext": "Выберите правильный перевод:",
       "options": [
-        { "text": "A) 在 [zài]", "correct": false },
-        { "text": "B) 再 [zài]", "correct": true },
+        { "text": "A) Здравствуйте / Привет", "correct": true },
+        { "text": "B) Спасибо", "correct": false },
+        { "text": "C) До свидания", "correct": false },
+        { "text": "D) Приятного аппетита", "correct": false }
+      ],
+      "explanation": "你好 (Nǐ hǎo) — базовое приветствие: 你 (nǐ — ты) + 好 (hǎo — хороший, благополучный) = «Здравствуй / Привет»."
+    },
+    {
+      "id": "cn_quiz_002",
+      "level": "HSK 1",
+      "difficulty": "Легкий (HSK 1)",
+      "tag": "Китайский • Уровень 2: HSK 1 (Глагол-связка)",
+      "question": "Какое слово связывает подлежащее и существительное?\n我是学生。\n[Wǒ ____ xuésheng.] («Я — студент.»)",
+      "subtext": "Выберите правильный иероглиф:",
+      "options": [
+        { "text": "A) 是 [shì]", "correct": true },
+        { "text": "B) 很 [hěn]", "correct": false },
+        { "text": "C) 在 [zài]", "correct": false },
+        { "text": "D) 有 [yǒu]", "correct": false }
+      ],
+      "explanation": "是 (shì) — глагол-связка «быть, являться», аналог английского «to be». Употребляется перед существительными: 我是学生 (Я студент)."
+    },
+    {
+      "id": "cn_quiz_003",
+      "level": "HSK 1-2",
+      "difficulty": "Базовый+ (HSK 1-2)",
+      "tag": "Китайский • Уровень 3: HSK 1-2 (Разница отрицаний)",
+      "question": "Какое отрицание используется исключительно с глаголом 有 (иметь)?\n我____有现金。\n[Wǒ ____ yǒu xiànjīn.] («У меня нет наличных.»)",
+      "subtext": "Выберите правильное отрицание:",
+      "options": [
+        { "text": "A) 没 [méi]", "correct": true },
+        { "text": "B) 不 [bù]", "correct": false },
+        { "text": "C) 别 [bié]", "correct": false },
+        { "text": "D) 无 [wú]", "correct": false }
+      ],
+      "explanation": "没 (méi) — единственное отрицание, которое сочетается с глаголом 有 (yǒu — иметь). Форма «不有» в китайском языке строго запрещена."
+    },
+    {
+      "id": "cn_quiz_004",
+      "level": "HSK 2",
+      "difficulty": "Средний- (HSK 2)",
+      "tag": "Китайский • Уровень 4: HSK 2 (Вопросы о цене)",
+      "question": "Какое вопросительное слово обозначает «сколько» для цены?\n这件衣服____钱？\n[Zhè jiàn yīfu ____ qián?] («Сколько стоит эта одежда?»)",
+      "subtext": "Выберите вопросительное слово:",
+      "options": [
+        { "text": "A) 多少 [duōshao]", "correct": true },
+        { "text": "B) 什么 [shénme]", "correct": false },
+        { "text": "C) 几 [jǐ]", "correct": false },
+        { "text": "D) 怎么 [zěnme]", "correct": false }
+      ],
+      "explanation": "多少钱？ (duōshao qián?) — универсальный вопрос «сколько стоит?». Слово «几» (jǐ) используется только для малых чисел до 10."
+    },
+    {
+      "id": "cn_quiz_005",
+      "level": "HSK 2+",
+      "difficulty": "Средний (HSK 2+)",
+      "tag": "Китайский • Уровень 5: HSK 2+ (Порядок слов времени)",
+      "question": "Какой порядок слов грамматически верен для фразы «Я завтра пойду в банк»?",
+      "subtext": "Выберите правильный вариант:",
+      "options": [
+        { "text": "A) 我明天去银行 [Wǒ míngtiān qù yínháng]", "correct": true },
+        { "text": "B) 我去银行明天 [Wǒ qù yínháng míngtiān]", "correct": false },
+        { "text": "C) 明天我去银行了 [Míngtiān wǒ qù yínháng le]", "correct": false },
+        { "text": "D) 银行我去明天 [Yínháng wǒ qù míngtiān]", "correct": false }
+      ],
+      "explanation": "В китайском языке обстоятельство времени (明天 — завтра) всегда ставится ПЕРЕД сказуемым или в самом начале предложения, но никогда в конце."
+    },
+    {
+      "id": "cn_quiz_006",
+      "level": "HSK 3",
+      "difficulty": "Уверенный (HSK 3)",
+      "tag": "Китайский • Уровень 6: HSK 3 (Модальные глаголы)",
+      "question": "Какое слово выражает приобретённый навык («уметь что-то делать»)?\n你____说汉语吗？\n[Nǐ ____ shuō Hànyǔ ma?] («Ты умеешь говорить по-китайски?»)",
+      "subtext": "Выберите модальный глагол:",
+      "options": [
+        { "text": "A) 会 [huì]", "correct": true },
+        { "text": "B) 想 [xiǎng]", "correct": false },
+        { "text": "C) 要 [yào]", "correct": false },
+        { "text": "D) 肯 [kěn]", "correct": false }
+      ],
+      "explanation": "会 (huì) — обозначает навык, полученный в результате обучения (говорить на иностранном языке, водить машину, плавать)."
+    },
+    {
+      "id": "cn_quiz_007",
+      "level": "HSK 3+",
+      "difficulty": "Уверенный+ (HSK 3+)",
+      "tag": "Китайский • Уровень 7: HSK 3+ (Повтор действия)",
+      "question": "Какой иероглиф означает повтор действия в будущем («до завтра / увидимся снова»)?\n我们明天____见。\n[Wǒmen míngtiān ____ jiàn.]",
+      "subtext": "Выберите правильный иероглиф:",
+      "options": [
+        { "text": "A) 再 [zài]", "correct": true },
+        { "text": "B) 又 [yòu]", "correct": false },
         { "text": "C) 还 [hái]", "correct": false },
         { "text": "D) 也 [yě]", "correct": false }
       ],
-      "explanation": "再 (zài) — «снова, ещё раз»: 明天再见 (до завтра). Иероглиф 在 звучит точно так же, но означает «находиться где-то»."
+      "explanation": "再 (zài) — «снова, ещё раз» для действий в будущем (明天再见 — увидимся завтра). Иероглиф 又 (yòu) используется для уже свершившихся повторов в прошлом."
     },
     {
-      "id": "cn_r_quiz_002",
-      "tag": "Китайский • Вопросительные слова",
-      "question": "Какое вопросительное слово пропущено?\n这本书____钱？\n[Zhè běn shū ____ qián?]",
-      "translation": "«Сколько стоит эта книга?»",
+      "id": "cn_quiz_008",
+      "level": "HSK 4",
+      "difficulty": "Продвинутый (HSK 4)",
+      "tag": "Китайский • Уровень 8: HSK 4 (Сравнительная конструкция)",
+      "question": "Какой вариант верен в сравнительной конструкции с предлогом 比?\n他比我____。\n[Tā bǐ wǒ ____.] («Он выше меня.»)",
+      "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) 什么 [shénme]", "correct": false },
-        { "text": "B) 哪里 [nǎli]", "correct": false },
-        { "text": "C) 多少 [duōshao]", "correct": true },
-        { "text": "D) 怎么 [zěnme]", "correct": false }
-      ],
-      "explanation": "多少 (duōshao) — «сколько» (для количества больше 10): 多少钱？ — универсальный вопрос о цене в Китае."
-    },
-    {
-      "id": "cn_r_quiz_003",
-      "tag": "Китайский • Сравнительные конструкции",
-      "question": "Какое слово пропущено в конструкции с 比?\n他比我____。\n[Tā bǐ wǒ ____.]",
-      "translation": "«Он выше меня.»",
-      "options": [
-        { "text": "A) 很高 [hěn gāo]", "correct": false },
-        { "text": "B) 高 [gāo]", "correct": true },
+        { "text": "A) 高 [gāo]", "correct": true },
+        { "text": "B) 很高 [hěn gāo]", "correct": false },
         { "text": "C) 非常高 [fēicháng gāo]", "correct": false },
         { "text": "D) 最高 [zuì gāo]", "correct": false }
       ],
-      "explanation": "高 (gāo) — в китайском языке в сравнительных предложениях с предлогом 比 категорически нельзя ставить усилительные наречия 很, 非常 или 最."
+      "explanation": "高 (gāo) — в конструкции с 比 (bǐ) строго запрещено использовать усилительные наречия 很 (hěn) или 非常 (fēicháng), так как само 比 уже выражает сравнение."
+    },
+    {
+      "id": "cn_quiz_009",
+      "level": "HSK 4+",
+      "difficulty": "Продвинутый+ (HSK 4+)",
+      "tag": "Китайский • Уровень 9: HSK 4+ (Результативные глаголы)",
+      "question": "Какая морфема показывает успешный результат понимания речи на слух?\n你说得太快了，我没听____。\n[Nǐ shuō de tài kuài le, wǒ méi tīng ____.] («Ты говорил слишком быстро, я не понял на слух.»)",
+      "subtext": "Выберите результативную морфему:",
+      "options": [
+        { "text": "A) 懂 [dǒng]", "correct": true },
+        { "text": "B) 到 [dào]", "correct": false },
+        { "text": "C) 见 [jiàn]", "correct": false },
+        { "text": "D) 完 [wán]", "correct": false }
+      ],
+      "explanation": "听懂 (tīngdǒng) — результативный глагол: 听 (слушать) + 懂 (понимать) = понять на слух. 没听懂 = не понял на слух."
+    },
+    {
+      "id": "cn_quiz_010",
+      "level": "HSK 5",
+      "difficulty": "Тяжелый (HSK 5)",
+      "tag": "Китайский • Уровень 10: HSK 5 (Конструкция 把)",
+      "question": "Какая грамматическая конструкция выносит дополнение перед глаголом для выражения воздействия?\n请你____门关上。\n[Qǐng nǐ ____ mén guān shàng.] («Пожалуйста, закрой дверь.»)",
+      "subtext": "Выберите служебное слово:",
+      "options": [
+        { "text": "A) 把 [bǎ]", "correct": true },
+        { "text": "B) 被 [bèi]", "correct": false },
+        { "text": "C) 让 [ràng]", "correct": false },
+        { "text": "D) 给 [gěi]", "correct": false }
+      ],
+      "explanation": "把 (bǎ) — предлог конструкции распоряжения, перемещающий объект (门 — дверь) перед глаголом для указания на завершённое воздействие на предмет."
     }
   ],
   "es": [
     {
-      "id": "es_r_quiz_001",
-      "tag": "Испанский • Разница Ser и Estar",
-      "question": "¿Cuál es la palabra correcta?\n«Yo ____ estudiante de español en la universidad.»",
-      "translation": "«Я студент, изучающий испанский в университете.»",
+      "id": "es_quiz_001",
+      "level": "A0",
+      "difficulty": "Самый легкий (A0)",
+      "tag": "Испанский • Уровень 1: A0 (Старт с нуля)",
+      "question": "Какая форма глагола «ser» нужна для первого лица («я»)?\n«¡Hola! Yo ____ Carlos y vivo en Madrid.»",
+      "subtext": "Выберите правильную форму глагола:",
       "options": [
         { "text": "A) soy", "correct": true },
-        { "text": "B) estoy", "correct": false },
-        { "text": "C) tengo", "correct": false },
-        { "text": "D) hago", "correct": false }
+        { "text": "B) eres", "correct": false },
+        { "text": "C) es", "correct": false },
+        { "text": "D) somos", "correct": false }
       ],
-      "explanation": "soy — глагол ser (yo soy) используется для профессии, статуса и постоянных характеристик. Estar используется для временных состояний и местоположения."
+      "explanation": "soy — форма 1-го лица ед. числа от глагола ser (быть, являться): yo soy (я есть / меня зовут)."
     },
     {
-      "id": "es_r_quiz_002",
-      "tag": "Испанский • Местоположение в моменте",
-      "question": "¿Cuál es la palabra correcta?\n«Ahora mismo nosotros ____ en la biblioteca central.»",
-      "translation": "«Прямо сейчас мы находимся в центральной библиотеке.»",
+      "id": "es_quiz_002",
+      "level": "A1",
+      "difficulty": "Легкий (A1)",
+      "tag": "Испанский • Уровень 2: A1 (Ser vs Estar)",
+      "question": "Какой глагол указывает на физическое местоположение предметов?\n«¿Dónde ____ los servicios, por favor?»",
+      "subtext": "Выберите правильный глагол:",
       "options": [
-        { "text": "A) estamos", "correct": true },
-        { "text": "B) somos", "correct": false },
-        { "text": "C) tenemos", "correct": false },
-        { "text": "D) vamos", "correct": false }
+        { "text": "A) están", "correct": true },
+        { "text": "B) son", "correct": false },
+        { "text": "C) tienen", "correct": false },
+        { "text": "D) hay", "correct": false }
       ],
-      "explanation": "estamos — глагол estar выражает фактическое нахождение субъекта в пространстве в конкретный момент времени."
+      "explanation": "están — глагол estar всегда используется для обозначения физического местонахождения предметов и людей в пространстве."
     },
     {
-      "id": "es_r_quiz_003",
-      "tag": "Испанский • Разговорные идиомы & Сленг",
-      "question": "¿Qué означает разговорная фраза носителей?\n«¡No pasa nada, amigo!»",
-      "translation": "«Выберите правильное значение фразы:»",
+      "id": "es_quiz_003",
+      "level": "A1+",
+      "difficulty": "Базовый+ (A1+)",
+      "tag": "Испанский • Уровень 3: A1+ (Род существительных)",
+      "question": "Какой артикль грамматически верен со словом греческого происхождения «problema»?\n«Tenemos ____ gran problema con el coche.»",
+      "subtext": "Выберите правильный артикль:",
       "options": [
-        { "text": "A) Всё в порядке / Не переживай!", "correct": true },
-        { "text": "B) Ничего не происходит", "correct": false },
-        { "text": "C) Никто не пришёл", "correct": false },
-        { "text": "D) Я очень спешу", "correct": false }
+        { "text": "A) un", "correct": true },
+        { "text": "B) una", "correct": false },
+        { "text": "C) unos", "correct": false },
+        { "text": "D) unas", "correct": false }
       ],
-      "explanation": "«¡No pasa nada!» — ключевая разговорная фраза в испаноязычном мире: «всё в порядке, не парься, пустяки!» (аналог английского No worries)."
+      "explanation": "un — слова греческого происхождения на -ma (el problema, el sistema, el tema) мужского рода, поэтому используется артикль мужского рода «un»."
+    },
+    {
+      "id": "es_quiz_004",
+      "level": "A2",
+      "difficulty": "Средний- (A2)",
+      "tag": "Испанский • Уровень 4: A2 (Конструкция Gustar)",
+      "question": "Какая форма глагола gustar согласуется со множественным числом?\n«A mí me ____ mucho las ciudades históricas.»",
+      "subtext": "Выберите форму глагола:",
+      "options": [
+        { "text": "A) gustan", "correct": true },
+        { "text": "B) gusta", "correct": false },
+        { "text": "C) gusto", "correct": false },
+        { "text": "D) gustamos", "correct": false }
+      ],
+      "explanation": "gustan — в конструкции с gustar подлежащим является то, ЧТО нравится. Так как «las ciudades» во множественном числе, глагол принимает форму «gustan»."
+    },
+    {
+      "id": "es_quiz_005",
+      "level": "A2+",
+      "difficulty": "Средний (A2+)",
+      "tag": "Испанский • Уровень 5: A2+ (Ближайшее будущее)",
+      "question": "Какая форма глагола ставится после связки «ir a»?\n«Mañana voy a ____ con el director del hotel.»",
+      "subtext": "Выберите правильную форму:",
+      "options": [
+        { "text": "A) hablar", "correct": true },
+        { "text": "B) hablo", "correct": false },
+        { "text": "C) hablando", "correct": false },
+        { "text": "D) hablaré", "correct": false }
+      ],
+      "explanation": "hablar — устойчивая конструкция ближайшего будущего времени: спрягаемая форма глагола ir + a + инфинитив (voy a hablar — собираюсь поговорить)."
+    },
+    {
+      "id": "es_quiz_006",
+      "level": "B1",
+      "difficulty": "Уверенный (B1)",
+      "tag": "Испанский • Уровень 6: B1 (Живая речь в кафе)",
+      "question": "Какая живая и естественная фраза используется носителями в Испании для заказа кофе?\n«____ un café con leche y una tostada, por favor.»",
+      "subtext": "Выберите разговорную формулу:",
+      "options": [
+        { "text": "A) ¿Me pones", "correct": true },
+        { "text": "B) Yo quiero", "correct": false },
+        { "text": "C) Dame", "correct": false },
+        { "text": "D) Necesito", "correct": false }
+      ],
+      "explanation": "¿Me pones...? — самая естественная, вежливая и распространенная разговорная формула заказа в заведениях Испании."
+    },
+    {
+      "id": "es_quiz_007",
+      "level": "B1+",
+      "difficulty": "Уверенный+ (B1+)",
+      "tag": "Испанский • Уровень 7: B1+ (Прошедшее время)",
+      "question": "Какая форма выражает точечное завершённое действие в прошлом с маркером «ayer»?\n«Ayer ____ una carta muy importante.»",
+      "subtext": "Выберите форму глагола:",
+      "options": [
+        { "text": "A) recibí", "correct": true },
+        { "text": "B) recibía", "correct": false },
+        { "text": "C) he recibido", "correct": false },
+        { "text": "D) recibo", "correct": false }
+      ],
+      "explanation": "recibí — время Pretérito Indefinido используется для завершённых однократных действий в определённый момент прошлого (ayer)."
+    },
+    {
+      "id": "es_quiz_008",
+      "level": "B2",
+      "difficulty": "Продвинутый (B2)",
+      "tag": "Испанский • Уровень 8: B2 (Разница Por и Para)",
+      "question": "Какой предлог выражает причину или повод благодарности?\n«Muchas gracias ____ tu ayuda y paciencia.»",
+      "subtext": "Выберите правильный предлог:",
+      "options": [
+        { "text": "A) por", "correct": true },
+        { "text": "B) para", "correct": false },
+        { "text": "C) de", "correct": false },
+        { "text": "D) con", "correct": false }
+      ],
+      "explanation": "por — используется для указания причины или повода благодарности (gracias por...). Предлог «para» выражает цель или адресата."
+    },
+    {
+      "id": "es_quiz_009",
+      "level": "B2+",
+      "difficulty": "Продвинутый+ (B2+)",
+      "tag": "Испанский • Уровень 9: B2+ (Subjuntivo носителей)",
+      "question": "Какая форма глагола требуется после выражения желания со сменой лица?\n«Quiero que tú ____ a mi fiesta de cumpleaños.»",
+      "subtext": "Выберите форму сослагательного наклонения:",
+      "options": [
+        { "text": "A) vengas", "correct": true },
+        { "text": "B) vienes", "correct": false },
+        { "text": "C) venir", "correct": false },
+        { "text": "D) vendrás", "correct": false }
+      ],
+      "explanation": "vengas — глаголы волеизъявления и желания (querer que...) при несовпадении подлежащих требуют сослагательного наклонения Presente de Subjuntivo."
+    },
+    {
+      "id": "es_quiz_010",
+      "level": "C1",
+      "difficulty": "Тяжелый (C1)",
+      "tag": "Испанский • Уровень 10: C1 (Нереальное условие)",
+      "question": "Какая связка глагольных форм выражает нереальное условие в настоящем?\n«Si ____ más tiempo libre, ____ un nuevo idioma.»",
+      "subtext": "Выберите правильную пару глаголов:",
+      "options": [
+        { "text": "A) tuviera / aprendería", "correct": true },
+        { "text": "B) tengo / aprenderé", "correct": false },
+        { "text": "C) tendría / aprendiera", "correct": false },
+        { "text": "D) tuviese / aprendo", "correct": false }
+      ],
+      "explanation": "tuviera / aprendería — нереальное условие строится по формуле: Si + Pretérito Imperfecto de Subjuntivo (tuviera) + Condicional Simple (aprendería)."
     }
   ]
 }

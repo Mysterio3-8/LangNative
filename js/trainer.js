@@ -1,239 +1,102 @@
 /* ==========================================================================
-   NATIVE Edu — Interactive Diagnostic Level Trainer & Course Matcher
-   Refactored, Lightweight & Modular Architecture
+   NATIVE — Progressive Interactive Diagnostic Test (A0 → C1 / HSK 1 → 5)
+   Full 10-Question Progressive Difficulty Engine (Easiest to Hardest)
    ========================================================================== */
 
 (function () {
-  const TOTAL_STEPS = 3;
-  const STEP_DIFFICULTIES = [
-    "Базовый уровень (A0 → A1)",
-    "Средний уровень (A1 → A2)",
-    "Разговорный уровень (A2 → B1+)"
-  ];
-
   const COURSE_PRICE_MAP = {
     spanish: "290 ₽",
     english: "390 ₽",
-    chinese: "490 ₽",
-    bundle: "790 ₽"
+    chinese: "390 ₽"
   };
 
   const RECOMMENDATIONS = {
     en: {
       low: {
-        level: "A0–A1 (Начальный)",
+        level: "A0–A1 (Старт с нуля)",
         trophy: "🌱",
-        diagnosis: "Вам пока трудно даются времена и речевые связки. В курсе NATIVE English модуль уровня A0-A1 поставит базовые кирпичики Oxford 3000 и произношение, а следующие ступени доведут до свободного B2-C1.",
+        diagnosis: "Вы в самом начале пути. Пока сложно даются времена и речевые связки. Модуль уровня A0–A1 поставит базовые кирпичики повседневной лексики и базовое произношение, избавит от страха говорить и выведет на уверенный уровень A2.",
         courseId: "english",
-        courseName: "NATIVE English (A0 → C1: Все уровни)",
-        courseFocus: "Рекомендованный фокус: Экспресс-старт с нуля, 500 частых слов, речевые связки и тренировка 5 навыков навсегда."
+        courseName: "NATIVE English",
+        courseFocus: "Рекомендованный фокус: Экспресс-старт с нуля, 500 частых слов, простые предложения и восприятие речи на слух."
       },
       mid: {
         level: "A1–A2 (Базовый разговорный)",
         trophy: "🚀",
-        diagnosis: "У вас отличный фундамент базовых слов, но вы спотыкаетесь на предлогах и временах. В курсе NATIVE English модули A2-B1 уберут перевод в голове, добавят чтение живых текстов и аудирование.",
+        diagnosis: "У вас хороший фундамент базовых слов, но вы пока спотыкаетесь на временах (Past / Present Perfect) и предлогах. Модули A2–B1 курса NATIVE English снимут языковой барьер, уберут перевод в голове и научат говорить готовыми речевыми чанками.",
         courseId: "english",
-        courseName: "NATIVE English (A0 → C1: Все уровни)",
-        courseFocus: "Рекомендованный фокус: Разговорные чанки носителей, преодоление языкового барьера и восприятие речи на слух."
+        courseName: "NATIVE English",
+        courseFocus: "Рекомендованный фокус: Разговорные фразы носителей, живые диалоги без таблиц правил и практика аудирования."
       },
       high: {
-        level: "A2–B1+ (Уверенный разговорный)",
+        level: "B2–C1 (Уверенный разговорный)",
         trophy: "🏆",
-        diagnosis: "Великолепная интуиция! Продвинутые блоки курса B2–C1 прокачают понимание быстрой уличной речи сквозь городской шум, современный сленг сериалов, идиомы и свободную спонтанную речь.",
+        diagnosis: "Великолепный результат! Вы отлично чувствуете грамматические тонкости и инверсию. Продвинутые блоки курса B2–C1 помогут отточить восприятие беглой уличной речи с акцентами, живые идиомы и свободную спонтанную речь носителей.",
         courseId: "english",
-        courseName: "NATIVE English (A0 → C1: Все уровни)",
-        courseFocus: "Рекомендованный фокус: Сленг сериалов, идиомы, техника Shadowing и восприятие любых акцентов на слух."
+        courseName: "NATIVE English",
+        courseFocus: "Рекомендованный фокус: Сленг, идиомы, техника Shadowing и понимание быстрой разговорной речи носителей."
       }
     },
     cn: {
       low: {
-        level: "HSK 1 (С нуля)",
+        level: "HSK 1 (Старт с нуля)",
         trophy: "🌱",
-        diagnosis: "Иероглифика и тоны часто пугают новичков. Курс NATIVE Chinese разложит черты по полочкам, поставит 4 тона с помощью аудио-тренажера и проведет через все ступени до HSK 5.",
+        diagnosis: "Иероглифы и тоны кажутся сложными только на первый взгляд. Курс NATIVE Chinese разложит базовые ключи по полочкам, поставит 4 тона с помощью аудио-тренажера и даст первые 150 самых нужных слов для уверенного старта.",
         courseId: "chinese",
-        courseName: "NATIVE Chinese (HSK 1 → 5: Все уровни)",
-        courseFocus: "Рекомендованный фокус: 150 базовых иероглифов HSK 1, правила пиньиня и слуховой тренажер 4 тонов от носителя Yunxi."
+        courseName: "NATIVE Chinese",
+        courseFocus: "Рекомендованный фокус: Базовая иероглифика, правила пиньиня и тренировка 4 тонов с носителем."
       },
       mid: {
-        level: "HSK 1–2 (Начальный разговорный)",
+        level: "HSK 2–3 (Базовый разговорный)",
         trophy: "🚀",
-        diagnosis: "Вы узнаете базовые иероглифы, но путаете созвучные морфемы. В блоках HSK 2-3 вы наработаете беглость чтения вывесок и меню без пиньиня, живые диалоги в такси и WeChat-переписку.",
+        diagnosis: "Вы знаете базовые иероглифы и структуру простых фраз, но иногда путаете модальные глаголы (会 / 想 / 要) и порядок слов. В курсе NATIVE Chinese вы наработаете беглость чтения вывесок, диалоги в поездках и WeChat-переписку.",
         courseId: "chinese",
-        courseName: "NATIVE Chinese (HSK 1 → 5: Все уровни)",
-        courseFocus: "Рекомендованный фокус: Набор 600+ иероглифов, разговорные шаблоны покупок, ориентации в городе и устойчивые связки."
+        courseName: "NATIVE Chinese",
+        courseFocus: "Рекомендованный фокус: 600+ иероглифов, разговорные шаблоны покупок, ориентации в городе и устойчивые связки."
       },
       high: {
-        level: "HSK 2–3 (Уверенная база)",
+        level: "HSK 4–5 (Уверенная база & Продвинутый)",
         trophy: "🏆",
-        diagnosis: "Отличный результат! Вы чувствуете структуру китайского предложения. Продвинутые модули HSK 4-5 помогут освоить идиомы чэнъюй, чтение прессы и восприятие быстрой речи носителей.",
+        diagnosis: "Отличный уровень! Вы уверенно ориентируетесь в конструкциях 比 и 把. Модули HSK 4–5 помогут расширить словарный запас, освоить чтение живых текстов, новости и свободное понимание быстрой речи на слух.",
         courseId: "chinese",
-        courseName: "NATIVE Chinese (HSK 1 → 5: Все уровни)",
-        courseFocus: "Рекомендованный фокус: Расширение словаря до 1 200+ иероглифов, чтение живых текстов и свободное аудирование."
+        courseName: "NATIVE Chinese",
+        courseFocus: "Рекомендованный фокус: 1 200+ иероглифов, разбор аутентичных диалогов носителей и восприятие беглой речи."
       }
     },
     es: {
       low: {
         level: "A0–A1 (Старт с нуля)",
         trophy: "🌱",
-        diagnosis: "Разница между Ser и Estar часто пугает новичков. Курс NATIVE Spanish избавит от зубрежки таблиц спряжений формулой «Voy a + инф.», даст 100 ключевых глаголов и проведет по всем уровням до B2.",
+        diagnosis: "Вы только знакомитесь с испанским. Разница между Ser и Estar больше не будет проблемой. Курс NATIVE Spanish даст фундамент без заучивания скучных таблиц спряжений, базовые фразы и старт общения с первых уроков.",
         courseId: "spanish",
-        courseName: "NATIVE Spanish (A1 → B2: Все уровни)",
-        courseFocus: "Рекомендованный фокус: 100 ключевых глаголов, формула заказа ¿Me pones...? и старт говорения с первых минут."
+        courseName: "NATIVE Spanish",
+        courseFocus: "Рекомендованный фокус: Ключевые глаголы, полезные разговорные формулы и постановка произношения."
       },
       mid: {
         level: "A1–A2 (Базовый туристический)",
         trophy: "🚀",
-        diagnosis: "У вас хорошая база. В блоках A2-B1 вы наберете запас до 1 500 слов, разберете аутентичные ресторанные чеки и научитесь понимать быструю речь барменов и кассиров за 5 секунд.",
+        diagnosis: "У вас крепкая база. Вы знаете основные глаголы, но путаетесь в временах прошлого (Indefinido vs Imperfecto) и предлогах Por / Para. Курс NATIVE Spanish выведет вашу речь на уверенный уровень для поездок и общения.",
         courseId: "spanish",
-        courseName: "NATIVE Spanish (A1 → B2: Все уровни)",
-        courseFocus: "Рекомендованный фокус: Практические диалоги для путешествий, связки и бытовые разговорные конструкции."
+        courseName: "NATIVE Spanish",
+        courseFocus: "Рекомендованный фокус: Практические диалоги для жизни, связки и бытовые разговорные конструкции."
       },
       high: {
-        level: "A2–B1 (Разговорный для жизни)",
+        level: "B2–C1 (Уверенный разговорный)",
         trophy: "🏆",
-        diagnosis: "Блестяще! В продвинутых блоках B1–B2 вы освоите сослагательное наклонение Subjuntivo без страха, сленг Испании и Латама, а также спонтанную речь без неловких пауз.",
+        diagnosis: "Блестяще! Вы легко справляетесь с условными конструкциями и наклонением Subjuntivo. Продвинутые блоки курса помогут отточить беглость спонтанной речи, сленг Испании и Латинской Америки без пауз.",
         courseId: "spanish",
-        courseName: "NATIVE Spanish (A1 → B2: Все уровни)",
-        courseFocus: "Рекомендованный фокус: Живые идиомы, сленг носителей Испании и Латинской Америки без языкового барьера."
+        courseName: "NATIVE Spanish",
+        courseFocus: "Рекомендованный фокус: Живые идиомы, сослагательное наклонение в беглой речи и сленг носителей."
       }
     }
   };
 
-  // Embedded Safe Fallback Dataset (3 core questions per language)
-  const FALLBACK_QUIZZES = {
-    en: [
-      {
-        tag: "Английский • Грамматика носителей",
-        question: "Что пропущено в предложении?\n«I'm really looking forward ____ you.»",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) to seeing", correct: true },
-          { text: "B) to see", correct: false },
-          { text: "C) for seeing", correct: false },
-          { text: "D) seeing", correct: false }
-        ],
-        explanation: "to seeing — после фразового оборота «look forward to» глагол всегда идёт с окончанием -ing (герундий)."
-      },
-      {
-        tag: "Английский • Времена & Предлоги",
-        question: "Какое слово пропущено в предложении?\n«She has been working here ____ 2019.»",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) for", correct: false },
-          { text: "B) since", correct: true },
-          { text: "C) from", correct: false },
-          { text: "D) during", correct: false }
-        ],
-        explanation: "since — используется для указания конкретной точки отсчёта в прошлом (since 2019)."
-      },
-      {
-        tag: "Английский • Устойчивые коллокации",
-        question: "Какое слово пропущено в предложении?\n«Can you ____ me a favour?»",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) make", correct: false },
-          { text: "B) give", correct: false },
-          { text: "C) do", correct: true },
-          { text: "D) take", correct: false }
-        ],
-        explanation: "do — устойчивое словосочетание носителей «do someone a favour» (оказать услугу)."
-      }
-    ],
-    cn: [
-      {
-        tag: "Китайский • HSK 1-2 Различия",
-        question: "Какой иероглиф пропущен?\n我们明天____见。\n[Wǒmen míngtiān ____ jiàn.]",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) 在 [zài]", correct: false },
-          { text: "B) 再 [zài]", correct: true },
-          { text: "C) 还 [hái]", correct: false },
-          { text: "D) 也 [yě]", correct: false }
-        ],
-        explanation: "再 (zài) — «снова, ещё раз»: 明天再见 (до завтра)."
-      },
-      {
-        tag: "Китайский • Вопросительные слова",
-        question: "Какое вопросительное слово пропущено?\n这本书____钱？\n[Zhè běn shū ____ qián?]",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) 什么 [shénme]", correct: false },
-          { text: "B) 哪里 [nǎli]", correct: false },
-          { text: "C) 多少 [duōshao]", correct: true },
-          { text: "D) 怎么 [zěnme]", correct: false }
-        ],
-        explanation: "多少 (duōshao) — «сколько»: 多少钱？ — универсальный вопрос о цене в Китае."
-      },
-      {
-        tag: "Китайский • Сравнительные конструкции",
-        question: "Какое слово пропущено в конструкции с 比?\n他比我____。\n[Tā bǐ wǒ ____.]",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) 很高 [hěn gāo]", correct: false },
-          { text: "B) 高 [gāo]", correct: true },
-          { text: "C) 非常高 [fēicháng gāo]", correct: false },
-          { text: "D) 最高 [zuì gāo]", correct: false }
-        ],
-        explanation: "高 (gāo) — в сравнительных предложениях с предлогом 比 нельзя ставить усилительные наречия 很 или 非常."
-      }
-    ],
-    es: [
-      {
-        tag: "Испанский • Разница Ser и Estar",
-        question: "¿Cuál es la palabra correcta?\n«Yo ____ estudiante de español en la universidad.»",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) soy", correct: true },
-          { text: "B) estoy", correct: false },
-          { text: "C) tengo", correct: false },
-          { text: "D) hago", correct: false }
-        ],
-        explanation: "soy — глагол ser (yo soy) используется для профессии и постоянных характеристик."
-      },
-      {
-        tag: "Испанский • Местоположение в моменте",
-        question: "Какое слово пропущено?\n«¿Dónde ____ las llaves del coche?»",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) son", correct: false },
-          { text: "B) están", correct: true },
-          { text: "C) tienen", correct: false },
-          { text: "D) hacen", correct: false }
-        ],
-        explanation: "están — глагол estar (están) используется для указания местоположения предметов."
-      },
-      {
-        tag: "Испанский • Разговорные формулы заказа",
-        question: "Какая фраза носителя подходит для заказа кофе в баре?\n«____ un café con leche, por favor.»",
-        subtext: "Выберите правильный вариант:",
-        options: [
-          { text: "A) ¿Me pones", correct: true },
-          { text: "B) Yo quiero", correct: false },
-          { text: "C) Dame", correct: false },
-          { text: "D) Necesito", correct: false }
-        ],
-        explanation: "«¿Me pones...?» — естественная, вежливая и живая формула заказа в Испании."
-      }
-    ]
-  };
-
   function initTrainer() {
-    let demoData = FALLBACK_QUIZZES;
+    let demoData = {};
     let currentLang = "en";
     let currentStep = 0;
     let userScore = 0;
     let recommendedCourseId = "english";
-
-    // Attempt to load full quiz database asynchronously
-    fetch("data/demo_quizzes.json")
-      .then(res => res.ok ? res.json() : null)
-      .then(data => {
-        if (data && data.en && data.cn && data.es) {
-          demoData = data;
-          renderCurrentQuestion();
-        }
-      })
-      .catch(() => {});
 
     // DOM Elements
     const demoQuizView = document.getElementById("demo-quiz-view");
@@ -254,67 +117,82 @@
     const btnResultBuy = document.getElementById("btn-result-buy");
     const tabBtns = document.querySelectorAll(".demo-tab, .demo-tab-btn");
 
+    function getTotalSteps() {
+      const items = demoData[currentLang] || [];
+      return items.length > 0 ? items.length : 10;
+    }
+
     function renderCurrentQuestion() {
       const items = demoData[currentLang] || [];
-      if (!items.length) return;
+      const totalSteps = getTotalSteps();
+
+      if (!items || items.length === 0) {
+        if (demoQuestion) demoQuestion.textContent = "Загрузка вопросов теста...";
+        return;
+      }
+
+      const item = items[currentStep];
+      if (!item) {
+        showResults();
+        return;
+      }
 
       if (demoQuizView) demoQuizView.style.display = "block";
       if (demoResultCard) demoResultCard.style.display = "none";
       if (demoNextBox) demoNextBox.style.display = "none";
-
-      const questionData = items[currentStep % items.length];
-      const progressPercent = Math.round(((currentStep + 1) / TOTAL_STEPS) * 100);
-
-      if (demoStepLabel) demoStepLabel.textContent = `Вопрос ${currentStep + 1} из ${TOTAL_STEPS}`;
-      if (demoDifficultyLabel) demoDifficultyLabel.textContent = STEP_DIFFICULTIES[currentStep] || "Тест уровня";
-      if (demoProgressFill) demoProgressFill.style.width = `${progressPercent}%`;
-      if (demoScoreChip) demoScoreChip.textContent = `Баллы: ${userScore} / ${TOTAL_STEPS}`;
-      if (demoTag) demoTag.textContent = questionData.tag || "Тест уровня";
-
-      if (demoQuestion) {
-        if (typeof window.setSafeMultilineText === "function") {
-          window.setSafeMultilineText(demoQuestion, questionData.question);
-        } else {
-          demoQuestion.textContent = questionData.question;
-        }
-      }
-
-      if (demoSubtext) {
-        demoSubtext.textContent = questionData.subtext || questionData.translation || "Выберите правильный вариант:";
-      }
-
       if (demoFeedback) {
-        demoFeedback.textContent = "";
-        demoFeedback.style.display = "none";
         demoFeedback.className = "demo-explanation";
+        demoFeedback.textContent = "";
       }
 
+      // Update Header & Progress UI
+      if (demoStepLabel) {
+        demoStepLabel.textContent = `Вопрос ${currentStep + 1} из ${totalSteps}`;
+      }
+      if (demoDifficultyLabel) {
+        demoDifficultyLabel.textContent = item.difficulty || item.level || `Уровень ${currentStep + 1}`;
+      }
+      if (demoProgressFill) {
+        const pct = Math.round(((currentStep + 1) / totalSteps) * 100);
+        demoProgressFill.style.width = `${pct}%`;
+      }
+      if (demoScoreChip) {
+        demoScoreChip.textContent = `Баллы: ${userScore} / ${totalSteps}`;
+      }
+      if (demoTag) {
+        demoTag.textContent = item.tag || "Диагностический тест";
+      }
+
+      // Format Question text (support linebreaks)
+      if (demoQuestion) {
+        demoQuestion.innerHTML = (item.question || "").replace(/\n/g, "<br>");
+      }
+      if (demoSubtext) {
+        demoSubtext.textContent = item.subtext || "Выберите правильный вариант:";
+      }
+
+      // Render Options
       if (demoOptionsContainer) {
-        demoOptionsContainer.textContent = "";
-        (questionData.options || []).forEach(opt => {
+        demoOptionsContainer.innerHTML = "";
+        (item.options || []).forEach((opt, idx) => {
           const btn = document.createElement("button");
           btn.className = "demo-opt";
-
-          const textSpan = document.createElement("span");
-          textSpan.textContent = opt.text;
-          const statusSpan = document.createElement("span");
-          statusSpan.className = "opt-status";
-
-          btn.appendChild(textSpan);
-          btn.appendChild(statusSpan);
-          btn.addEventListener("click", () => handleAnswer(btn, opt.correct, questionData.explanation));
+          btn.type = "button";
+          btn.innerHTML = `
+            <span>${opt.text}</span>
+            <span class="opt-status"></span>
+          `;
+          btn.addEventListener("click", () => handleSelectOption(btn, opt.correct, item.explanation));
           demoOptionsContainer.appendChild(btn);
         });
       }
-
-      tabBtns.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.lang === currentLang);
-      });
     }
 
-    function handleAnswer(selectedBtn, isCorrect, explanation) {
+    function handleSelectOption(selectedBtn, isCorrect, explanation) {
       const buttons = demoOptionsContainer.querySelectorAll(".demo-opt");
       buttons.forEach(b => b.disabled = true);
+
+      const totalSteps = getTotalSteps();
 
       if (isCorrect) {
         userScore++;
@@ -326,16 +204,19 @@
         const status = selectedBtn.querySelector(".opt-status");
         if (status) status.textContent = "✗ Ошибка";
 
-        // Highlight correct button
-        buttons.forEach(b => {
-          const optText = b.querySelector("span") ? b.querySelector("span").textContent : "";
-          if (explanation && explanation.includes(optText.split(")")[1] ? optText.split(")")[1].trim().split(" ")[0] : "---")) {
-            b.classList.add("correct");
+        // Highlight the correct option
+        const currentItem = (demoData[currentLang] || [])[currentStep];
+        if (currentItem && currentItem.options) {
+          const correctIdx = currentItem.options.findIndex(o => o.correct);
+          if (correctIdx !== -1 && buttons[correctIdx]) {
+            buttons[correctIdx].classList.add("correct");
           }
-        });
+        }
       }
 
-      if (demoScoreChip) demoScoreChip.textContent = `Баллы: ${userScore} / ${TOTAL_STEPS}`;
+      if (demoScoreChip) {
+        demoScoreChip.textContent = `Баллы: ${userScore} / ${totalSteps}`;
+      }
 
       if (demoFeedback) {
         demoFeedback.textContent = (isCorrect ? "Отлично! " : "Пояснение: ") + (explanation || "");
@@ -345,7 +226,7 @@
       if (demoNextBox) {
         demoNextBox.style.display = "block";
         if (btnNextText) {
-          btnNextText.textContent = (currentStep + 1 >= TOTAL_STEPS) ? "Посмотреть результат теста" : "Следующий вопрос";
+          btnNextText.textContent = (currentStep + 1 >= totalSteps) ? "Посмотреть результат теста 🎯" : "Следующий вопрос →";
         }
       }
     }
@@ -354,9 +235,12 @@
       if (demoQuizView) demoQuizView.style.display = "none";
       if (demoResultCard) demoResultCard.style.display = "block";
 
+      const totalSteps = getTotalSteps();
+      const pct = (userScore / totalSteps) * 100;
+
       let rank = "low";
-      if (userScore === TOTAL_STEPS) rank = "high";
-      else if (userScore >= 1) rank = "mid";
+      if (pct >= 80) rank = "high";
+      else if (pct >= 40) rank = "mid";
 
       const rec = (RECOMMENDATIONS[currentLang] || RECOMMENDATIONS.en)[rank];
       recommendedCourseId = rec.courseId;
@@ -374,19 +258,25 @@
 
       if (badgeIcon) badgeIcon.textContent = rec.trophy;
       if (levelTitle) levelTitle.textContent = `Ваш уровень: ${rec.level}`;
-      if (scoreText) scoreText.textContent = `Правильных ответов: ${userScore} из ${TOTAL_STEPS}`;
+      if (scoreText) scoreText.textContent = `Правильных ответов: ${userScore} из ${totalSteps} (${Math.round(pct)}%)`;
       if (diagnosisText) diagnosisText.textContent = rec.diagnosis;
       if (courseName) courseName.textContent = rec.courseName;
       if (courseFocus) courseFocus.textContent = rec.courseFocus;
       if (resultPrice) resultPrice.textContent = price;
       if (resultBuyText) resultBuyText.textContent = `Оформить курс за ${price}`;
+
+      // Smooth scroll to results
+      demoResultCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
-    // Tab buttons click
+    // Tab buttons click (switch language)
     tabBtns.forEach(btn => {
       btn.addEventListener("click", () => {
+        tabBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
         const lang = btn.dataset.lang;
-        if (lang && lang !== currentLang) {
+        if (lang) {
           currentLang = lang;
           currentStep = 0;
           userScore = 0;
@@ -398,8 +288,9 @@
     // Next step button
     if (btnNextDemoQuiz) {
       btnNextDemoQuiz.addEventListener("click", () => {
+        const totalSteps = getTotalSteps();
         currentStep++;
-        if (currentStep < TOTAL_STEPS) {
+        if (currentStep < totalSteps) {
           renderCurrentQuestion();
         } else {
           showResults();
@@ -432,8 +323,18 @@
       });
     }
 
-    // Initial render
-    renderCurrentQuestion();
+    // Load quiz database
+    fetch("data/demo_quizzes.json")
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data && (data.en || data.cn || data.es)) {
+          demoData = data;
+        }
+        renderCurrentQuestion();
+      })
+      .catch(() => {
+        renderCurrentQuestion();
+      });
   }
 
   if (document.readyState === "loading") {
