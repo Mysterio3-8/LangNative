@@ -1,0 +1,700 @@
+{
+  "levels": [
+    {
+      "id": "A0",
+      "name": "A0 — Абсолютный ноль (Pre-A1)",
+      "desc": "Алфавит, базовые звуки, чтение и первые диалоги",
+      "status": "active"
+    },
+    {
+      "id": "A1",
+      "name": "A1 — Начальный (Beginner)",
+      "desc": "Повседневная речь, базовые вопросы, Present Simple, Past Simple",
+      "status": "curriculum"
+    },
+    {
+      "id": "A2",
+      "name": "A2 — Предпороговый (Elementary)",
+      "desc": "Опыт, путешествия, несложные беседы, Present Perfect",
+      "status": "curriculum"
+    },
+    {
+      "id": "B1",
+      "name": "B1 — Средний (Intermediate)",
+      "desc": "Уверенная речь, работа, аргументация, модальные глаголы",
+      "status": "curriculum"
+    },
+    {
+      "id": "B2",
+      "name": "B2 — Выше среднего (Upper-Intermediate)",
+      "desc": "Сложные тексты, дебаты, идиомы, сослагательное наклонение",
+      "status": "curriculum"
+    },
+    {
+      "id": "C1",
+      "name": "C1 — Продвинутый (Advanced)",
+      "desc": "Академический стиль, инверсия, тонкие стилистические регистры",
+      "status": "curriculum"
+    },
+    {
+      "id": "C2",
+      "name": "C2 — Мастерство (Proficiency)",
+      "desc": "Предельная смысловая гибкость, подтекст, сарказм, риторика",
+      "status": "curriculum"
+    }
+  ],
+  "A0": {
+    "title": "A0 — Абсолютный ноль (Pre-A1)",
+    "modules": [
+      {
+        "id": "m01",
+        "title": "Модуль 01: Алфавит с нуля",
+        "status": "ready",
+        "items": [
+          {
+            "id": "l01",
+            "type": "lesson",
+            "title": "Урок 1: Форма букв A–G",
+            "file": "Module_01_Lesson_01.md",
+            "content": "# Модуль 01: Алфавит с нуля\n## Урок 1: Форма букв A–G\n\n### 1. Цель\nК концу урока я могу:\n- Узнавать и правильно называть печатные буквы A, B, C, D, E, F, G.\n- Соотносить каждую букву с её алфавитным названием.\n- Писать печатные строчные и заглавные буквы A–G по образцу.\n\n### 2. Словарь и фонетика\nКаждая буква представлена своим названием (как мы её называем в алфавите):\n- **A** [eɪ] (как «эй»)\n- **B** [biː] (как «би»)\n- **C** [siː] (как «си»)\n- **D** [diː] (как «ди»)\n- **E** [iː] (как «и»)\n- **F** [ef] (как «эф»)\n- **G** [dʒiː] (как «джи»)\n\n### 3. Практические задания (8 типов)\n1. **Визуальное узнавание:** Обведи в кружок все буквы 'A' в предложенном наборе букв.\n2. **Алфавитный порядок:** Расставь буквы A, C, B, E, D, G, F в алфавитном порядке.\n3. **Пары:** Соедини линию заглавную букву (например, 'A') с её строчной формой ('a').\n4. **Аудио-соответствие:** Слушаешь звук названия буквы, выбираешь правильный символ из трёх вариантов.\n5. **Пропись:** Пропиши 5 строк каждой буквы (заглавная и строчная).\n6. **Поиск:** Найди 'пропущенную' букву в ряду: A, B, __, D, E, __, G.\n7. **Классификация:** Раздели буквы на «круглые» (содержащие кривые линии: C, G) и «остроугольные/прямые» (A, E, F).\n8. **Диктант:** Напиши букву, которую диктует диктор (пауза 3 сек).\n\n### 4. Сценарий аудио (для генерации)\n*Инструктор (медленно и чётко):*\n\"Lesson 1. Let's start with the alphabet. Listen and repeat.\"\n\"A... [пауза]\"\n\"B... [пауза]\"\n\"C... [пауза]\"\n\"D... [пауза]\"\n\"E... [пауза]\"\n\"F... [пауза]\"\n\"G... [пауза]\"\n\"Now, let's practice. What letter is this? [звук 'C']\"\n\"Correct. It's C.\"\n\n### 5. Ответы\n- **Задание 2:** A, B, C, D, E, F, G.\n- **Задание 6:** A, B, **C**, D, E, **F**, G.\n"
+          },
+          {
+            "id": "l02",
+            "type": "lesson",
+            "title": "Урок 2: Форма букв H–N",
+            "file": "Module_01_Lesson_02.md",
+            "content": "# Модуль 01: Алфавит с нуля\n## Урок 2: Форма букв H–N\n\n### 1. Цель\nК концу урока я могу:\n- Узнавать и правильно называть печатные буквы H, I, J, K, L, M, N.\n- Соотносить каждую букву с её алфавитным названием.\n- Писать печатные строчные и заглавные буквы H–N по образцу.\n\n### 2. Словарь и фонетика\n- **H** [eɪtʃ] (эйтч)\n- **I** [aɪ] (ай)\n- **J** [dʒeɪ] (джей)\n- **K** [keɪ] (кей)\n- **L** [el] (эл)\n- **M** [em] (эм)\n- **N** [en] (эн)\n\n### 3. Практические задания\n1. **Визуальное узнавание:** Обведи в кружок все буквы 'M' и 'N'.\n2. **Алфавитный порядок:** Расставь буквы: N, L, H, K, J, M, I в алфавитном порядке.\n3. **Пары:** Соедини заглавную букву (например, 'H') со строчной ('h').\n4. **Аудио-соответствие:** Выбери символ, соответствующий прозвучавшему названию.\n5. **Пропись:** 5 строк букв H–N.\n6. **Поиск:** Найди пропущенные буквы: H, I, __, K, L, __, N.\n7. **Классификация:** Раздели буквы на «высокие» (H, K, L) и «плоские»/симметричные (M, N).\n8. **Диктант:** Напиши букву на слух (пауза 3 сек).\n\n### 4. Сценарий аудио\n\"Lesson 2. Today we learn H, I, J, K, L, M, N. Listen: H... I... J... K... L... M... N... Now, listen to the letter... [звук 'L']. Correct, it's L.\"\n\n### 5. Ответы\n- **Задание 2:** H, I, J, K, L, M, N.\n- **Задание 6:** H, I, **J**, K, L, **M**, N.\n"
+          },
+          {
+            "id": "l03",
+            "type": "lesson",
+            "title": "Урок 3: Форма букв O–U",
+            "file": "Module_01_Lesson_03.md",
+            "content": "# Модуль 01: Алфавит с нуля\n## Урок 3: Форма букв O–U\n\n### 1. Цель\nК концу урока я могу:\n- Узнавать и правильно называть печатные буквы O, P, Q, R, S, T, U.\n- Писать печатные строчные и заглавные буквы O–U по образцу.\n\n### 2. Словарь и фонетика\n- **O** [əʊ] (оу)\n- **P** [piː] (пи)\n- **Q** [kjuː] (кью)\n- **R** [ɑː] (ар)\n- **S** [es] (эс)\n- **T** [tiː] (ти)\n- **U** [juː] (ю)\n\n### 3. Практические задания\n1. **Визуальное узнавание:** Обведи в кружок все буквы 'Q' и 'O'.\n2. **Алфавитный порядок:** Расставь: U, S, T, Q, R, P, O.\n3. **Пары:** Соедини заглавную (например, 'Q') со строчной ('q').\n4. **Аудио-соответствие:** Выбери символ по звуку названия.\n5. **Пропись:** 5 строк букв O–U.\n6. **Поиск:** Найди пропущенные: O, P, Q, __, S, __, U.\n7. **Классификация:** Раздели на «круглые» (O, Q) и «линейные» (P, R, S, T, U).\n8. **Диктант:** Напиши букву на слух.\n\n### 4. Сценарий аудио\n\"Lesson 3. Letters O, P, Q, R, S, T, U. Listen: O... P... Q... R... S... T... U... Now, pick the letter... [звук 'Q']. Correct, it's Q.\"\n\n### 5. Ответы\n- **Задание 2:** O, P, Q, R, S, T, U.\n- **Задание 6:** O, P, Q, **R**, S, **T**, U.\n"
+          },
+          {
+            "id": "l04",
+            "type": "lesson",
+            "title": "Урок 4: Форма букв V–Z и повторение",
+            "file": "Module_01_Lesson_04.md",
+            "content": "# Модуль 01: Алфавит с нуля\n## Урок 4: Форма букв V–Z и повторение\n\n### 1. Цель\nК концу урока я могу:\n- Узнавать и называть последние буквы алфавита: V, W, X, Y, Z.\n- Использовать весь алфавит A–Z.\n\n### 2. Словарь и фонетика\n- **V** [viː] (ви)\n- **W** [ˈdʌbljuː] (дабл-ю)\n- **X** [eks] (экс)\n- **Y** [waɪ] (уай)\n- **Z** [zed] (зед)\n\n### 3. Практические задания\n1. **Визуальное узнавание:** Обведи 'W' и 'V'.\n2. **Алфавитный порядок:** Расставь: Z, X, Y, V, W.\n3. **Пары:** Соедини заглавную ('X') со строчной ('x').\n4. **Аудио-соответствие:** Выбери символ по звуку.\n5. **Пропись:** 5 строк букв V–Z.\n6. **Поиск:** Найди пропущенные: V, __, X, Y, __.\n7. **Повторение:** Запиши весь алфавит по памяти.\n8. **Диктант:** Напиши букву на слух.\n\n### 4. Сценарий аудио\n\"Lesson 4. Final letters: V, W, X, Y, Z. Listen: V... W... X... Y... Z... Practice: [звук 'W']? Correct, W.\"\n\n### 5. Ответы\n- **Задание 2:** V, W, X, Y, Z.\n- **Задание 6:** V, **W**, X, Y, **Z**.\n"
+          },
+          {
+            "id": "test",
+            "type": "test",
+            "title": "📝 Контрольная работа: Модуль 01",
+            "file": "Module_01_Test.md",
+            "content": "# Контрольная работа: Модуль 01 (Алфавит)\n\n### Часть 1: Буквенный диктант\nНапиши заглавную букву, которую услышишь (звук диктора). 10 пунктов.\n\n### Часть 2: Сопоставление\nСоедини прописную букву со строчной для всех 26 букв.\n\n### Часть 3: Порядок\nРасставь группы букв в алфавитном порядке (3 набора по 5 букв).\n\n### Часть 4: Поиск лишнего\nВ каждом ряду найди букву, которая выпадает из алфавитной последовательности.\n\n### Часть 5: Чтение\nНазови вслух буквы: G, K, M, Q, T, W, Z.\n\n---\n**Ответы:**\nПрилагаются в отдельном файле.\nКритерий успеха: не более 2 ошибок.\nЕсли ошибок больше, повтори Урок X (согласно ошибке).\n"
+          },
+          {
+            "id": "answers",
+            "type": "answers",
+            "title": "🔑 Ключи и ответы: Модуль 01",
+            "file": "Module_01_Answers.md",
+            "content": "# Ключи и объяснения: Модуль 01\n\n## Урок 1\n1. **Визуальное узнавание:** Обведены A, a, A...\n2. **Алфавитный порядок:** A, B, C, D, E, F, G.\n3. **Пары:** A-a, B-b, C-c, D-d, E-e, F-f, G-g.\n4. **Поиск:** A, B, [C], D, E, [F], G.\n\n## Урок 2\n1. **Порядок:** H, I, J, K, L, M, N.\n2. **Поиск:** H, I, [J], K, L, [M], N.\n\n## Урок 3\n1. **Порядок:** O, P, Q, R, S, T, U.\n2. **Поиск:** O, P, Q, [R], S, [T], U.\n\n## Урок 4\n1. **Порядок:** V, W, X, Y, Z.\n2. **Поиск:** V, [W], X, Y, [Z].\n\n---\n### Ошибки\n- Если перепутаны L и M: обрати внимание на форму (L - уголок, M - \"горки\").\n- Если перепутаны буквы похожей формы (например, b/d - *актуально для следующих уроков, но важно учитывать сейчас*): смотри на направление \"пузика\" буквы.\n"
+          }
+        ]
+      },
+      {
+        "id": "m02",
+        "title": "Модуль 02: Первые согласные звуки",
+        "status": "planned",
+        "focus": "b/p, d/t, f/v, s/z, m/n, l/r"
+      },
+      {
+        "id": "m03",
+        "title": "Модуль 03: Гласные и чтение слов",
+        "status": "planned",
+        "focus": "Краткие гласные, слияние звуков, CVC-слова"
+      },
+      {
+        "id": "m04",
+        "title": "Модуль 04: Буквосочетания и чтение",
+        "status": "planned",
+        "focus": "sh, ch, th, ee, oo, немая e"
+      },
+      {
+        "id": "m05",
+        "title": "Модуль 05: Приветствие и знакомство",
+        "status": "planned",
+        "focus": "Hello/goodbye, I am / you are, my name is"
+      },
+      {
+        "id": "m06",
+        "title": "Модуль 06: Числа и личная информация",
+        "status": "planned",
+        "focus": "Числа 0-100, возраст, телефон, страна"
+      },
+      {
+        "id": "m07",
+        "title": "Модуль 07: Цвета и предметы вокруг",
+        "status": "planned",
+        "focus": "Артикли a/an, this/that, множественное число"
+      },
+      {
+        "id": "m08",
+        "title": "Модуль 08: Семья и друзья",
+        "status": "planned",
+        "focus": "my/your, his/her, have/has в простых фразах"
+      },
+      {
+        "id": "m09",
+        "title": "Модуль 09: Дни, время и погода",
+        "status": "planned",
+        "focus": "Дни недели, время по часам, фразы о погоде"
+      },
+      {
+        "id": "m10",
+        "title": "Модуль 10: Действия и возможности",
+        "status": "planned",
+        "focus": "Базовые глаголы действий, команды, can/can’t"
+      },
+      {
+        "id": "m11",
+        "title": "Модуль 11: Еда и предпочтения",
+        "status": "planned",
+        "focus": "Базовые продукты, like / don’t like, заказ в кафе"
+      },
+      {
+        "id": "m12",
+        "title": "Модуль 12: Сборка первых диалогов",
+        "status": "planned",
+        "focus": "Комплексное повторение, рассказ о себе на 60–90 сек, итоговый A0-тест"
+      }
+    ]
+  },
+  "A1": {
+    "title": "A1 — Начальный (Beginner)",
+    "modules": [
+      {
+        "id": "m01",
+        "number": 1,
+        "title": "Модуль 01: Я и моя жизнь",
+        "focus": "be: утверждение/отрицание/вопросы, личные местоимения, question words",
+        "status": "curriculum"
+      },
+      {
+        "id": "m02",
+        "number": 2,
+        "title": "Модуль 02: Люди и семья",
+        "focus": "have got/has got, притяжательный падеж 's, описание внешности и характера",
+        "status": "curriculum"
+      },
+      {
+        "id": "m03",
+        "number": 3,
+        "title": "Модуль 03: Каждый день",
+        "focus": "Present Simple, adverbs of frequency, распорядок дня и привычки",
+        "status": "curriculum"
+      },
+      {
+        "id": "m04",
+        "number": 4,
+        "title": "Модуль 04: Дом и место",
+        "focus": "there is / there are, предлоги места, some/any",
+        "status": "curriculum"
+      },
+      {
+        "id": "m05",
+        "number": 5,
+        "title": "Модуль 05: Еда и покупки",
+        "focus": "Countable/uncountable, much/many, заказ в кафе",
+        "status": "curriculum"
+      },
+      {
+        "id": "m06",
+        "number": 6,
+        "title": "Модуль 06: Одежда и вещи",
+        "focus": "this/these/that/those, one/ones, вопросы цены how much",
+        "status": "curriculum"
+      },
+      {
+        "id": "m07",
+        "number": 7,
+        "title": "Модуль 07: Свободное время и хобби",
+        "focus": "like/love/hate + -ing, would like, договоренности о встрече",
+        "status": "curriculum"
+      },
+      {
+        "id": "m08",
+        "number": 8,
+        "title": "Модуль 08: Город и дорога",
+        "focus": "Предлоги движения, ориентирование по карте, directions",
+        "status": "curriculum"
+      },
+      {
+        "id": "m09",
+        "number": 9,
+        "title": "Модуль 09: Что происходит сейчас",
+        "focus": "Present Continuous, контраст Present Simple vs Continuous",
+        "status": "curriculum"
+      },
+      {
+        "id": "m10",
+        "number": 10,
+        "title": "Модуль 10: Мой прошлый выходной",
+        "focus": "was/were, Past Simple правильных глаголов, ago/last",
+        "status": "curriculum"
+      },
+      {
+        "id": "m11",
+        "number": 11,
+        "title": "Модуль 11: Истории и будущее",
+        "focus": "Топ неправильных глаголов Past Simple, планы be going to",
+        "status": "curriculum"
+      },
+      {
+        "id": "m12",
+        "number": 12,
+        "title": "Модуль 12: Практика реальной жизни",
+        "focus": "Комплексный сценарий поездки, связки and/but/because, итоговый A1-тест",
+        "status": "curriculum"
+      }
+    ]
+  },
+  "A2": {
+    "title": "A2 — Предпороговый (Elementary)",
+    "modules": [
+      {
+        "id": "m01",
+        "number": 1,
+        "title": "Модуль 01: Привычки и изменения",
+        "focus": "Present Simple vs Continuous, stative verbs",
+        "status": "curriculum"
+      },
+      {
+        "id": "m02",
+        "number": 2,
+        "title": "Модуль 02: Прошлые истории",
+        "focus": "Past Simple vs Past Continuous, нарративные связки",
+        "status": "curriculum"
+      },
+      {
+        "id": "m03",
+        "number": 3,
+        "title": "Модуль 03: Опыт и достижения",
+        "focus": "Present Perfect: ever/never, разница с Past Simple",
+        "status": "curriculum"
+      },
+      {
+        "id": "m04",
+        "number": 4,
+        "title": "Модуль 04: Здоровье и советы",
+        "focus": "should/shouldn't, have to / don't have to, need to",
+        "status": "curriculum"
+      },
+      {
+        "id": "m05",
+        "number": 5,
+        "title": "Модуль 05: Учёба и работа",
+        "focus": "Степени сравнения comparatives/superlatives, as...as, too/enough",
+        "status": "curriculum"
+      },
+      {
+        "id": "m06",
+        "number": 6,
+        "title": "Модуль 06: Развлечения и интересы",
+        "focus": "Verb + -ing vs to-infinitive, наречия образа действия",
+        "status": "curriculum"
+      },
+      {
+        "id": "m07",
+        "number": 7,
+        "title": "Модуль 07: Люди и отношения",
+        "focus": "Relative clauses: who/which/that",
+        "status": "curriculum"
+      },
+      {
+        "id": "m08",
+        "number": 8,
+        "title": "Модуль 08: Городские услуги и бронирование",
+        "focus": "will / going to / Present Continuous для договоренностей",
+        "status": "curriculum"
+      },
+      {
+        "id": "m09",
+        "number": 9,
+        "title": "Модуль 09: Вежливое общение",
+        "focus": "could/would, Would you mind...?, косвенные вежливые вопросы",
+        "status": "curriculum"
+      },
+      {
+        "id": "m10",
+        "number": 10,
+        "title": "Модуль 10: Новости о личных событиях",
+        "focus": "Present Perfect: just/already/yet, for/since",
+        "status": "curriculum"
+      },
+      {
+        "id": "m11",
+        "number": 11,
+        "title": "Модуль 11: Условия и решения",
+        "focus": "Zero and First Conditional, when/unless",
+        "status": "curriculum"
+      },
+      {
+        "id": "m12",
+        "number": 12,
+        "title": "Модуль 12: Жизнь без подсказок",
+        "focus": "Сводная практика A2, связки first/then/finally/however, итоговый A2-тест",
+        "status": "curriculum"
+      }
+    ]
+  },
+  "B1": {
+    "title": "B1 — Средний (Intermediate)",
+    "modules": [
+      {
+        "id": "m01",
+        "number": 1,
+        "title": "Модуль 01: Истории с деталями",
+        "focus": "Past Simple vs Continuous, Past Perfect intro, time linkers",
+        "status": "curriculum"
+      },
+      {
+        "id": "m02",
+        "number": 2,
+        "title": "Модуль 02: Жизненный опыт и результаты",
+        "focus": "Present Perfect vs Present Perfect Continuous",
+        "status": "curriculum"
+      },
+      {
+        "id": "m03",
+        "number": 3,
+        "title": "Модуль 03: Планы и прогнозы",
+        "focus": "Будущие времена во всех оттенках: will / going to / Continuous / Simple",
+        "status": "curriculum"
+      },
+      {
+        "id": "m04",
+        "number": 4,
+        "title": "Модуль 04: Работа и обязанности",
+        "focus": "Модальные глаголы обязательства и дедукции must/have to/should/might",
+        "status": "curriculum"
+      },
+      {
+        "id": "m05",
+        "number": 5,
+        "title": "Модуль 05: Новости и косвенная речь",
+        "focus": "Reported speech: statements, questions, сдвиг времён",
+        "status": "curriculum"
+      },
+      {
+        "id": "m06",
+        "number": 6,
+        "title": "Модуль 06: Взаимоотношения",
+        "focus": "Defining & non-defining relative clauses, связки контраста",
+        "status": "curriculum"
+      },
+      {
+        "id": "m07",
+        "number": 7,
+        "title": "Модуль 07: Выбор и гипотезы",
+        "focus": "First vs Second Conditional, unless, if I were you",
+        "status": "curriculum"
+      },
+      {
+        "id": "m08",
+        "number": 8,
+        "title": "Модуль 08: Мнения и эссе",
+        "focus": "Gerund vs Infinitive, связки аргументации, написание opinion essay",
+        "status": "curriculum"
+      },
+      {
+        "id": "m09",
+        "number": 9,
+        "title": "Модуль 09: Технологии и общество",
+        "focus": "Passive Voice: Present/Past/Future Simple, конструкции с by",
+        "status": "curriculum"
+      },
+      {
+        "id": "m10",
+        "number": 10,
+        "title": "Модуль 10: Привычки прошлого и настоящего",
+        "focus": "used to, be used to, get used to, фразовые глаголы",
+        "status": "curriculum"
+      },
+      {
+        "id": "m11",
+        "number": 11,
+        "title": "Модуль 11: Проблемы в путешествиях",
+        "focus": "Сложные косвенные вопросы, разбор конфликтных ситуаций",
+        "status": "curriculum"
+      },
+      {
+        "id": "m12",
+        "number": 12,
+        "title": "Модуль 12: Итоговый проект B1",
+        "focus": "Комплексная презентация, эссе, сводный B1-экзамен",
+        "status": "curriculum"
+      }
+    ]
+  },
+  "B2": {
+    "title": "B2 — Выше среднего (Upper-Intermediate)",
+    "modules": [
+      {
+        "id": "m01",
+        "number": 1,
+        "title": "Модуль 01: Сложные истории",
+        "focus": "Past Perfect & Continuous, временные пласты в повествовании",
+        "status": "curriculum"
+      },
+      {
+        "id": "m02",
+        "number": 2,
+        "title": "Модуль 02: Гипотезы и сожаления",
+        "focus": "Third & Mixed Conditionals, wish / if only",
+        "status": "curriculum"
+      },
+      {
+        "id": "m03",
+        "number": 3,
+        "title": "Модуль 03: Причины и процессы",
+        "focus": "Advanced Passive, каузативные конструкции have/get something done",
+        "status": "curriculum"
+      },
+      {
+        "id": "m04",
+        "number": 4,
+        "title": "Модуль 04: Косвенная речь и нюансы",
+        "focus": "Reporting verbs: warn, deny, urge, suggest + герундий/инфинитив",
+        "status": "curriculum"
+      },
+      {
+        "id": "m05",
+        "number": 5,
+        "title": "Модуль 05: Модальная дедукция о прошлом",
+        "focus": "must have / might have / can't have + V3",
+        "status": "curriculum"
+      },
+      {
+        "id": "m06",
+        "number": 6,
+        "title": "Модуль 06: Причастные обороты",
+        "focus": "Participle clauses, сокращение придаточных для академичности",
+        "status": "curriculum"
+      },
+      {
+        "id": "m07",
+        "number": 7,
+        "title": "Модуль 07: Позиция в споре",
+        "focus": "Связки контраста и уступки: although, despite, whereas, nevertheless",
+        "status": "curriculum"
+      },
+      {
+        "id": "m08",
+        "number": 8,
+        "title": "Модуль 08: Деловые переговоры",
+        "focus": "Cleft sentences для эмфазы, hedging, деловой политес",
+        "status": "curriculum"
+      },
+      {
+        "id": "m09",
+        "number": 9,
+        "title": "Модуль 09: Медиа и исследования",
+        "focus": "Academic linkers, номинализация глаголов, фактчекинг",
+        "status": "curriculum"
+      },
+      {
+        "id": "m10",
+        "number": 10,
+        "title": "Модуль 10: Фразовые глаголы и регистры",
+        "focus": "Коллокационные ограничения, неформальный vs деловой регистр",
+        "status": "curriculum"
+      },
+      {
+        "id": "m11",
+        "number": 11,
+        "title": "Модуль 11: Восприятие беглой речи носителей",
+        "focus": "Connected speech, discourse markers, скрытые смыслы",
+        "status": "curriculum"
+      },
+      {
+        "id": "m12",
+        "number": 12,
+        "title": "Модуль 12: Комплексный проект B2",
+        "focus": "Доклад, развёрнутое аргументированное эссе 250–300 слов, B2-экзамен",
+        "status": "curriculum"
+      }
+    ]
+  },
+  "C1": {
+    "title": "C1 — Продвинутый (Advanced)",
+    "modules": [
+      {
+        "id": "m01",
+        "number": 1,
+        "title": "Модуль 01: Точность выбора слова",
+        "focus": "Lexical nuance, connotation, semantic prosody, синонимические ряды",
+        "status": "curriculum"
+      },
+      {
+        "id": "m02",
+        "number": 2,
+        "title": "Модуль 02: Убедительная риторика",
+        "focus": "Грамматическая инверсия для эмфазы, cleft structures, fronting",
+        "status": "curriculum"
+      },
+      {
+        "id": "m03",
+        "number": 3,
+        "title": "Модуль 03: Академический и экспертный текст",
+        "focus": "Hedging, stance markers, академическое цитирование",
+        "status": "curriculum"
+      },
+      {
+        "id": "m04",
+        "number": 4,
+        "title": "Модуль 04: Дипломатичные переговоры",
+        "focus": "Pragmatic politeness, softeners, непрямые речевые акты",
+        "status": "curriculum"
+      },
+      {
+        "id": "m05",
+        "number": 5,
+        "title": "Модуль 05: Степени уверенности",
+        "focus": "Epistemic modality, nuanced modal perfects, вероятностный анализ",
+        "status": "curriculum"
+      },
+      {
+        "id": "m06",
+        "number": 6,
+        "title": "Модуль 06: Литературный и нарративный стиль",
+        "focus": "Narrative viewpoint, advanced aspect, эллипсис",
+        "status": "curriculum"
+      },
+      {
+        "id": "m07",
+        "number": 7,
+        "title": "Модуль 07: Глубокая связность дискурса",
+        "focus": "Reference chains, тематический прогресс, связность абзацев",
+        "status": "curriculum"
+      },
+      {
+        "id": "m08",
+        "number": 8,
+        "title": "Модуль 08: Презентация данных",
+        "focus": "Reporting trends, формулирование ограничений гипотез",
+        "status": "curriculum"
+      },
+      {
+        "id": "m09",
+        "number": 9,
+        "title": "Модуль 09: Ирония и переносные смыслы",
+        "focus": "Implicature, фигуральная речь, британский и американский юмор",
+        "status": "curriculum"
+      },
+      {
+        "id": "m10",
+        "number": 10,
+        "title": "Модуль 10: Межкультурная прагматика",
+        "focus": "Audience design, переключение регистров под статус собеседника",
+        "status": "curriculum"
+      },
+      {
+        "id": "m11",
+        "number": 11,
+        "title": "Модуль 11: Медиация и синтез информации",
+        "focus": "Парафраз, сжатие многостраничных отчётов без потери сути",
+        "status": "curriculum"
+      },
+      {
+        "id": "m12",
+        "number": 12,
+        "title": "Модуль 12: Защита исследовательского проекта C1",
+        "focus": "Публичная защита с раундом Q&A, сертификационный C1-экзамен",
+        "status": "curriculum"
+      }
+    ]
+  },
+  "C2": {
+    "title": "C2 — Мастерство (Proficiency)",
+    "modules": [
+      {
+        "id": "m01",
+        "number": 1,
+        "title": "Модуль 01: Предельная смысловая дискриминация",
+        "focus": "Fine lexical discrimination, стилистическая редактура",
+        "status": "curriculum"
+      },
+      {
+        "id": "m02",
+        "number": 2,
+        "title": "Модуль 02: Жанровое мастерство",
+        "focus": "Переработка одного смысла в 4 разных жанра: мемо, эссе, колонка, питч",
+        "status": "curriculum"
+      },
+      {
+        "id": "m03",
+        "number": 3,
+        "title": "Модуль 03: Риторика и манипулятивные техники",
+        "focus": "Rhetorical devices, пресуппозиции, фрейминг, дебаты",
+        "status": "curriculum"
+      },
+      {
+        "id": "m04",
+        "number": 4,
+        "title": "Модуль 04: Подтекст, намёки и сарказм",
+        "focus": "Pragmatic inference, многослойный анализ неоднозначности",
+        "status": "curriculum"
+      },
+      {
+        "id": "m05",
+        "number": 5,
+        "title": "Модуль 05: Языковые вариации и мировые акценты",
+        "focus": "World Englishes, социолекты, регистровые сдвиги",
+        "status": "curriculum"
+      },
+      {
+        "id": "m06",
+        "number": 6,
+        "title": "Модуль 06: Филологический анализ сложных текстов",
+        "focus": "Voice, extended metaphor, литературный подтекст",
+        "status": "curriculum"
+      },
+      {
+        "id": "m07",
+        "number": 7,
+        "title": "Модуль 07: Профессиональная междисциплинарная экспертиза",
+        "focus": "Синтез данных из разных отраслей",
+        "status": "curriculum"
+      },
+      {
+        "id": "m08",
+        "number": 8,
+        "title": "Модуль 08: Коммуникация в кризисных условиях",
+        "focus": "Переговоры под стрессом, face-saving strategies, парирование",
+        "status": "curriculum"
+      },
+      {
+        "id": "m09",
+        "number": 9,
+        "title": "Модуль 09: Высокоточный перевод и посредничество",
+        "focus": "Meaning fidelity, tone preservation, back-translation",
+        "status": "curriculum"
+      },
+      {
+        "id": "m10",
+        "number": 10,
+        "title": "Модуль 10: Сложное аудирование",
+        "focus": "Быстрая смазанная речь, акценты, дебаты с перебиваниями",
+        "status": "curriculum"
+      },
+      {
+        "id": "m11",
+        "number": 11,
+        "title": "Модуль 11: Профессиональная редактура чужого текста",
+        "focus": "Editing for clarity, concision and impact",
+        "status": "curriculum"
+      },
+      {
+        "id": "m12",
+        "number": 12,
+        "title": "Модуль 12: Итоговое мастерство C2",
+        "focus": "Защита комплексного портфолио, синхронная дискуссия, C2-экзамен",
+        "status": "curriculum"
+      }
+    ]
+  }
+}

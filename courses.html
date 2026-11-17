@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NATIVE — Обучающие материалы и уроки курсов (A0–C2)</title>
+  <meta name="description" content="Интерактивная платформа проверки и изучения разговорных курсов NATIVE. Уроки от A0 до C2, грамматика, фонетика, аудиосценарии и тесты.">
+  <link rel="icon" type="image/jpeg" href="assets/branding/logo_master.jpg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --reader-bg: #0b1120;
+      --reader-sidebar: #0f172a;
+      --reader-card: #1e293b;
+      --reader-card-hover: #243248;
+      --reader-border: rgba(255, 255, 255, 0.08);
+      --reader-text: #f8fafc;
+      --reader-sub: #94a3b8;
+      --reader-muted: #64748b;
+      --reader-accent: #3b82f6;
+      --reader-green: #10b981;
+      --reader-amber: #f59e0b;
+    }
+
+    body {
+      background-color: var(--reader-bg);
+      color: var(--reader-text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Topbar */
+    .courses-topbar {
+      height: 64px;
+      background: var(--reader-sidebar);
+      border-bottom: 1px solid var(--reader-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .topbar-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .topbar-brand-title {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .topbar-brand-badge {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border-radius: 9999px;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-topbar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-topbar-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--reader-sub);
+      border: 1px solid var(--reader-border);
+    }
+
+    .btn-topbar-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .btn-topbar-primary {
+      background: var(--reader-accent);
+      color: #fff;
+      border: 1px solid transparent;
+    }
+
+    .btn-topbar-primary:hover {
+      background: #2563eb;
+    }
+
+    /* Main Container */
+    .courses-layout {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 64px);
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .courses-sidebar {
+      width: 340px;
+      background: var(--reader-sidebar);
+      border-right: 1px solid var(--reader-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 20px 20px 14px;
+      border-bottom: 1px solid var(--reader-border);
+    }
+
+    .sidebar-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--reader-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    /* Level Selector Pills */
+    .level-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .level-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--reader-border);
+      color: var(--reader-sub);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .level-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .level-pill.active {
+      background: var(--reader-accent);
+      color: #fff;
+      border-color: var(--reader-accent);
+    }
+
+    /* Navigation Tree */
+    .sidebar-nav-tree {
+      padding: 16px 12px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .nav-module-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-module-title:first-child {
+      margin-top: 0;
+    }
+
+    .nav-badge-ready {
+      font-size: 0.65rem;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 2px 6px;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
+    .nav-badge-plan {
+      font-size: 0.65rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--reader-muted);
+      padding: 2px 6px;
+      border-radius: 9999px;
+    }
+
+    .nav-item-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: none;
+      border: none;
+      color: var(--reader-sub);
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .nav-item-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .nav-item-btn.active {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      font-weight: 600;
+    }
+
+    .nav-item-icon {
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* Content Area */
+    .courses-content-area {
+      flex: 1;
+      padding: 32px 40px 60px;
+      overflow-y: auto;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .content-header-card {
+      background: var(--reader-card);
+      border: 1px solid var(--reader-border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .content-level-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #60a5fa;
+      background: rgba(59, 130, 246, 0.12);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+
+    .content-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .content-goal-box {
+      background: rgba(59, 130, 246, 0.08);
+      border-left: 3px solid var(--reader-accent);
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    /* Phonetics Cards */
+    .phonetic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+      margin: 20px 0 28px;
+    }
+
+    .phonetic-card {
+      background: var(--reader-card);
+      border: 1px solid var(--reader-border);
+      border-radius: 10px;
+      padding: 14px 10px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .phonetic-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--reader-accent);
+    }
+
+    .phonetic-letter {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+      font-family: monospace;
+    }
+
+    .phonetic-ipa {
+      font-size: 0.85rem;
+      color: #60a5fa;
+      font-family: monospace;
+      font-weight: 600;
+    }
+
+    .phonetic-ru {
+      font-size: 0.78rem;
+      color: var(--reader-sub);
+      margin-top: 2px;
+    }
+
+    /* Exercise Cards */
+    .exercise-card {
+      background: var(--reader-card);
+      border: 1px solid var(--reader-border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+
+    .exercise-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .exercise-num {
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .exercise-type {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--reader-border);
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #94a3b8;
+    }
+
+    .exercise-body {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .btn-toggle-answer {
+      background: none;
+      border: none;
+      color: var(--reader-accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .exercise-answer-box {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid var(--reader-green);
+      border-radius: 6px;
+      font-size: 0.84rem;
+      color: #6ee7b7;
+      display: none;
+    }
+
+    /* Audio Scenario Box */
+    .audio-scenario-card {
+      background: linear-gradient(180deg, #1e293b 0%, #172033 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 12px;
+      padding: 22px;
+      margin: 28px 0;
+    }
+
+    .audio-scenario-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: #60a5fa;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .audio-speech-text {
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 14px;
+      border-radius: 8px;
+      font-family: monospace;
+    }
+
+    /* Responsive Mobile */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 860px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+      .courses-sidebar {
+        position: fixed;
+        left: -100%;
+        top: 64px;
+        bottom: 0;
+        width: 85%;
+        max-width: 320px;
+        z-index: 999;
+        transition: left 0.3s ease;
+      }
+      .courses-sidebar.open {
+        left: 0;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.6);
+      }
+      .courses-content-area {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="courses-topbar">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <button id="mobile-toggle-btn" class="mobile-menu-btn" title="Меню уроков">☰</button>
+      <a href="index.html" class="topbar-brand">
+        <img src="assets/branding/logo_master.jpg" alt="Logo">
+        <span class="topbar-brand-title">NATIVE</span>
+        <span class="topbar-brand-badge">Платформа курсов</span>
+      </a>
+    </div>
+
+    <div class="topbar-actions">
+      <a href="index.html" class="btn-topbar btn-topbar-secondary">← На главную</a>
+      <a href="admin.html" class="btn-topbar btn-topbar-primary">🛡️ Панель управления</a>
+    </div>
+  </header>
+
+  <div class="courses-layout">
+    <!-- Sidebar -->
+    <aside id="courses-sidebar" class="courses-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Уровни английского (CEFR)</div>
+        <div class="level-pills" id="level-pills-container">
+          <button class="level-pill active" data-level="A0">A0</button>
+          <button class="level-pill" data-level="A1">A1</button>
+          <button class="level-pill" data-level="A2">A2</button>
+          <button class="level-pill" data-level="B1">B1</button>
+          <button class="level-pill" data-level="B2">B2</button>
+          <button class="level-pill" data-level="C1">C1</button>
+          <button class="level-pill" data-level="C2">C2</button>
+        </div>
+        <div id="current-level-name" style="font-size: 0.8rem; color: #60a5fa; font-weight: 600;">
+          A0 — Абсолютный ноль (Pre-A1)
+        </div>
+      </div>
+
+      <nav class="sidebar-nav-tree" id="sidebar-nav-tree">
+        <!-- Dynamically Rendered -->
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="courses-content-area" id="courses-main-content">
+      <div id="lesson-content-container">
+        <!-- Dynamically rendered content -->
+      </div>
+    </main>
+  </div>
+
+  <script src="courses.js"></script>
+</body>
+</html>
