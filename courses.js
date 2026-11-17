@@ -5,7 +5,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   let catalogData = null;
   let currentLevel = "A0";
-  let currentItemKey = "l01"; // default to Lesson 1
+  let currentItemKey = "m01_l1"; // default to Module 1, Lesson 1
 
   const sidebarTree = document.getElementById("sidebar-nav-tree");
   const contentContainer = document.getElementById("lesson-content-container");
@@ -49,7 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLevelLabel.textContent = catalogData[currentLevel].title || currentLevel;
       }
 
-      currentItemKey = (currentLevel === "A0") ? "l01" : "curriculum";
+      const levelMods = (catalogData && catalogData[currentLevel] && catalogData[currentLevel].modules) || [];
+      const firstReady = levelMods.find(m => m.status === "ready" && m.items && m.items.length > 0);
+      if (firstReady) {
+        currentItemKey = firstReady.items[0].id;
+      } else {
+        currentItemKey = "curriculum";
+      }
+
       renderSidebar();
       renderContent();
 
@@ -59,6 +66,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Global navigator helper
+  window.navigateToItem = function(id) {
+    currentItemKey = id;
+    renderSidebar();
+    renderContent();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.innerWidth <= 860 && coursesSidebar) {
+      coursesSidebar.classList.remove("open");
+    }
+  };
+
   // Render Sidebar Tree
   function renderSidebar() {
     if (!sidebarTree || !catalogData) return;
@@ -67,91 +85,68 @@ document.addEventListener("DOMContentLoaded", () => {
     const levelData = catalogData[currentLevel];
     if (!levelData) return;
 
-    if (currentLevel === "A0") {
-      // Ready Module 01
-      const mod01 = (levelData.modules || [])[0];
-      if (mod01) {
-        const modHeader = document.createElement("div");
-        modHeader.className = "nav-module-title";
-        modHeader.innerHTML = `
-          <span>${mod01.title}</span>
-          <span class="nav-badge-ready">Готов</span>
-        `;
-        sidebarTree.appendChild(modHeader);
+    const modules = levelData.modules || [];
 
-        (mod01.items || []).forEach(item => {
+    // Curriculum Overview button
+    const overviewBtn = document.createElement("button");
+    overviewBtn.className = `nav-item-btn ${currentItemKey === "curriculum" ? "active" : ""}`;
+    overviewBtn.innerHTML = `
+      <span class="nav-item-icon">📋</span>
+      <span style="font-weight: 600;">Программа курса (${modules.length} модулей)</span>
+    `;
+    overviewBtn.addEventListener("click", () => {
+      currentItemKey = "curriculum";
+      renderSidebar();
+      renderContent();
+      if (window.innerWidth <= 860 && coursesSidebar) {
+        coursesSidebar.classList.remove("open");
+      }
+    });
+    sidebarTree.appendChild(overviewBtn);
+
+    modules.forEach(mod => {
+      const isReady = mod.status === "ready" && mod.items && mod.items.length > 0;
+
+      const modHeader = document.createElement("div");
+      modHeader.className = "nav-module-title";
+      modHeader.style.cursor = "pointer";
+      modHeader.innerHTML = `
+        <span style="flex:1;">${mod.title}</span>
+        <span class="${isReady ? 'nav-badge-ready' : 'nav-badge-plan'}">${isReady ? 'Готов (6)' : 'План'}</span>
+      `;
+      modHeader.addEventListener("click", () => {
+        currentItemKey = "mod_" + mod.id;
+        renderSidebar();
+        renderContent();
+        if (window.innerWidth <= 860 && coursesSidebar) {
+          coursesSidebar.classList.remove("open");
+        }
+      });
+      sidebarTree.appendChild(modHeader);
+
+      if (isReady) {
+        mod.items.forEach(item => {
           const btn = document.createElement("button");
           btn.className = `nav-item-btn ${currentItemKey === item.id ? "active" : ""}`;
           btn.dataset.itemId = item.id;
-          
+
           let icon = "📄";
           if (item.type === "test") icon = "📝";
           if (item.type === "answers") icon = "🔑";
 
           btn.innerHTML = `
             <span class="nav-item-icon">${icon}</span>
-            <span style="flex:1;">${item.title}</span>
+            <span style="flex:1; font-size: 0.85rem;">${item.title}</span>
           `;
 
           btn.addEventListener("click", () => {
-            currentItemKey = item.id;
-            renderSidebar();
-            renderContent();
-            if (window.innerWidth <= 860 && coursesSidebar) {
-              coursesSidebar.classList.remove("open");
-            }
+            window.navigateToItem(item.id);
           });
 
           sidebarTree.appendChild(btn);
         });
       }
-
-      // Other planned modules (2-12)
-      (levelData.modules || []).slice(1).forEach(mod => {
-        const modBox = document.createElement("div");
-        modBox.className = "nav-module-title";
-        modBox.style.cursor = "pointer";
-        modBox.innerHTML = `
-          <span style="color: var(--reader-sub); font-size: 0.8rem;">${mod.title}</span>
-          <span class="nav-badge-plan">В плане</span>
-        `;
-        modBox.addEventListener("click", () => {
-          currentItemKey = "mod_" + mod.id;
-          renderContent();
-        });
-        sidebarTree.appendChild(modBox);
-      });
-
-    } else {
-      // Other levels (A1–C2) show Curriculum overview
-      const overviewBtn = document.createElement("button");
-      overviewBtn.className = `nav-item-btn ${currentItemKey === "curriculum" ? "active" : ""}`;
-      overviewBtn.innerHTML = `
-        <span class="nav-item-icon">📋</span>
-        <span>Программа уровня (12 модулей)</span>
-      `;
-      overviewBtn.addEventListener("click", () => {
-        currentItemKey = "curriculum";
-        renderSidebar();
-        renderContent();
-      });
-      sidebarTree.appendChild(overviewBtn);
-
-      (levelData.modules || []).forEach(mod => {
-        const modBox = document.createElement("div");
-        modBox.className = "nav-module-title";
-        modBox.style.cursor = "pointer";
-        modBox.innerHTML = `
-          <span style="color: var(--reader-sub); font-size: 0.8rem;">${mod.title}</span>
-          <span class="nav-badge-plan">12×4</span>
-        `;
-        modBox.addEventListener("click", () => {
-          currentItemKey = "mod_" + mod.id;
-          renderContent();
-        });
-        sidebarTree.appendChild(modBox);
-      });
-    }
+    });
   }
 
   // Render Main Content
@@ -162,45 +157,109 @@ document.addEventListener("DOMContentLoaded", () => {
     const levelData = catalogData[currentLevel];
     if (!levelData) return;
 
-    if (currentLevel === "A0" && catalogData.A0 && catalogData.A0.modules && catalogData.A0.modules[0]) {
-      const items = catalogData.A0.modules[0].items || [];
-      const activeItem = items.find(i => i.id === currentItemKey);
+    const allModules = levelData.modules || [];
+    const allItems = allModules.flatMap(m => m.items || []);
+    const activeItem = allItems.find(i => i.id === currentItemKey);
 
-      if (activeItem) {
-        renderLessonDetail(activeItem);
-        return;
-      }
+    // 1. If an active lesson/test/answer is selected
+    if (activeItem) {
+      renderLessonDetail(activeItem, allItems, allModules);
+      return;
     }
 
-    // Planned module or curriculum overview
+    // 2. Specific module clicked
     if (currentItemKey && currentItemKey.startsWith("mod_")) {
       const modId = currentItemKey.replace("mod_", "");
-      const mod = (levelData.modules || []).find(m => m.id === modId);
+      const mod = allModules.find(m => m.id === modId);
       if (mod) {
+        const isReady = mod.status === "ready" && mod.items && mod.items.length > 0;
+        let itemsHtml = "";
+        if (isReady) {
+          itemsHtml = `
+            <div style="margin-top: 24px;">
+              <h3 style="font-size: 1.05rem; margin-bottom: 12px; color: var(--reader-text);">Материалы модуля:</h3>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                ${mod.items.map(it => `
+                  <a href="#" class="nav-item-btn" style="text-decoration:none;" onclick="event.preventDefault(); window.navigateToItem('${it.id}')">
+                    <span class="nav-item-icon">${it.type === 'test' ? '📝' : it.type === 'answers' ? '🔑' : '📄'}</span>
+                    <span>${it.title}</span>
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
         contentContainer.innerHTML = `
           <div class="content-header-card">
-            <span class="content-level-tag">${currentLevel} • Учебный план</span>
+            <span class="content-level-tag">${currentLevel} • ${isReady ? 'Готовый модуль' : 'Учебный план'}</span>
             <h1 class="content-title">${mod.title}</h1>
             <div class="content-goal-box">
               <strong>🎯 Языковой фокус и результаты:</strong><br>
               ${mod.focus || "4 урока по 12 шагов методики, контрольная работа и ключи."}
             </div>
-            <p style="color: var(--reader-sub); font-size: 0.88rem; margin-top: 16px;">
-              Этот модуль утверждён в генерационном мастер-плане линейки A0–C2. Сейчас на проверке находится Модуль 01.
-            </p>
+            ${itemsHtml}
           </div>
         `;
         return;
       }
     }
 
-    // Default: Level Curriculum Overview
+    // 3. Default: Full Curriculum Overview
     renderLevelCurriculumOverview(levelData);
   }
 
+  // Simple Markdown Parser for Tests & Answers
+  function formatMarkdown(md) {
+    if (!md) return "";
+    let html = md;
+
+    // Headers
+    html = html.replace(/^# (.*$)/gim, '<h1 style="color:#fff; font-size:1.4rem; margin-top:0;">$1</h1>');
+    html = html.replace(/^## (.*$)/gim, '<h2 style="color:#60a5fa; font-size:1.15rem; margin:20px 0 10px;">$1</h2>');
+    html = html.replace(/^### (.*$)/gim, '<h3 style="color:#e2e8f0; font-size:1.02rem; margin:16px 0 8px; font-weight:700;">$1</h3>');
+
+    // Bold & Italics
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#fff;">$1</strong>');
+    html = html.replace(/\*(.*?)\*/g, '<em style="color:#93c5fd;">$1</em>');
+
+    // Horizontal Rule
+    html = html.replace(/^---$/gim, '<hr style="border:0; border-top:1px solid var(--reader-border); margin:20px 0;">');
+
+    // Lists (- Option)
+    html = html.replace(/^- (.*$)/gim, '<div style="padding: 4px 0 4px 18px; position:relative;"><span style="position:absolute; left:0; color:#3b82f6;">•</span>$1</div>');
+
+    // Tables
+    const tableRegex = /\|(.+)\|[\r\n]+\|[-:| ]+\|[\r\n]+((?:\|.+[\|\r\n]+)+)/g;
+    html = html.replace(tableRegex, (match, headerRow, bodyRows) => {
+      const headers = headerRow.split('|').filter(c => c.trim().length > 0);
+      const thHtml = headers.map(h => `<th style="padding:10px 12px; background:rgba(30,41,59,0.8); border:1px solid #334155; color:#93c5fd; text-align:left;">${h.trim()}</th>`).join('');
+      
+      const rows = bodyRows.trim().split('\n');
+      const trHtml = rows.map(r => {
+        const cells = r.split('|').filter(c => c.trim().length > 0);
+        return `<tr>${cells.map(c => `<td style="padding:8px 12px; border:1px solid #334155; color:#cbd5e1;">${c.trim()}</td>`).join('')}</tr>`;
+      }).join('');
+
+      return `<div style="overflow-x:auto; margin:16px 0;"><table style="width:100%; border-collapse:collapse; font-size:0.88rem;"><thead><tr>${thHtml}</tr></thead><tbody>${trHtml}</tbody></table></div>`;
+    });
+
+    // Paragraph line breaks
+    html = html.replace(/\n\n/g, '<div style="height:12px;"></div>');
+    return html;
+  }
+
   // Render Lesson Detail
-  function renderLessonDetail(item) {
+  function renderLessonDetail(item, allItems, allModules) {
     const raw = item.content || "";
+
+    // Find parent module title
+    let moduleTitle = "Модуль курса";
+    for (const m of allModules) {
+      if ((m.items || []).some(it => it.id === item.id)) {
+        moduleTitle = m.title;
+        break;
+      }
+    }
 
     // Parse sections
     let goal = "";
@@ -209,14 +268,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let audioScript = "";
     let answersRaw = "";
 
-    const lines = raw.splitlines ? raw.splitlines() : raw.split("\n");
+    const lines = raw.split("\n");
     let currentSec = "";
     let secLines = [];
 
     lines.forEach(l => {
       if (l.startsWith("### 1. Цель") || l.startsWith("### 1. ")) {
         saveSec(); currentSec = "goal";
-      } else if (l.startsWith("### 2. Словарь") || l.startsWith("### 2. ")) {
+      } else if (l.startsWith("### 2. Словарь") || l.startsWith("### 2. Правила") || l.startsWith("### 2. Ключевые") || l.startsWith("### 2. ")) {
         saveSec(); currentSec = "phonetics";
       } else if (l.startsWith("### 3. Практические") || l.startsWith("### 3. ")) {
         saveSec(); currentSec = "exercises";
@@ -243,57 +302,59 @@ document.addEventListener("DOMContentLoaded", () => {
     // Build Phonetics Grid HTML
     let phoneticsHtml = "";
     if (phoneticsRaw) {
-      const letterMatches = phoneticsRaw.matchAll(/\*\*(.+?)\*\*\s*(\[.+?\])?\s*(\(.+?\))?/g);
-      let cards = "";
-      for (const m of letterMatches) {
-        const letter = m[1].trim();
-        const ipa = (m[2] || "").trim();
-        const ru = (m[3] || "").replace(/[()]/g, "").trim();
-        cards += `
-          <div class="phonetic-card">
-            <div class="phonetic-letter">${letter}</div>
-            <div class="phonetic-ipa">${ipa}</div>
-            <div class="phonetic-ru">${ru}</div>
-            <button type="button" onclick="window.speakLetter('${letter}')" style="margin-top: 8px; background: rgba(59,130,246,0.15); border: none; color: #60a5fa; border-radius: 4px; padding: 3px 8px; font-size: 0.72rem; cursor: pointer;">🔊 Звук</button>
+      phoneticsHtml = `
+        <div style="background: var(--reader-card); border: 1px solid var(--reader-border); border-radius: 12px; padding: 22px; margin-top: 20px; line-height: 1.65;">
+          <h3 style="font-size: 1.1rem; color: #60a5fa; margin: 0 0 14px;">📖 Словарь, фонетика и правила урока:</h3>
+          <div style="color: #e2e8f0; font-size: 0.92rem;">
+            ${formatMarkdown(phoneticsRaw)}
           </div>
-        `;
-      }
-      if (cards) {
-        phoneticsHtml = `
-          <h3 style="font-size: 1.1rem; color: #fff; margin: 24px 0 10px;">🔤 Буквы и правильное произношение:</h3>
-          <div class="phonetic-grid">${cards}</div>
-        `;
-      }
+        </div>
+      `;
     }
 
-    // Build Exercises HTML
+    // Build Exercises HTML with interactive answers reveal
     let exercisesHtml = "";
     if (exercisesRaw) {
       const exLines = exercisesRaw.split("\n");
       let exCards = "";
+      let currentExNum = "";
+      let currentExText = "";
+
       exLines.forEach(l => {
-        const m = l.match(/^\s*(\d+)\.\s*\*\*(.+?):\*\*\s*(.+)$/);
+        const m = l.match(/^(\d+)\.\s+\*\*(.+?)\*\*:?\s*(.*)$/);
         if (m) {
-          const num = m[1];
-          const type = m[2];
-          const text = m[3];
-          exCards += `
-            <div class="exercise-card">
-              <div class="exercise-head">
-                <span class="exercise-num">Задание ${num}</span>
-                <span class="exercise-type">${type}</span>
-              </div>
-              <div class="exercise-body">${text}</div>
-              <button type="button" class="btn-toggle-answer" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">
-                👁️ Показать подсказку и ответ
-              </button>
-              <div class="exercise-answer-box">
-                <strong>Ключ к заданию ${num}:</strong> См. раздел «Ответы к уроку» ниже или в книге ответов модуля.
-              </div>
-            </div>
-          `;
+          if (currentExNum) {
+            exCards += renderExCard(currentExNum, currentExText);
+          }
+          currentExNum = m[1];
+          currentExText = `<strong>${m[2]}:</strong> ${m[3]}`;
+        } else if (currentExNum) {
+          currentExText += `<br>${l}`;
         }
       });
+      if (currentExNum) {
+        exCards += renderExCard(currentExNum, currentExText);
+      }
+
+      function renderExCard(num, text) {
+        return `
+          <div class="exercise-item-card" style="margin-bottom: 12px;">
+            <div style="display: flex; gap: 12px;">
+              <span class="exercise-num-badge">${num}</span>
+              <div style="flex: 1; font-size: 0.9rem; line-height: 1.5; color: #f1f5f9;">
+                ${text}
+              </div>
+            </div>
+            <button class="exercise-show-btn" onclick="this.nextElementSibling.classList.toggle('revealed')">
+              👁️ Показать подсказку и ответ
+            </button>
+            <div class="exercise-answer-box">
+              <strong>Ключ к заданию ${num}:</strong> См. раздел «Ответы к уроку» ниже или сверьтесь с правилом.
+            </div>
+          </div>
+        `;
+      }
+
       if (exCards) {
         exercisesHtml = `
           <h3 style="font-size: 1.1rem; color: #fff; margin: 28px 0 14px;">📝 8 форматов практических заданий:</h3>
@@ -306,7 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let audioHtml = "";
     if (audioScript) {
       audioHtml = `
-        <div class="audio-scenario-card">
+        <div class="audio-scenario-card" style="margin-top: 24px;">
           <div class="audio-scenario-header">
             <span>🎙️ Сценарий аудирования и отработки с диктором (TTS)</span>
           </div>
@@ -321,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
       answersHtml = `
         <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 10px; padding: 18px 20px; margin-top: 24px;">
           <h4 style="margin: 0 0 10px; font-size: 0.95rem; color: #34d399;">🔑 Эталонные ответы к уроку:</h4>
-          <div style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.6;">${answersRaw.replace(/\n/g, "<br>")}</div>
+          <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6;">${formatMarkdown(answersRaw)}</div>
         </div>
       `;
     }
@@ -330,15 +391,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let specialHtml = "";
     if (item.type === "test" || item.type === "answers") {
       specialHtml = `
-        <div style="background: var(--reader-card); border: 1px solid var(--reader-border); border-radius: 12px; padding: 24px; line-height: 1.7; font-size: 0.9rem; color: #e2e8f0;">
-          ${raw.replace(/\n/g, "<br>")}
+        <div style="background: var(--reader-card); border: 1px solid var(--reader-border); border-radius: 12px; padding: 26px; line-height: 1.7; font-size: 0.92rem; color: #e2e8f0;">
+          ${formatMarkdown(raw)}
         </div>
       `;
     }
 
     contentContainer.innerHTML = `
       <div class="content-header-card">
-        <span class="content-level-tag">A0 • Модуль 01 • Английский язык</span>
+        <span class="content-level-tag">${currentLevel} • ${moduleTitle} • Английский язык</span>
         <h1 class="content-title">${item.title}</h1>
         ${goal ? `
           <div class="content-goal-box">
@@ -362,35 +423,27 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // Next / Prev listeners
-    const items = catalogData.A0.modules[0].items || [];
-    const idx = items.findIndex(i => i.id === item.id);
-
+    // Next / Prev listeners across all modules of current level
+    const idx = allItems.findIndex(i => i.id === item.id);
     const btnPrev = document.getElementById("btn-prev-lesson");
     const btnNext = document.getElementById("btn-next-lesson");
 
     if (btnPrev) {
       btnPrev.disabled = idx <= 0;
-      btnPrev.style.opacity = idx <= 0 ? "0.4" : "1";
+      btnPrev.style.opacity = idx <= 0 ? "0.35" : "1";
       btnPrev.addEventListener("click", () => {
         if (idx > 0) {
-          currentItemKey = items[idx - 1].id;
-          renderSidebar();
-          renderContent();
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          window.navigateToItem(allItems[idx - 1].id);
         }
       });
     }
 
     if (btnNext) {
-      btnNext.disabled = idx >= items.length - 1;
-      btnNext.style.opacity = idx >= items.length - 1 ? "0.4" : "1";
+      btnNext.disabled = idx >= allItems.length - 1;
+      btnNext.style.opacity = idx >= allItems.length - 1 ? "0.35" : "1";
       btnNext.addEventListener("click", () => {
-        if (idx < items.length - 1) {
-          currentItemKey = items[idx + 1].id;
-          renderSidebar();
-          renderContent();
-          window.scrollTo({ top: 0, behavior: "smooth" });
+        if (idx < allItems.length - 1) {
+          window.navigateToItem(allItems[idx + 1].id);
         }
       });
     }
@@ -400,11 +453,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderLevelCurriculumOverview(levelData) {
     let modsHtml = "";
     (levelData.modules || []).forEach(m => {
+      const isReady = m.status === "ready" && m.items && m.items.length > 0;
       modsHtml += `
-        <div style="background: var(--reader-card); border: 1px solid var(--reader-border); border-radius: 10px; padding: 16px 20px; margin-bottom: 12px;">
+        <div style="background: var(--reader-card); border: 1px solid var(--reader-border); border-radius: 10px; padding: 16px 20px; margin-bottom: 12px; cursor: pointer;" onclick="window.navigateToItem('mod_${m.id}')">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
             <strong style="color: #fff; font-size: 0.95rem;">${m.title}</strong>
-            <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; background: rgba(59,130,246,0.15); color: #60a5fa; font-weight: 700;">4 урока</span>
+            <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; background: ${isReady ? 'rgba(16,185,129,0.15)' : 'rgba(59,130,246,0.15)'}; color: ${isReady ? '#34d399' : '#60a5fa'}; font-weight: 700;">
+              ${isReady ? 'Готов (6)' : 'План'}
+            </span>
           </div>
           <div style="font-size: 0.84rem; color: var(--reader-sub);">${m.focus || "Лексика, грамматика, аудирование и разговорная практика."}</div>
         </div>
