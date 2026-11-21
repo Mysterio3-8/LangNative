@@ -8,10 +8,22 @@
       "question": "Выберите правильную форму глагола «to be»:\n«Hello! I ____ Alexander and I am from Russia.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) am", "correct": true },
-        { "text": "B) is", "correct": false },
-        { "text": "C) are", "correct": false },
-        { "text": "D) be", "correct": false }
+        {
+          "text": "A) am",
+          "correct": true
+        },
+        {
+          "text": "B) is",
+          "correct": false
+        },
+        {
+          "text": "C) are",
+          "correct": false
+        },
+        {
+          "text": "D) be",
+          "correct": false
+        }
       ],
       "explanation": "am — с местоимением «I» (я) в настоящем времени всегда используется форма «am» (I am). Форма «is» используется с he/she/it, а «are» — с you/we/they."
     },
@@ -23,10 +35,22 @@
       "question": "Какое окончание нужно глаголу в настоящем времени?\n«My brother always ____ to work by subway.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) go", "correct": false },
-        { "text": "B) goes", "correct": true },
-        { "text": "C) going", "correct": false },
-        { "text": "D) gone", "correct": false }
+        {
+          "text": "A) go",
+          "correct": false
+        },
+        {
+          "text": "B) goes",
+          "correct": true
+        },
+        {
+          "text": "C) going",
+          "correct": false
+        },
+        {
+          "text": "D) gone",
+          "correct": false
+        }
       ],
       "explanation": "goes — в Present Simple с подлежащим 3-го лица ед. числа (he / she / it / my brother) к глаголу добавляется окончание -s/-es."
     },
@@ -38,10 +62,22 @@
       "question": "Какая форма множественного числа верна?\n«There are three ____ playing in the garden.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) childs", "correct": false },
-        { "text": "B) childes", "correct": false },
-        { "text": "C) children", "correct": true },
-        { "text": "D) childrens", "correct": false }
+        {
+          "text": "A) childs",
+          "correct": false
+        },
+        {
+          "text": "B) childes",
+          "correct": false
+        },
+        {
+          "text": "C) children",
+          "correct": true
+        },
+        {
+          "text": "D) childrens",
+          "correct": false
+        }
       ],
       "explanation": "children — слово «child» (ребёнок) имеет форму исключения во множественном числе: children (дети). Вариант «childrens» является грубой ошибкой."
     },
@@ -53,10 +89,22 @@
       "question": "Какая форма неправильного глагола нужна?\n«Yesterday we ____ an incredible film at the cinema.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) saw", "correct": true },
-        { "text": "B) see", "correct": false },
-        { "text": "C) seen", "correct": false },
-        { "text": "D) was seeing", "correct": false }
+        {
+          "text": "A) saw",
+          "correct": true
+        },
+        {
+          "text": "B) see",
+          "correct": false
+        },
+        {
+          "text": "C) seen",
+          "correct": false
+        },
+        {
+          "text": "D) was seeing",
+          "correct": false
+        }
       ],
       "explanation": "saw — для простого завершённого действия в прошлом с маркером времени «yesterday» используется 2-я форма глагола see — saw."
     },
@@ -68,10 +116,22 @@
       "question": "Какой предлог времени пропущен в предложении?\n«She has been studying programming ____ 2021.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) for", "correct": false },
-        { "text": "B) since", "correct": true },
-        { "text": "C) from", "correct": false },
-        { "text": "D) during", "correct": false }
+        {
+          "text": "A) for",
+          "correct": false
+        },
+        {
+          "text": "B) since",
+          "correct": true
+        },
+        {
+          "text": "C) from",
+          "correct": false
+        },
+        {
+          "text": "D) during",
+          "correct": false
+        }
       ],
       "explanation": "since — указывает на конкретную точку отсчёта во времени в прошлом (since 2021). Предлог «for» указывает на промежуток времени (for 3 years)."
     },
@@ -83,10 +143,22 @@
       "question": "Какое слово выражает дружеский совет или рекомендацию?\n«You look exhausted. You ____ take a day off.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) should", "correct": true },
-        { "text": "B) must", "correct": false },
-        { "text": "C) have to", "correct": false },
-        { "text": "D) would", "correct": false }
+        {
+          "text": "A) should",
+          "correct": true
+        },
+        {
+          "text": "B) must",
+          "correct": false
+        },
+        {
+          "text": "C) have to",
+          "correct": false
+        },
+        {
+          "text": "D) would",
+          "correct": false
+        }
       ],
       "explanation": "should — выражает мягкий совет или рекомендацию («тебе стоит / следовало бы»). Глагол «must» звучит как строгий приказ."
     },
@@ -98,10 +170,22 @@
       "question": "Какая форма глагола выражает нереальное условие?\n«If I ____ you, I would accept this job offer immediately.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) am", "correct": false },
-        { "text": "B) was", "correct": false },
-        { "text": "C) were", "correct": true },
-        { "text": "D) will be", "correct": false }
+        {
+          "text": "A) am",
+          "correct": false
+        },
+        {
+          "text": "B) was",
+          "correct": false
+        },
+        {
+          "text": "C) were",
+          "correct": true
+        },
+        {
+          "text": "D) will be",
+          "correct": false
+        }
       ],
       "explanation": "were — в условных предложениях 2-го типа (Second Conditional) для всех лиц традиционно используется сослагательная форма «were» (If I were you — «На твоём месте я бы...»)."
     },
@@ -113,10 +197,22 @@
       "question": "Что грамматически верно после фразового оборота?\n«I am really looking forward to ____ you in London.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) see", "correct": false },
-        { "text": "B) seeing", "correct": true },
-        { "text": "C) saw", "correct": false },
-        { "text": "D) have seen", "correct": false }
+        {
+          "text": "A) see",
+          "correct": false
+        },
+        {
+          "text": "B) seeing",
+          "correct": true
+        },
+        {
+          "text": "C) saw",
+          "correct": false
+        },
+        {
+          "text": "D) have seen",
+          "correct": false
+        }
       ],
       "explanation": "seeing — в устойчивой связке «look forward to» частица «to» является предлогом, поэтому после неё всегда следует герундий (глагол с окончанием -ing)."
     },
@@ -128,10 +224,22 @@
       "question": "Какое слово образует естественное устойчивое сочетание?\n«Could you please ____ me a favour and call back later?»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) do", "correct": true },
-        { "text": "B) make", "correct": false },
-        { "text": "C) give", "correct": false },
-        { "text": "D) take", "correct": false }
+        {
+          "text": "A) do",
+          "correct": true
+        },
+        {
+          "text": "B) make",
+          "correct": false
+        },
+        {
+          "text": "C) give",
+          "correct": false
+        },
+        {
+          "text": "D) take",
+          "correct": false
+        }
       ],
       "explanation": "do a favour — устойчивая разговорная коллокация носителей языка («оказать услугу»). Сочетание «make a favour» является распространённой ошибкой."
     },
@@ -143,10 +251,22 @@
       "question": "Какой порядок слов требуется при отрицательной инверсии?\n«Hardly ____ entered the room when the phone rang.»",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) had he", "correct": true },
-        { "text": "B) he had", "correct": false },
-        { "text": "C) did he have", "correct": false },
-        { "text": "D) has he", "correct": false }
+        {
+          "text": "A) had he",
+          "correct": true
+        },
+        {
+          "text": "B) he had",
+          "correct": false
+        },
+        {
+          "text": "C) did he have",
+          "correct": false
+        },
+        {
+          "text": "D) has he",
+          "correct": false
+        }
       ],
       "explanation": "had he — конструкции с отрицательными наречиями (Hardly / Scarcely / Barely ... when) требуют грамматической инверсии времени Past Perfect: Hardly + had + подлежащее + 3-я форма."
     }
@@ -160,10 +280,22 @@
       "question": "Как переводится самое популярное китайское приветствие?\n«你好！»\n[Nǐ hǎo!]",
       "subtext": "Выберите правильный перевод:",
       "options": [
-        { "text": "A) Здравствуйте / Привет", "correct": true },
-        { "text": "B) Спасибо", "correct": false },
-        { "text": "C) До свидания", "correct": false },
-        { "text": "D) Приятного аппетита", "correct": false }
+        {
+          "text": "A) Здравствуйте / Привет",
+          "correct": true
+        },
+        {
+          "text": "B) Спасибо",
+          "correct": false
+        },
+        {
+          "text": "C) До свидания",
+          "correct": false
+        },
+        {
+          "text": "D) Приятного аппетита",
+          "correct": false
+        }
       ],
       "explanation": "你好 (Nǐ hǎo) — базовое приветствие: 你 (nǐ — ты) + 好 (hǎo — хороший, благополучный) = «Здравствуй / Привет»."
     },
@@ -175,10 +307,22 @@
       "question": "Какое слово связывает подлежащее и существительное?\n我是学生。\n[Wǒ ____ xuésheng.] («Я — студент.»)",
       "subtext": "Выберите правильный иероглиф:",
       "options": [
-        { "text": "A) 是 [shì]", "correct": true },
-        { "text": "B) 很 [hěn]", "correct": false },
-        { "text": "C) 在 [zài]", "correct": false },
-        { "text": "D) 有 [yǒu]", "correct": false }
+        {
+          "text": "A) 是 [shì]",
+          "correct": true
+        },
+        {
+          "text": "B) 很 [hěn]",
+          "correct": false
+        },
+        {
+          "text": "C) 在 [zài]",
+          "correct": false
+        },
+        {
+          "text": "D) 有 [yǒu]",
+          "correct": false
+        }
       ],
       "explanation": "是 (shì) — глагол-связка «быть, являться», аналог английского «to be». Употребляется перед существительными: 我是学生 (Я студент)."
     },
@@ -190,10 +334,22 @@
       "question": "Какое отрицание используется исключительно с глаголом 有 (иметь)?\n我____有现金。\n[Wǒ ____ yǒu xiànjīn.] («У меня нет наличных.»)",
       "subtext": "Выберите правильное отрицание:",
       "options": [
-        { "text": "A) 没 [méi]", "correct": true },
-        { "text": "B) 不 [bù]", "correct": false },
-        { "text": "C) 别 [bié]", "correct": false },
-        { "text": "D) 无 [wú]", "correct": false }
+        {
+          "text": "A) 没 [méi]",
+          "correct": true
+        },
+        {
+          "text": "B) 不 [bù]",
+          "correct": false
+        },
+        {
+          "text": "C) 别 [bié]",
+          "correct": false
+        },
+        {
+          "text": "D) 无 [wú]",
+          "correct": false
+        }
       ],
       "explanation": "没 (méi) — единственное отрицание, которое сочетается с глаголом 有 (yǒu — иметь). Форма «不有» в китайском языке строго запрещена."
     },
@@ -205,10 +361,22 @@
       "question": "Какое вопросительное слово обозначает «сколько» для цены?\n这件衣服____钱？\n[Zhè jiàn yīfu ____ qián?] («Сколько стоит эта одежда?»)",
       "subtext": "Выберите вопросительное слово:",
       "options": [
-        { "text": "A) 多少 [duōshao]", "correct": true },
-        { "text": "B) 什么 [shénme]", "correct": false },
-        { "text": "C) 几 [jǐ]", "correct": false },
-        { "text": "D) 怎么 [zěnme]", "correct": false }
+        {
+          "text": "A) 多少 [duōshao]",
+          "correct": true
+        },
+        {
+          "text": "B) 什么 [shénme]",
+          "correct": false
+        },
+        {
+          "text": "C) 几 [jǐ]",
+          "correct": false
+        },
+        {
+          "text": "D) 怎么 [zěnme]",
+          "correct": false
+        }
       ],
       "explanation": "多少钱？ (duōshao qián?) — универсальный вопрос «сколько стоит?». Слово «几» (jǐ) используется только для малых чисел до 10."
     },
@@ -220,10 +388,22 @@
       "question": "Какой порядок слов грамматически верен для фразы «Я завтра пойду в банк»?",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) 我明天去银行 [Wǒ míngtiān qù yínháng]", "correct": true },
-        { "text": "B) 我去银行明天 [Wǒ qù yínháng míngtiān]", "correct": false },
-        { "text": "C) 明天我去银行了 [Míngtiān wǒ qù yínháng le]", "correct": false },
-        { "text": "D) 银行我去明天 [Yínháng wǒ qù míngtiān]", "correct": false }
+        {
+          "text": "A) 我明天去银行 [Wǒ míngtiān qù yínháng]",
+          "correct": true
+        },
+        {
+          "text": "B) 我去银行明天 [Wǒ qù yínháng míngtiān]",
+          "correct": false
+        },
+        {
+          "text": "C) 明天我去银行了 [Míngtiān wǒ qù yínháng le]",
+          "correct": false
+        },
+        {
+          "text": "D) 银行我去明天 [Yínháng wǒ qù míngtiān]",
+          "correct": false
+        }
       ],
       "explanation": "В китайском языке обстоятельство времени (明天 — завтра) всегда ставится ПЕРЕД сказуемым или в самом начале предложения, но никогда в конце."
     },
@@ -235,10 +415,22 @@
       "question": "Какое слово выражает приобретённый навык («уметь что-то делать»)?\n你____说汉语吗？\n[Nǐ ____ shuō Hànyǔ ma?] («Ты умеешь говорить по-китайски?»)",
       "subtext": "Выберите модальный глагол:",
       "options": [
-        { "text": "A) 会 [huì]", "correct": true },
-        { "text": "B) 想 [xiǎng]", "correct": false },
-        { "text": "C) 要 [yào]", "correct": false },
-        { "text": "D) 肯 [kěn]", "correct": false }
+        {
+          "text": "A) 会 [huì]",
+          "correct": true
+        },
+        {
+          "text": "B) 想 [xiǎng]",
+          "correct": false
+        },
+        {
+          "text": "C) 要 [yào]",
+          "correct": false
+        },
+        {
+          "text": "D) 肯 [kěn]",
+          "correct": false
+        }
       ],
       "explanation": "会 (huì) — обозначает навык, полученный в результате обучения (говорить на иностранном языке, водить машину, плавать)."
     },
@@ -250,10 +442,22 @@
       "question": "Какой иероглиф означает повтор действия в будущем («до завтра / увидимся снова»)?\n我们明天____见。\n[Wǒmen míngtiān ____ jiàn.]",
       "subtext": "Выберите правильный иероглиф:",
       "options": [
-        { "text": "A) 再 [zài]", "correct": true },
-        { "text": "B) 又 [yòu]", "correct": false },
-        { "text": "C) 还 [hái]", "correct": false },
-        { "text": "D) 也 [yě]", "correct": false }
+        {
+          "text": "A) 再 [zài]",
+          "correct": true
+        },
+        {
+          "text": "B) 又 [yòu]",
+          "correct": false
+        },
+        {
+          "text": "C) 还 [hái]",
+          "correct": false
+        },
+        {
+          "text": "D) 也 [yě]",
+          "correct": false
+        }
       ],
       "explanation": "再 (zài) — «снова, ещё раз» для действий в будущем (明天再见 — увидимся завтра). Иероглиф 又 (yòu) используется для уже свершившихся повторов в прошлом."
     },
@@ -265,10 +469,22 @@
       "question": "Какой вариант верен в сравнительной конструкции с предлогом 比?\n他比我____。\n[Tā bǐ wǒ ____.] («Он выше меня.»)",
       "subtext": "Выберите правильный вариант:",
       "options": [
-        { "text": "A) 高 [gāo]", "correct": true },
-        { "text": "B) 很高 [hěn gāo]", "correct": false },
-        { "text": "C) 非常高 [fēicháng gāo]", "correct": false },
-        { "text": "D) 最高 [zuì gāo]", "correct": false }
+        {
+          "text": "A) 高 [gāo]",
+          "correct": true
+        },
+        {
+          "text": "B) 很高 [hěn gāo]",
+          "correct": false
+        },
+        {
+          "text": "C) 非常高 [fēicháng gāo]",
+          "correct": false
+        },
+        {
+          "text": "D) 最高 [zuì gāo]",
+          "correct": false
+        }
       ],
       "explanation": "高 (gāo) — в конструкции с 比 (bǐ) строго запрещено использовать усилительные наречия 很 (hěn) или 非常 (fēicháng), так как само 比 уже выражает сравнение."
     },
@@ -280,10 +496,22 @@
       "question": "Какая морфема показывает успешный результат понимания речи на слух?\n你说得太快了，我没听____。\n[Nǐ shuō de tài kuài le, wǒ méi tīng ____.] («Ты говорил слишком быстро, я не понял на слух.»)",
       "subtext": "Выберите результативную морфему:",
       "options": [
-        { "text": "A) 懂 [dǒng]", "correct": true },
-        { "text": "B) 到 [dào]", "correct": false },
-        { "text": "C) 见 [jiàn]", "correct": false },
-        { "text": "D) 完 [wán]", "correct": false }
+        {
+          "text": "A) 懂 [dǒng]",
+          "correct": true
+        },
+        {
+          "text": "B) 到 [dào]",
+          "correct": false
+        },
+        {
+          "text": "C) 见 [jiàn]",
+          "correct": false
+        },
+        {
+          "text": "D) 完 [wán]",
+          "correct": false
+        }
       ],
       "explanation": "听懂 (tīngdǒng) — результативный глагол: 听 (слушать) + 懂 (понимать) = понять на слух. 没听懂 = не понял на слух."
     },
@@ -295,10 +523,22 @@
       "question": "Какая грамматическая конструкция выносит дополнение перед глаголом для выражения воздействия?\n请你____门关上。\n[Qǐng nǐ ____ mén guān shàng.] («Пожалуйста, закрой дверь.»)",
       "subtext": "Выберите служебное слово:",
       "options": [
-        { "text": "A) 把 [bǎ]", "correct": true },
-        { "text": "B) 被 [bèi]", "correct": false },
-        { "text": "C) 让 [ràng]", "correct": false },
-        { "text": "D) 给 [gěi]", "correct": false }
+        {
+          "text": "A) 把 [bǎ]",
+          "correct": true
+        },
+        {
+          "text": "B) 被 [bèi]",
+          "correct": false
+        },
+        {
+          "text": "C) 让 [ràng]",
+          "correct": false
+        },
+        {
+          "text": "D) 给 [gěi]",
+          "correct": false
+        }
       ],
       "explanation": "把 (bǎ) — предлог конструкции распоряжения, перемещающий объект (门 — дверь) перед глаголом для указания на завершённое воздействие на предмет."
     }
@@ -312,10 +552,22 @@
       "question": "Какая форма глагола «ser» нужна для первого лица («я»)?\n«¡Hola! Yo ____ Carlos y vivo en Madrid.»",
       "subtext": "Выберите правильную форму глагола:",
       "options": [
-        { "text": "A) soy", "correct": true },
-        { "text": "B) eres", "correct": false },
-        { "text": "C) es", "correct": false },
-        { "text": "D) somos", "correct": false }
+        {
+          "text": "A) soy",
+          "correct": true
+        },
+        {
+          "text": "B) eres",
+          "correct": false
+        },
+        {
+          "text": "C) es",
+          "correct": false
+        },
+        {
+          "text": "D) somos",
+          "correct": false
+        }
       ],
       "explanation": "soy — форма 1-го лица ед. числа от глагола ser (быть, являться): yo soy (я есть / меня зовут)."
     },
@@ -327,10 +579,22 @@
       "question": "Какой глагол указывает на физическое местоположение предметов?\n«¿Dónde ____ los servicios, por favor?»",
       "subtext": "Выберите правильный глагол:",
       "options": [
-        { "text": "A) están", "correct": true },
-        { "text": "B) son", "correct": false },
-        { "text": "C) tienen", "correct": false },
-        { "text": "D) hay", "correct": false }
+        {
+          "text": "A) están",
+          "correct": true
+        },
+        {
+          "text": "B) son",
+          "correct": false
+        },
+        {
+          "text": "C) tienen",
+          "correct": false
+        },
+        {
+          "text": "D) hay",
+          "correct": false
+        }
       ],
       "explanation": "están — глагол estar всегда используется для обозначения физического местонахождения предметов и людей в пространстве."
     },
@@ -342,10 +606,22 @@
       "question": "Какой артикль грамматически верен со словом греческого происхождения «problema»?\n«Tenemos ____ gran problema con el coche.»",
       "subtext": "Выберите правильный артикль:",
       "options": [
-        { "text": "A) un", "correct": true },
-        { "text": "B) una", "correct": false },
-        { "text": "C) unos", "correct": false },
-        { "text": "D) unas", "correct": false }
+        {
+          "text": "A) un",
+          "correct": true
+        },
+        {
+          "text": "B) una",
+          "correct": false
+        },
+        {
+          "text": "C) unos",
+          "correct": false
+        },
+        {
+          "text": "D) unas",
+          "correct": false
+        }
       ],
       "explanation": "un — слова греческого происхождения на -ma (el problema, el sistema, el tema) мужского рода, поэтому используется артикль мужского рода «un»."
     },
@@ -357,10 +633,22 @@
       "question": "Какая форма глагола gustar согласуется со множественным числом?\n«A mí me ____ mucho las ciudades históricas.»",
       "subtext": "Выберите форму глагола:",
       "options": [
-        { "text": "A) gustan", "correct": true },
-        { "text": "B) gusta", "correct": false },
-        { "text": "C) gusto", "correct": false },
-        { "text": "D) gustamos", "correct": false }
+        {
+          "text": "A) gustan",
+          "correct": true
+        },
+        {
+          "text": "B) gusta",
+          "correct": false
+        },
+        {
+          "text": "C) gusto",
+          "correct": false
+        },
+        {
+          "text": "D) gustamos",
+          "correct": false
+        }
       ],
       "explanation": "gustan — в конструкции с gustar подлежащим является то, ЧТО нравится. Так как «las ciudades» во множественном числе, глагол принимает форму «gustan»."
     },
@@ -372,10 +660,22 @@
       "question": "Какая форма глагола ставится после связки «ir a»?\n«Mañana voy a ____ con el director del hotel.»",
       "subtext": "Выберите правильную форму:",
       "options": [
-        { "text": "A) hablar", "correct": true },
-        { "text": "B) hablo", "correct": false },
-        { "text": "C) hablando", "correct": false },
-        { "text": "D) hablaré", "correct": false }
+        {
+          "text": "A) hablar",
+          "correct": true
+        },
+        {
+          "text": "B) hablo",
+          "correct": false
+        },
+        {
+          "text": "C) hablando",
+          "correct": false
+        },
+        {
+          "text": "D) hablaré",
+          "correct": false
+        }
       ],
       "explanation": "hablar — устойчивая конструкция ближайшего будущего времени: спрягаемая форма глагола ir + a + инфинитив (voy a hablar — собираюсь поговорить)."
     },
@@ -387,10 +687,22 @@
       "question": "Какая живая и естественная фраза используется носителями в Испании для заказа кофе?\n«____ un café con leche y una tostada, por favor.»",
       "subtext": "Выберите разговорную формулу:",
       "options": [
-        { "text": "A) ¿Me pones", "correct": true },
-        { "text": "B) Yo quiero", "correct": false },
-        { "text": "C) Dame", "correct": false },
-        { "text": "D) Necesito", "correct": false }
+        {
+          "text": "A) ¿Me pones",
+          "correct": true
+        },
+        {
+          "text": "B) Yo quiero",
+          "correct": false
+        },
+        {
+          "text": "C) Dame",
+          "correct": false
+        },
+        {
+          "text": "D) Necesito",
+          "correct": false
+        }
       ],
       "explanation": "¿Me pones...? — самая естественная, вежливая и распространенная разговорная формула заказа в заведениях Испании."
     },
@@ -402,10 +714,22 @@
       "question": "Какая форма выражает точечное завершённое действие в прошлом с маркером «ayer»?\n«Ayer ____ una carta muy importante.»",
       "subtext": "Выберите форму глагола:",
       "options": [
-        { "text": "A) recibí", "correct": true },
-        { "text": "B) recibía", "correct": false },
-        { "text": "C) he recibido", "correct": false },
-        { "text": "D) recibo", "correct": false }
+        {
+          "text": "A) recibí",
+          "correct": true
+        },
+        {
+          "text": "B) recibía",
+          "correct": false
+        },
+        {
+          "text": "C) he recibido",
+          "correct": false
+        },
+        {
+          "text": "D) recibo",
+          "correct": false
+        }
       ],
       "explanation": "recibí — время Pretérito Indefinido используется для завершённых однократных действий в определённый момент прошлого (ayer)."
     },
@@ -417,10 +741,22 @@
       "question": "Какой предлог выражает причину или повод благодарности?\n«Muchas gracias ____ tu ayuda y paciencia.»",
       "subtext": "Выберите правильный предлог:",
       "options": [
-        { "text": "A) por", "correct": true },
-        { "text": "B) para", "correct": false },
-        { "text": "C) de", "correct": false },
-        { "text": "D) con", "correct": false }
+        {
+          "text": "A) por",
+          "correct": true
+        },
+        {
+          "text": "B) para",
+          "correct": false
+        },
+        {
+          "text": "C) de",
+          "correct": false
+        },
+        {
+          "text": "D) con",
+          "correct": false
+        }
       ],
       "explanation": "por — используется для указания причины или повода благодарности (gracias por...). Предлог «para» выражает цель или адресата."
     },
@@ -432,10 +768,22 @@
       "question": "Какая форма глагола требуется после выражения желания со сменой лица?\n«Quiero que tú ____ a mi fiesta de cumpleaños.»",
       "subtext": "Выберите форму сослагательного наклонения:",
       "options": [
-        { "text": "A) vengas", "correct": true },
-        { "text": "B) vienes", "correct": false },
-        { "text": "C) venir", "correct": false },
-        { "text": "D) vendrás", "correct": false }
+        {
+          "text": "A) vengas",
+          "correct": true
+        },
+        {
+          "text": "B) vienes",
+          "correct": false
+        },
+        {
+          "text": "C) venir",
+          "correct": false
+        },
+        {
+          "text": "D) vendrás",
+          "correct": false
+        }
       ],
       "explanation": "vengas — глаголы волеизъявления и желания (querer que...) при несовпадении подлежащих требуют сослагательного наклонения Presente de Subjuntivo."
     },
@@ -447,12 +795,568 @@
       "question": "Какая связка глагольных форм выражает нереальное условие в настоящем?\n«Si ____ más tiempo libre, ____ un nuevo idioma.»",
       "subtext": "Выберите правильную пару глаголов:",
       "options": [
-        { "text": "A) tuviera / aprendería", "correct": true },
-        { "text": "B) tengo / aprenderé", "correct": false },
-        { "text": "C) tendría / aprendiera", "correct": false },
-        { "text": "D) tuviese / aprendo", "correct": false }
+        {
+          "text": "A) tuviera / aprendería",
+          "correct": true
+        },
+        {
+          "text": "B) tengo / aprenderé",
+          "correct": false
+        },
+        {
+          "text": "C) tendría / aprendiera",
+          "correct": false
+        },
+        {
+          "text": "D) tuviese / aprendo",
+          "correct": false
+        }
       ],
       "explanation": "tuviera / aprendería — нереальное условие строится по формуле: Si + Pretérito Imperfecto de Subjuntivo (tuviera) + Condicional Simple (aprendería)."
+    }
+  ],
+  "ko": [
+    {
+      "id": "ko_quiz_001",
+      "level": "С нуля",
+      "difficulty": "Самый легкий (A0 / Буквы)",
+      "tag": "Корейский • Уровень 1: Хангыль с нуля",
+      "question": "Какая буква хангыля обозначает звук [а]?",
+      "subtext": "Выберите правильную букву:",
+      "options": [
+        {
+          "text": "A) ㅏ",
+          "correct": true
+        },
+        {
+          "text": "B) ㅓ",
+          "correct": false
+        },
+        {
+          "text": "C) ㅗ",
+          "correct": false
+        },
+        {
+          "text": "D) ㅜ",
+          "correct": false
+        }
+      ],
+      "explanation": "ㅏ — это базовая корейская гласная [а]. Буква ㅓ читается как [о/э] (открытый о), ㅗ — как закрытый [о], ㅜ — как [у]."
+    },
+    {
+      "id": "ko_quiz_002",
+      "level": "С нуля",
+      "difficulty": "Легкий (A0 / Приветствия)",
+      "tag": "Корейский • Уровень 2: Этикет и вежливость",
+      "question": "Как по-корейски вежливо сказать «Здравствуйте»?",
+      "subtext": "Выберите вежливую разговорную форму:",
+      "options": [
+        {
+          "text": "A) 안녕하세요 (Annyeonghaseyo)",
+          "correct": true
+        },
+        {
+          "text": "B) 감사합니다 (Kamsahamnida)",
+          "correct": false
+        },
+        {
+          "text": "C) 죄송합니다 (Joesonghamnida)",
+          "correct": false
+        },
+        {
+          "text": "D) 안녕 (Annyeong)",
+          "correct": false
+        }
+      ],
+      "explanation": "안녕하세요 (Annyeonghaseyo) — стандартное универсальное вежливое приветствие. 감사합니다 — это «спасибо», 죄송합니다 — «извините», а просто 안녕 — фамильярное «привет» только для близких друзей."
+    },
+    {
+      "id": "ko_quiz_003",
+      "level": "Ступень 1",
+      "difficulty": "Базовый (A1 / Связки)",
+      "tag": "Корейский • Уровень 3: Базовые предложения",
+      "question": "Вставьте правильную связку «являться кем-то»:\n«저는 학생____» (Я студент). Слово 학생 оканчивается на согласную (патчим ㅇ).",
+      "subtext": "Выберите верное окончание:",
+      "options": [
+        {
+          "text": "A) 이에요",
+          "correct": true
+        },
+        {
+          "text": "B) 예요",
+          "correct": false
+        },
+        {
+          "text": "C) 입니다",
+          "correct": false
+        },
+        {
+          "text": "D) 있어요",
+          "correct": false
+        }
+      ],
+      "explanation": "После согласной (с патчимом) всегда присоединяется 이에요 (학생이에요). Окончание 예요 используется только после гласных (например: 의사예요 — врач)."
+    },
+    {
+      "id": "ko_quiz_004",
+      "level": "Ступень 1",
+      "difficulty": "Базовый (A1 / В кафе)",
+      "tag": "Корейский • Уровень 4: Бытовые просьбы",
+      "question": "Как сказать бариста: «Дайте это, пожалуйста»?",
+      "subtext": "Выберите естественную речевую формулу:",
+      "options": [
+        {
+          "text": "A) 이거 주세요 (Igeo juseyo)",
+          "correct": true
+        },
+        {
+          "text": "B) 이거 먹어요 (Igeo meogeoyo)",
+          "correct": false
+        },
+        {
+          "text": "C) 이거 있어요 (Igeo isseoyo)",
+          "correct": false
+        },
+        {
+          "text": "D) 이거 사요 (Igeo sayo)",
+          "correct": false
+        }
+      ],
+      "explanation": "이거 주세요 (Igeo juseyo) — золотая речевая формула заказа в любом кафе и магазине Кореи (буквально: «это + дайте, пожалуйста»)."
+    },
+    {
+      "id": "ko_quiz_005",
+      "level": "Ступень 2",
+      "difficulty": "Средний (A2 / Желания)",
+      "tag": "Корейский • Уровень 5: Личные планы",
+      "question": "Как перевести фразу: «Я хочу поехать в Корею»?",
+      "subtext": "Выберите грамматически верный вариант:",
+      "options": [
+        {
+          "text": "A) 한국에 가고 싶어요",
+          "correct": true
+        },
+        {
+          "text": "B) 한국에 가요",
+          "correct": false
+        },
+        {
+          "text": "C) 한국에 갔어요",
+          "correct": false
+        },
+        {
+          "text": "D) 한국에서 가요",
+          "correct": false
+        }
+      ],
+      "explanation": "Конструкция -고 싶어요 выражает желание субъекта («хочу сделать»). Глагол 가다 (идти/ехать) -> 가고 싶어요. С направлением движения используется падеж 에: 한국에."
+    },
+    {
+      "id": "ko_quiz_006",
+      "level": "TOPIK 2",
+      "difficulty": "Средний (A2 / Связка действий)",
+      "tag": "Корейский • Уровень 6: Порядок действий",
+      "question": "Как правильно соединить два действия: «Вчера вечером я посмотрел дораму И выпил чашку чая»?\n(보다 — смотреть, 마시다 — пить)",
+      "subtext": "Выберите правильный вариант союза «и» для глаголов:",
+      "options": [
+        {
+          "text": "A) 어제 저녁에 드라마를 보고 차를 마셨어요.",
+          "correct": true
+        },
+        {
+          "text": "B) 어제 저녁에 드라마를 와 차를 마셨어요.",
+          "correct": false
+        },
+        {
+          "text": "C) 어제 저녁에 드라마를 하지만 차를 마셨어요.",
+          "correct": false
+        },
+        {
+          "text": "D) 어제 저녁에 드라마를 봐서 차를 마셨어요.",
+          "correct": false
+        }
+      ],
+      "explanation": "Окончание -고 присоединяется к основе первого глагола (보 + 고 = 보고) для последовательного или параллельного перечисления действий. Окончание прошедшего времени ставится только в конце предложения."
+    },
+    {
+      "id": "ko_quiz_007",
+      "level": "TOPIK 3",
+      "difficulty": "Выше среднего (B1 / Причина)",
+      "tag": "Корейский • Уровень 7: Причины и побуждения",
+      "question": "Выберите верное предложение со значением:\n«Так как на улице идет дождь, возьмите зонт!»",
+      "subtext": "Внимание на разницу между -아/어서 и -(으)니까:",
+      "options": [
+        {
+          "text": "A) 비가 오니까 우산을 쓰세요.",
+          "correct": true
+        },
+        {
+          "text": "B) 비가 와서 우산을 쓰세요.",
+          "correct": false
+        },
+        {
+          "text": "C) 비가 오지만 우산을 쓰세요.",
+          "correct": false
+        },
+        {
+          "text": "D) 비가 오는데 우산을 쓰세요.",
+          "correct": false
+        }
+      ],
+      "explanation": "В повелительных предложениях (просьбах, указаниях с -(으)세요) категорически нельзя использовать -아/어서 для указания причины. Обязательно используется связка -(으)니까: 비가 오니까 (Так как идет дождь)."
+    },
+    {
+      "id": "ko_quiz_008",
+      "level": "TOPIK 4",
+      "difficulty": "Уверенный (B2 / Косвенная речь)",
+      "tag": "Корейский • Уровень 8: Цитирование и косвенная речь",
+      "question": "Как грамматически корректно передать чужие слова в косвенной речи:\n«Минсу сказал, что завтра будет занят»?\n(바쁘다 — быть занятым)",
+      "subtext": "Выберите форму цитирования прилагательного:",
+      "options": [
+        {
+          "text": "A) 민수가 내일 바쁘다고 했어요.",
+          "correct": true
+        },
+        {
+          "text": "B) 민수가 내일 바쁜다고 했어요.",
+          "correct": false
+        },
+        {
+          "text": "C) 민수가 내일 바쁘라고 했어요.",
+          "correct": false
+        },
+        {
+          "text": "D) 민수가 내일 바쁘자고 했어요.",
+          "correct": false
+        }
+      ],
+      "explanation": "Для косвенной речи с прилагательными в корейском языке к основе добавляется -다고 하다 (바쁘다 -> 바쁘다고 했어요). Окончание -ㄴ/는다고 используется только с глаголами действия."
+    },
+    {
+      "id": "ko_quiz_009",
+      "level": "TOPIK 5",
+      "difficulty": "Продвинутый (C1 / Естественные законы)",
+      "tag": "Корейский • Уровень 9: Академическая грамматика",
+      "question": "Какая конструкция означает «неизбежно; само собой разумеется; так устроена природа» в предложении:\n«Любой человек совершает ошибки (это естественно для людей).»",
+      "subtext": "Выберите верную грамматическую конструкцию:",
+      "options": [
+        {
+          "text": "A) 사람은 누구나 실수하기 마련이다.",
+          "correct": true
+        },
+        {
+          "text": "B) 사람은 누구나 실수할 뻔했다.",
+          "correct": false
+        },
+        {
+          "text": "C) 사람은 누구나 실수하는 셈이다.",
+          "correct": false
+        },
+        {
+          "text": "D) 사람은 누구나 실수할 리가 없다.",
+          "correct": false
+        }
+      ],
+      "explanation": "-기 마련이다 выражает естественную закономерность или неизбежность («естественно, что... / суждено...»). Конструкция -할 뻔했다 означает «чуть было не случилось», а -할 리가 없다 — «не может быть, чтобы»."
+    },
+    {
+      "id": "ko_quiz_010",
+      "level": "TOPIK 6",
+      "difficulty": "Мастерство (C2 / Саджасонъо)",
+      "tag": "Корейский • Уровень 10: Корейские идиомы и фразеология",
+      "question": "Какое корейское четырехбуквенное изречение (사자성어) является эквивалентом русской поговорки «Убить двух зайцев одним выстрелом»?",
+      "subtext": "Выберите правильное саджасонъо:",
+      "options": [
+        {
+          "text": "A) 일석이조 (一石二鳥 — одним камнем двух птиц)",
+          "correct": true
+        },
+        {
+          "text": "B) 작심삼일 (作心三日 — решение на три дня)",
+          "correct": false
+        },
+        {
+          "text": "C) 동문서답 (東問西答 — вопрос на восток, ответ на запад)",
+          "correct": false
+        },
+        {
+          "text": "D) 역지사지 (易地思之 — встать на место другого)",
+          "correct": false
+        }
+      ],
+      "explanation": "일석이조 (иль-сок-и-джо) буквально переводится как «один камень — две птицы» и означает извлечение двойной выгоды от одного действия."
+    }
+  ],
+  "tr": [
+    {
+      "id": "tr_quiz_001",
+      "level": "A1",
+      "difficulty": "Самый легкий (A0 / Фонетика)",
+      "tag": "Турецкий • Уровень 1: Алфавит и звуки",
+      "question": "Как произносится буква «Ç» в турецком слове «Çay» (чай)?",
+      "subtext": "Выберите верный звук:",
+      "options": [
+        {
+          "text": "A) Как русский звук [Ч]",
+          "correct": true
+        },
+        {
+          "text": "B) Как русский звук [С]",
+          "correct": false
+        },
+        {
+          "text": "C) Как русский звук [Ц]",
+          "correct": false
+        },
+        {
+          "text": "D) Как русский звук [К]",
+          "correct": false
+        }
+      ],
+      "explanation": "Буква Ç с хвостиком внизу всегда читается как четкий звук [Ч] (çay — чай, çok — очень). Обычная буква C читается как звонкий [ДЖ]."
+    },
+    {
+      "id": "tr_quiz_002",
+      "level": "A1",
+      "difficulty": "Легкий (A1 / Приветствия)",
+      "tag": "Турецкий • Уровень 2: Базовый этикет",
+      "question": "Как сказать «Здравствуйте / Привет» по-турецки?",
+      "subtext": "Выберите универсальное приветствие:",
+      "options": [
+        {
+          "text": "A) Merhaba",
+          "correct": true
+        },
+        {
+          "text": "B) Günaydın",
+          "correct": false
+        },
+        {
+          "text": "C) Teşekkürler",
+          "correct": false
+        },
+        {
+          "text": "D) Güle güle",
+          "correct": false
+        }
+      ],
+      "explanation": "Merhaba — самое популярное и универсальное приветствие в Турции в любое время суток. Günaydın — «доброе утро», Teşekkürler — «спасибо»."
+    },
+    {
+      "id": "tr_quiz_003",
+      "level": "A1",
+      "difficulty": "Базовый (A1 / Гармония гласных)",
+      "tag": "Турецкий • Уровень 3: Множественное число",
+      "question": "Какой аффикс множественного числа нужен слову «Kitap» (книга)? Последняя гласная — твердая «a».",
+      "subtext": "Выберите правильный аффикс (-lar или -ler):",
+      "options": [
+        {
+          "text": "A) Kitaplar",
+          "correct": true
+        },
+        {
+          "text": "B) Kitapler",
+          "correct": false
+        },
+        {
+          "text": "C) Kitapi",
+          "correct": false
+        },
+        {
+          "text": "D) Kitaplarim",
+          "correct": false
+        }
+      ],
+      "explanation": "По закону малой гармонии гласных: после твердых гласных (A, I, O, U) ставится аффикс -lar (kitaplar, arabalar). После мягких (E, İ, Ö, Ü) — аффикс -ler (evler, günler)."
+    },
+    {
+      "id": "tr_quiz_004",
+      "level": "A1-A2",
+      "difficulty": "Базовый (A1 / Местоположение)",
+      "tag": "Турецкий • Уровень 4: Местный падеж (-da/-de)",
+      "question": "Как сказать «Я дома»? (Ev — дом, последняя гласная мягкая «e»).",
+      "subtext": "Выберите правильную форму:",
+      "options": [
+        {
+          "text": "A) Evdeyim",
+          "correct": true
+        },
+        {
+          "text": "B) Evdayım",
+          "correct": false
+        },
+        {
+          "text": "C) Evden",
+          "correct": false
+        },
+        {
+          "text": "D) Eve",
+          "correct": false
+        }
+      ],
+      "explanation": "Местный падеж отвечает на вопрос Nerede? (Где?). Корень ev (дом) + падеж -de (в доме) + соединительная y + аффикс 1-го лица -im: Evdeyim (Я дома)."
+    },
+    {
+      "id": "tr_quiz_005",
+      "level": "A2",
+      "difficulty": "Средний (A2 / В кафе и отелях)",
+      "tag": "Турецкий • Уровень 5: Вежливые формы (-abilir)",
+      "question": "Как вежливо спросить в отеле или кафе: «Есть ли у вас Wi-Fi?»?",
+      "subtext": "Выберите естественный вопрос носителей:",
+      "options": [
+        {
+          "text": "A) Wi-Fi var mı?",
+          "correct": true
+        },
+        {
+          "text": "B) Wi-Fi yok mu?",
+          "correct": false
+        },
+        {
+          "text": "C) Wi-Fi nerede?",
+          "correct": false
+        },
+        {
+          "text": "D) Wi-Fi kaç para?",
+          "correct": false
+        }
+      ],
+      "explanation": "Конструкция Var mı? переводится «Есть ли...?». Вопросительная частица mı согласуется по гармонии с твердой гласной слова."
+    },
+    {
+      "id": "tr_quiz_006",
+      "level": "B1",
+      "difficulty": "Средний (B1 / Субъективное прошедшее)",
+      "tag": "Турецкий • Уровень 6: Услышанное или неожиданное (-miş)",
+      "question": "Выберите предложение, передающее новость или факт, узнанный со слов других (или увиденный как свершившийся факт):\n«Оказывается, Али уехал в Анкару!»",
+      "subtext": "Внимание на разницу между очевидным (-di) и услышанным (-miş):",
+      "options": [
+        {
+          "text": "A) Ali Ankara'ya gitmiş!",
+          "correct": true
+        },
+        {
+          "text": "B) Ali Ankara'ya gitti.",
+          "correct": false
+        },
+        {
+          "text": "C) Ali Ankara'ya gidiyor.",
+          "correct": false
+        },
+        {
+          "text": "D) Ali Ankara'ya gidecek.",
+          "correct": false
+        }
+      ],
+      "explanation": "Аффикс -miş / -mış / -müş / -muş обозначает прошедшее субъективное время (Duyulan Geçmiş Zaman): действие, о котором говорящий узнал от третьих лиц или осознал постфактум («оказывается... / говорят, что...»)."
+    },
+    {
+      "id": "tr_quiz_007",
+      "level": "B1-B2",
+      "difficulty": "Выше среднего (B2 / Деепричастие -ken)",
+      "tag": "Турецкий • Уровень 7: Временные придаточные",
+      "question": "Как сказать по-турецки:\n«Когда я был ребенком, мы жили в Измире»?\n(Çocuk — ребенок, İzmir'de yaşamak — жить в Измире)",
+      "subtext": "Выберите правильную форму аффикса «в то время как / когда»:",
+      "options": [
+        {
+          "text": "A) Ben çocukken İzmir'de yaşıyorduk.",
+          "correct": true
+        },
+        {
+          "text": "B) Ben çocukta İzmir'de yaşıyorduk.",
+          "correct": false
+        },
+        {
+          "text": "C) Ben çocuk için İzmir'de yaşıyorduk.",
+          "correct": false
+        },
+        {
+          "text": "D) Ben çocukla İzmir'de yaşıyorduk.",
+          "correct": false
+        }
+      ],
+      "explanation": "Аффикс -ken присоединяется к существительным и глаголам со значением «в то время как / будучи кем-то / когда» (çocukken — будучи ребенком / когда я был ребенком). Он не подчиняется закону гармонии гласных и не меняется."
+    },
+    {
+      "id": "tr_quiz_008",
+      "level": "B2",
+      "difficulty": "Уверенный (B2 / Придаточные цели)",
+      "tag": "Турецкий • Уровень 8: Конструкции цели",
+      "question": "Как правильно сказать:\n«Я пришел в библиотеку, ЧТОБЫ подготовиться к экзаменам»?\n(Ders çalışmak — учиться/заниматься, kütüphane — библиотека)",
+      "subtext": "Выберите верный оборот цели:",
+      "options": [
+        {
+          "text": "A) Ders çalışmak için kütüphaneye geldim.",
+          "correct": true
+        },
+        {
+          "text": "B) Ders çalışmak çünkü kütüphaneye geldim.",
+          "correct": false
+        },
+        {
+          "text": "C) Ders çalışmaktan kütüphaneye geldim.",
+          "correct": false
+        },
+        {
+          "text": "D) Ders çalışmaya göre kütüphaneye geldim.",
+          "correct": false
+        }
+      ],
+      "explanation": "Оборот «инфинитив на -mek/-mak + için» выражает цель действия («для того чтобы / чтобы»). Çünkü означает «потому что» и начинает самостоятельное придаточное предложение."
+    },
+    {
+      "id": "tr_quiz_009",
+      "level": "C1",
+      "difficulty": "Продвинутый (C1 / Нереальное условие)",
+      "tag": "Турецкий • Уровень 9: Сослагательное наклонение",
+      "question": "Выберите верную форму нереального условия в прошлом:\n«Если бы ты вчера предупредил меня, я бы обязательно встретил тебя в аэропорту!»",
+      "subtext": "Внимание на условную частицу -seydi/-saydı в прошлом:",
+      "options": [
+        {
+          "text": "A) Dün bana haber verseydin, seni havaalanında karşılardım.",
+          "correct": true
+        },
+        {
+          "text": "B) Dün bana haber versen, seni havaalanında karşılarım.",
+          "correct": false
+        },
+        {
+          "text": "C) Dün bana haber verdiysen, seni havaalanında karşılayayım.",
+          "correct": false
+        },
+        {
+          "text": "D) Dün bana haber verse, seni havaalanında karşılayacaktım.",
+          "correct": false
+        }
+      ],
+      "explanation": "Форма -seydi / -saydı в сочетании с -rdı / -rdi образует нереальное условие в прошлом (irrealis): действие, которое могло произойти, но уже не произошло («если бы ты предупредил вчера... я бы встретил»)."
+    },
+    {
+      "id": "tr_quiz_010",
+      "level": "C2",
+      "difficulty": "Мастерство (C2 / Идиомы носителей)",
+      "tag": "Турецкий • Уровень 10: Устойчивые фразеологизмы (Deyimler)",
+      "question": "Что означает широко распространенная турецкая идиома «Gözden düşmek» (букв. «упасть из глаз»)?",
+      "subtext": "Выберите точное значение выражения:",
+      "options": [
+        {
+          "text": "A) Потерять доверие, любовь или уважение; упасть в чьих-то глазах",
+          "correct": true
+        },
+        {
+          "text": "B) Очень сильно устать от чтения или работы за экраном",
+          "correct": false
+        },
+        {
+          "text": "C) Быть незаметным в толпе людей",
+          "correct": false
+        },
+        {
+          "text": "D) Внезапно расплакаться от обиды",
+          "correct": false
+        }
+      ],
+      "explanation": "Идиома «gözden düşmek» означает утратить чью-то благосклонность, почет, доверие или уважение (аналог в русском: «упасть в глазах кого-либо»). Противоположное выражение — «göze girmek» (заслужить чье-то доверие и похвалу)."
     }
   ]
 }

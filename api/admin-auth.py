@@ -1,15 +1,20 @@
 """
 Vercel Serverless Function: Admin Authentication & Security Gate
-Validates master admin credentials using salted SHA-256 and rate limits brute-force attempts.
+Validates master admin credentials using salted SHA-256 with HMAC timing-attack protection
+and cryptographically signed session tokens.
 """
 
 from http.server import BaseHTTPRequestHandler
 import json
 import hashlib
+import hmac
 import time
+import secrets
+import os
 
-SALT = "native_salt_2026:"
-# Precomputed hash for default PIN "2026"
+SALT = os.getenv("ADMIN_SALT", "native_salt_2026:")
+SERVER_SECRET = os.getenv("ADMIN_SESSION_SECRET", "native_super_secret_signing_key_2026")
+# Precomputed hash for default master PIN "2026"
 DEFAULT_HASH = "e0b3c0ce5f66c6f36e6cb2373c20ad62905ed1cdb06a99cb5445b153f89ec37d"
 
 # In-memory IP rate limiter for serverless instance
@@ -21,6 +26,30 @@ def compute_hash(pwd: str) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def generate_session_token(client_ip: str) -> str:
+    timestamp = str(int(time.time()))
+    nonce = secrets.token_hex(8)
+    message = f"{client_ip}:{timestamp}:{nonce}".encode("utf-8")
+    signature = hmac.new(SERVER_SECRET.encode("utf-8"), message, hashlib.sha256).hexdigest()
+    return f"{timestamp}.{nonce}.{signature}"
+
+
+def verify_session_token(token: str, client_ip: str, max_age: int = 3600) -> bool:
+    try:
+        parts = token.split(".")
+        if len(parts) != 3:
+            return False
+        timestamp_str, nonce, signature = parts
+        timestamp = int(timestamp_str)
+        if time.time() - timestamp > max_age:
+            return False
+        message = f"{client_ip}:{timestamp_str}:{nonce}".encode("utf-8")
+        expected = hmac.new(SERVER_SECRET.encode("utf-8"), message, hashlib.sha256).hexdigest()
+        return hmac.compare_digest(signature, expected)
+    except Exception:
+        return False
+
+
 class handler(BaseHTTPRequestHandler):
     def _send_json(self, status: int, data: dict):
         body = json.dumps(data, ensure_ascii=False).encode("utf-8")
@@ -29,6 +58,8 @@ class handler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
@@ -44,13 +75,13 @@ class handler(BaseHTTPRequestHandler):
         client_ip = self.headers.get("x-forwarded-for", "").split(",")[0].strip() or self.client_address[0]
         now = time.time()
 
-        # Check IP lockout
+        # Check IP lockout (Brute-force protection)
         ip_state = FAILED_ATTEMPTS.get(client_ip, {"count": 0, "lockout_until": 0})
         if ip_state["lockout_until"] > now:
             wait_sec = int(ip_state["lockout_until"] - now)
             return self._send_json(429, {
                 "error": "Too Many Requests",
-                "message": f"Доступ заблокирован на {wait_sec} сек. из-за множества неверных попыток.",
+                "message": f"Доступ временно заблокирован на {wait_sec} сек. из-за множества неверных попыток.",
                 "retry_after": wait_sec
             })
 
@@ -69,16 +100,18 @@ class handler(BaseHTTPRequestHandler):
             return self._send_json(400, {"error": "Password required"})
 
         pwd_hash = compute_hash(password)
-        if pwd_hash == DEFAULT_HASH:
+        # Timing-attack safe comparison
+        if hmac.compare_digest(pwd_hash, DEFAULT_HASH):
             # Reset failed attempts
             FAILED_ATTEMPTS.pop(client_ip, None)
+            session_token = generate_session_token(client_ip)
             return self._send_json(200, {
                 "authorized": True,
-                "token": pwd_hash,
-                "expires_in": 1800
+                "token": session_token,
+                "expires_in": 3600
             })
         else:
-            # Record failed attempt
+            # Record failed attempt with progressive delay
             count = ip_state["count"] + 1
             lockout_until = 0
             if count >= 5:

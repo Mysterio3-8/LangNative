@@ -149,6 +149,37 @@
       margin-bottom: 12px;
     }
 
+    /* Language Selector Pills */
+    .lang-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .lang-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--reader-border);
+      color: var(--reader-sub);
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .lang-pill.active {
+      background: var(--reader-accent);
+      color: #fff;
+      border-color: var(--reader-accent);
+    }
+
     /* Level Selector Pills */
     .level-pills {
       display: flex;
@@ -497,7 +528,16 @@
     <!-- Sidebar -->
     <aside id="courses-sidebar" class="courses-sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-title">Уровни английского (CEFR)</div>
+        <div class="sidebar-title">Язык курса</div>
+        <div class="lang-pills" id="lang-pills-container">
+          <button class="lang-pill active" data-lang="english">🇬🇧 English</button>
+          <button class="lang-pill" data-lang="spanish">🇪🇸 Español</button>
+          <button class="lang-pill" data-lang="chinese">🇨🇳 中文</button>
+          <button class="lang-pill" data-lang="korean">🇰🇷 한국어</button>
+          <button class="lang-pill" data-lang="turkish">🇹🇷 Türkçe</button>
+        </div>
+
+        <div class="sidebar-title" id="levels-section-title">Ступени обучения</div>
         <div class="level-pills" id="level-pills-container">
           <button class="level-pill active" data-level="A0">A0</button>
           <button class="level-pill" data-level="A1">A1</button>

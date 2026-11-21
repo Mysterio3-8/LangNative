@@ -16,7 +16,9 @@
   const BADGES = {
     english: "От нуля до свободного владения",
     chinese: "От первых иероглифов до свободного общения",
-    spanish: "От первых фраз до уверенного диалога"
+    spanish: "От первых фраз до уверенного диалога",
+    korean: "От Хангыля до свободного понимания дорам",
+    turkish: "От первых фраз до уверенного общения в Турции"
   };
 
   function initReader() {
@@ -57,7 +59,11 @@
       if (readerDesc) readerDesc.textContent = course.subtitle;
       if (readerBadge) {
         readerBadge.textContent = BADGES[activePreviewCourse] || "Курс (Все уровни)";
-        const badgeClass = activePreviewCourse === "english" ? "badge-en" : activePreviewCourse === "chinese" ? "badge-cn" : "badge-es";
+        let badgeClass = "badge-en";
+        if (activePreviewCourse === "chinese") badgeClass = "badge-cn";
+        else if (activePreviewCourse === "spanish") badgeClass = "badge-es";
+        else if (activePreviewCourse === "korean") badgeClass = "badge-ko";
+        else if (activePreviewCourse === "turkish") badgeClass = "badge-tr";
         readerBadge.className = `course-badge ${badgeClass}`;
       }
 

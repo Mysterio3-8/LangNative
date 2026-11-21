@@ -1,18 +1,39 @@
 /* ==========================================================================
-   NATIVE — Courses Interactive Platform & Lesson Review Engine
+   NATIVE — Multi-Language Interactive Learning Platform & Review Engine
+   Supports English (A0-C2), Spanish, Chinese, Korean, Turkish
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
   let catalogData = null;
+  let currentLang = "english";
   let currentLevel = "A0";
-  let currentItemKey = "m01_l1"; // default to Module 1, Lesson 1
+  let currentItemKey = "m01_l1"; // default to first lesson
 
   const sidebarTree = document.getElementById("sidebar-nav-tree");
   const contentContainer = document.getElementById("lesson-content-container");
+  const langPillsContainer = document.getElementById("lang-pills-container");
   const levelPillsContainer = document.getElementById("level-pills-container");
   const currentLevelLabel = document.getElementById("current-level-name");
   const mobileToggleBtn = document.getElementById("mobile-toggle-btn");
   const coursesSidebar = document.getElementById("courses-sidebar");
+
+  // LocalStorage progress tracking
+  function isItemCompleted(id) {
+    try {
+      return localStorage.getItem(`native_completed_${id}`) === "true";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function toggleItemCompleted(id) {
+    try {
+      const current = isItemCompleted(id);
+      localStorage.setItem(`native_completed_${id}`, String(!current));
+      renderSidebar();
+      renderContent();
+    } catch (e) {}
+  }
 
   // Mobile drawer toggle
   if (mobileToggleBtn && coursesSidebar) {
@@ -26,8 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(data => {
       catalogData = data;
-      renderSidebar();
-      renderContent();
+      rebuildLevelPills();
     })
     .catch(err => {
       if (contentContainer) {
@@ -35,35 +55,95 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-  // Level selector
-  if (levelPillsContainer) {
-    levelPillsContainer.addEventListener("click", (e) => {
-      const pill = e.target.closest(".level-pill");
+  // Language selector
+  if (langPillsContainer) {
+    langPillsContainer.addEventListener("click", (e) => {
+      const pill = e.target.closest(".lang-pill");
       if (!pill) return;
 
-      levelPillsContainer.querySelectorAll(".level-pill").forEach(p => p.classList.remove("active"));
+      langPillsContainer.querySelectorAll(".lang-pill").forEach(p => p.classList.remove("active"));
       pill.classList.add("active");
 
-      currentLevel = pill.dataset.level;
-      if (currentLevelLabel && catalogData && catalogData[currentLevel]) {
-        currentLevelLabel.textContent = catalogData[currentLevel].title || currentLevel;
-      }
+      currentLang = pill.dataset.lang;
+      rebuildLevelPills();
+    });
+  }
 
-      const levelMods = (catalogData && catalogData[currentLevel] && catalogData[currentLevel].modules) || [];
-      const firstReady = levelMods.find(m => m.status === "ready" && m.items && m.items.length > 0);
-      if (firstReady) {
-        currentItemKey = firstReady.items[0].id;
-      } else {
-        currentItemKey = "curriculum";
-      }
+  // Helper to get active level object
+  function getLevelData() {
+    if (!catalogData) return null;
+    if (catalogData[currentLang] && catalogData[currentLang].levels && catalogData[currentLang].levels[currentLevel]) {
+      return catalogData[currentLang].levels[currentLevel];
+    }
+    if (catalogData[currentLevel]) {
+      return catalogData[currentLevel];
+    }
+    return null;
+  }
 
+  // Rebuild Level Pills when language changes
+  function rebuildLevelPills() {
+    if (!levelPillsContainer || !catalogData) return;
+    levelPillsContainer.innerHTML = "";
+
+    const langObj = catalogData[currentLang];
+    if (!langObj || !langObj.levels) {
       renderSidebar();
       renderContent();
+      return;
+    }
 
-      if (window.innerWidth <= 860 && coursesSidebar) {
-        coursesSidebar.classList.remove("open");
-      }
+    const levels = Object.keys(langObj.levels);
+    currentLevel = levels[0] || "A0";
+
+    levels.forEach(lvl => {
+      const btn = document.createElement("button");
+      btn.className = `level-pill ${lvl === currentLevel ? "active" : ""}`;
+      btn.dataset.level = lvl;
+      btn.textContent = lvl;
+      btn.addEventListener("click", () => {
+        levelPillsContainer.querySelectorAll(".level-pill").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        currentLevel = lvl;
+
+        const lData = getLevelData();
+        if (currentLevelLabel && lData) {
+          currentLevelLabel.textContent = lData.title || currentLevel;
+        }
+
+        const mods = (lData && lData.modules) || [];
+        const firstReady = mods.find(m => m.status === "ready" && m.items && m.items.length > 0);
+        if (firstReady) {
+          currentItemKey = firstReady.items[0].id;
+        } else {
+          currentItemKey = "curriculum";
+        }
+
+        renderSidebar();
+        renderContent();
+
+        if (window.innerWidth <= 860 && coursesSidebar) {
+          coursesSidebar.classList.remove("open");
+        }
+      });
+      levelPillsContainer.appendChild(btn);
     });
+
+    const lData = getLevelData();
+    if (currentLevelLabel && lData) {
+      currentLevelLabel.textContent = lData.title || currentLevel;
+    }
+
+    const mods = (lData && lData.modules) || [];
+    const firstReady = mods.find(m => m.status === "ready" && m.items && m.items.length > 0);
+    if (firstReady) {
+      currentItemKey = firstReady.items[0].id;
+    } else {
+      currentItemKey = "curriculum";
+    }
+
+    renderSidebar();
+    renderContent();
   }
 
   // Global navigator helper
@@ -82,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!sidebarTree || !catalogData) return;
     sidebarTree.innerHTML = "";
 
-    const levelData = catalogData[currentLevel];
+    const levelData = getLevelData();
     if (!levelData) return;
 
     const modules = levelData.modules || [];
@@ -134,9 +214,11 @@ document.addEventListener("DOMContentLoaded", () => {
           if (item.type === "test") icon = "📝";
           if (item.type === "answers") icon = "🔑";
 
+          const completed = isItemCompleted(item.id);
+
           btn.innerHTML = `
-            <span class="nav-item-icon">${icon}</span>
-            <span style="flex:1; font-size: 0.85rem;">${item.title}</span>
+            <span class="nav-item-icon">${completed ? '✅' : icon}</span>
+            <span style="flex:1; font-size: 0.85rem; ${completed ? 'color: #34d399;' : ''}">${item.title}</span>
           `;
 
           btn.addEventListener("click", () => {
@@ -154,14 +236,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!contentContainer || !catalogData) return;
     contentContainer.innerHTML = "";
 
-    const levelData = catalogData[currentLevel];
+    const levelData = getLevelData();
     if (!levelData) return;
 
     const allModules = levelData.modules || [];
     const allItems = allModules.flatMap(m => m.items || []);
     const activeItem = allItems.find(i => i.id === currentItemKey);
 
-    // 1. If an active lesson/test/answer is selected
+    // 1. Active lesson/test/answer selected
     if (activeItem) {
       renderLessonDetail(activeItem, allItems, allModules);
       return;
@@ -181,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 ${mod.items.map(it => `
                   <a href="#" class="nav-item-btn" style="text-decoration:none;" onclick="event.preventDefault(); window.navigateToItem('${it.id}')">
-                    <span class="nav-item-icon">${it.type === 'test' ? '📝' : it.type === 'answers' ? '🔑' : '📄'}</span>
+                    <span class="nav-item-icon">${isItemCompleted(it.id) ? '✅' : it.type === 'test' ? '📝' : it.type === 'answers' ? '🔑' : '📄'}</span>
                     <span>${it.title}</span>
                   </a>
                 `).join('')}
@@ -191,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         contentContainer.innerHTML = `
           <div class="content-header-card">
-            <span class="content-level-tag">${currentLevel} • ${isReady ? 'Готовый модуль' : 'Учебный план'}</span>
+            <span class="content-level-tag">${currentLang.toUpperCase()} • ${currentLevel} • ${isReady ? 'Готовый модуль' : 'Учебный план'}</span>
             <h1 class="content-title">${mod.title}</h1>
             <div class="content-goal-box">
               <strong>🎯 Языковой фокус и результаты:</strong><br>
@@ -208,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderLevelCurriculumOverview(levelData);
   }
 
-  // Simple Markdown Parser for Tests & Answers
+  // Markdown formatter
   function formatMarkdown(md) {
     if (!md) return "";
     let html = md;
@@ -225,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Horizontal Rule
     html = html.replace(/^---$/gim, '<hr style="border:0; border-top:1px solid var(--reader-border); margin:20px 0;">');
 
-    // Lists (- Option)
+    // List items
     html = html.replace(/^- (.*$)/gim, '<div style="padding: 4px 0 4px 18px; position:relative;"><span style="position:absolute; left:0; color:#3b82f6;">•</span>$1</div>');
 
     // Tables
@@ -299,12 +381,17 @@ document.addEventListener("DOMContentLoaded", () => {
       secLines = [];
     }
 
-    // Build Phonetics Grid HTML
+    // Phonetics & Rules HTML
     let phoneticsHtml = "";
     if (phoneticsRaw) {
       phoneticsHtml = `
         <div style="background: var(--reader-card); border: 1px solid var(--reader-border); border-radius: 12px; padding: 22px; margin-top: 20px; line-height: 1.65;">
-          <h3 style="font-size: 1.1rem; color: #60a5fa; margin: 0 0 14px;">📖 Словарь, фонетика и правила урока:</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <h3 style="font-size: 1.1rem; color: #60a5fa; margin: 0;">📖 Словарь, фонетика и правила урока:</h3>
+            <button class="btn-topbar btn-topbar-secondary" style="font-size: 0.75rem; padding: 4px 10px;" onclick="window.speakText('${item.title.replace(/'/g, "\\'")}')">
+              🔊 Озвучить
+            </button>
+          </div>
           <div style="color: #e2e8f0; font-size: 0.92rem;">
             ${formatMarkdown(phoneticsRaw)}
           </div>
@@ -312,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
-    // Build Exercises HTML with interactive answers reveal
+    // Exercises HTML with answer reveal
     let exercisesHtml = "";
     if (exercisesRaw) {
       const exLines = exercisesRaw.split("\n");
@@ -363,20 +450,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Build Audio Scenario HTML
+    // Audio Scenario HTML
     let audioHtml = "";
     if (audioScript) {
       audioHtml = `
         <div class="audio-scenario-card" style="margin-top: 24px;">
           <div class="audio-scenario-header">
-            <span>🎙️ Сценарий аудирования и отработки с диктором (TTS)</span>
+            <span>🎙️ Сценарий аудирования и отработки с диктором</span>
+            <button class="btn-topbar btn-topbar-primary" style="font-size: 0.76rem; padding: 4px 10px;" onclick="window.speakText(document.getElementById('audio-text-body').innerText)">
+              ▶️ Прослушать сценарий
+            </button>
           </div>
-          <div class="audio-speech-text">${audioScript.replace(/\n/g, "<br>")}</div>
+          <div id="audio-text-body" class="audio-speech-text">${audioScript.replace(/\n/g, "<br>")}</div>
         </div>
       `;
     }
 
-    // Build Answers HTML
+    // Answers HTML
     let answersHtml = "";
     if (answersRaw) {
       answersHtml = `
@@ -387,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
-    // If item is test or answers
+    // Test or Answers Page
     let specialHtml = "";
     if (item.type === "test" || item.type === "answers") {
       specialHtml = `
@@ -397,9 +487,16 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
+    const completed = isItemCompleted(item.id);
+
     contentContainer.innerHTML = `
       <div class="content-header-card">
-        <span class="content-level-tag">${currentLevel} • ${moduleTitle} • Английский язык</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+          <span class="content-level-tag">${currentLang.toUpperCase()} • ${currentLevel} • ${moduleTitle}</span>
+          <button id="btn-toggle-complete" class="btn-topbar ${completed ? 'btn-topbar-secondary' : 'btn-topbar-primary'}" style="font-size: 0.78rem;">
+            ${completed ? '✅ Урок пройден' : '⚪ Отметить как пройденный'}
+          </button>
+        </div>
         <h1 class="content-title">${item.title}</h1>
         ${goal ? `
           <div class="content-goal-box">
@@ -423,7 +520,15 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // Next / Prev listeners across all modules of current level
+    // Completion button listener
+    const btnComplete = document.getElementById("btn-toggle-complete");
+    if (btnComplete) {
+      btnComplete.addEventListener("click", () => {
+        toggleItemCompleted(item.id);
+      });
+    }
+
+    // Next / Prev listeners
     const idx = allItems.findIndex(i => i.id === item.id);
     const btnPrev = document.getElementById("btn-prev-lesson");
     const btnNext = document.getElementById("btn-next-lesson");
@@ -449,7 +554,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Render Full Curriculum Overview for Level
+  // Render Full Curriculum Overview
   function renderLevelCurriculumOverview(levelData) {
     let modsHtml = "";
     (levelData.modules || []).forEach(m => {
@@ -469,10 +574,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     contentContainer.innerHTML = `
       <div class="content-header-card">
-        <span class="content-level-tag">${currentLevel} • Полная программа курса</span>
+        <span class="content-level-tag">${currentLang.toUpperCase()} • ${currentLevel} • Полная программа курса</span>
         <h1 class="content-title">${levelData.title || currentLevel}</h1>
         <p style="color: var(--reader-sub); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-          12 полноценных модулей (48 основных уроков + 12 контрольных работ + 1 итоговый экзамен). Разработано по стандартам CEFR и British Council.
+          12 полноценных модулей (48 основных уроков + 12 контрольных работ + 1 итоговый экзамен). Разработано по стандартам CEFR, Cambridge и British Council.
         </p>
       </div>
 
@@ -481,16 +586,26 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  // Helper Speech Synthesis
-  window.speakLetter = function(char) {
+  // Multi-Language Native Web Speech API
+  window.speakText = function(text) {
+    if (!text) return;
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      const utter = new SpeechSynthesisUtterance(char);
-      utter.lang = "en-US";
-      utter.rate = 0.85;
+      const utter = new SpeechSynthesisUtterance(text);
+      const langMap = {
+        english: "en-US",
+        spanish: "es-ES",
+        chinese: "zh-CN",
+        korean: "ko-KR",
+        turkish: "tr-TR"
+      };
+      utter.lang = langMap[currentLang] || "en-US";
+      utter.rate = 0.88;
       window.speechSynthesis.speak(utter);
-    } else {
-      alert(`Звук буквы: ${char}`);
     }
+  };
+
+  window.speakLetter = function(char) {
+    window.speakText(char);
   };
 });

@@ -685,6 +685,25 @@ img {
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
 }
 
+@media (max-width: 640px) {
+  .demo-tabs-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 6px 8px;
+  }
+  .demo-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .demo-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+  }
+}
+
 .demo-progress-bar-wrap {
   padding: 16px 28px 0;
 }
@@ -937,8 +956,8 @@ img {
 
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 24px;
   margin-bottom: 24px;
 }
 
@@ -987,6 +1006,8 @@ img {
 .badge-en { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
 .badge-cn { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
 .badge-es { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.badge-ko { background: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+.badge-tr { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
 
 .course-title {
   font-family: var(--font-display);
@@ -1058,10 +1079,10 @@ img {
 }
 
 .check-item {
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   color: var(--text-secondary);
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 10px;
   line-height: 1.45;
 }
@@ -1078,18 +1099,21 @@ img {
   color: #059669;
   font-size: 0.72rem;
   font-weight: 800;
-  transform: translateY(1px);
+  margin-top: 2px;
 }
 
 .check-text {
   flex: 1;
   color: var(--text-secondary);
   line-height: 1.45;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .check-text strong {
   color: var(--text-primary);
   font-weight: 700;
+  display: inline;
 }
 
 /* ==========================================================================

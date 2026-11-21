@@ -8,24 +8,36 @@
     spanish: "390 ₽",
     english: "390 ₽",
     chinese: "390 ₽",
+    korean: "390 ₽",
+    turkish: "390 ₽",
     "spanish-base": "290 ₽",
     "english-base": "290 ₽",
     "chinese-base": "290 ₽",
+    "korean-base": "290 ₽",
+    "turkish-base": "290 ₽",
     "spanish-full": "490 ₽",
     "english-full": "490 ₽",
-    "chinese-full": "490 ₽"
+    "chinese-full": "490 ₽",
+    "korean-full": "490 ₽",
+    "turkish-full": "490 ₽"
   };
 
   const COURSE_NUMERIC_PRICES = {
     spanish: 390,
     english: 390,
     chinese: 390,
+    korean: 390,
+    turkish: 390,
     "spanish-base": 290,
     "english-base": 290,
     "chinese-base": 290,
+    "korean-base": 290,
+    "turkish-base": 290,
     "spanish-full": 490,
     "english-full": 490,
-    "chinese-full": 490
+    "chinese-full": 490,
+    "korean-full": 490,
+    "turkish-full": 490
   };
 
   let selectedCourseId = "english";
